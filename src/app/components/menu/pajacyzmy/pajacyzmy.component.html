@@ -1,1 +1,11 @@
 <p>pajacyzmy works!</p>
+
+<table>
+  <tbody>
+  <tr *ngFor="let pajacyzm of pajacyzmyList;">
+    <td>{{pajacyzm.content}}</td>
+    <td>{{pajacyzm.author}}</td>
+    <td>{{pajacyzm.createdDate.substr(0, 10)}}</td>
+  </tr>
+  </tbody>
+</table>
