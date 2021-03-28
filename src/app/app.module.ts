@@ -7,6 +7,13 @@ import { PajacyzmyComponent } from './components/menu/pajacyzmy/pajacyzmy.compon
 import { MemyComponent } from './components/menu/memy/memy.component';
 import { JugoComponent } from './components/menu/jugo/jugo.component';
 import { SoundboardComponent } from './components/menu/soundboard/soundboard.component';
+import {RouterModule} from '@angular/router';
+import { HttpService } from './services/http.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpAddressInterceptor} from './interceptors/http-address-interceptor';
+import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,11 +23,17 @@ import { SoundboardComponent } from './components/menu/soundboard/soundboard.com
     MemyComponent,
     JugoComponent,
     SoundboardComponent,
+    ErrorModalComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    NgbModule,
   ],
-  providers: [],
+  providers: [HttpService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

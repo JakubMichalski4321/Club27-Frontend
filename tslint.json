@@ -16,7 +16,7 @@
     "deprecation": {
       "severity": "warning"
     },
-    "eofline": false,
+    "eofline": true,
     "import-blacklist": [
       true,
       "rxjs/Rx"
@@ -65,7 +65,7 @@
       "as-needed"
     ],
     "quotemark": [
-      false,
+      true,
       "single"
     ],
     "semicolon": {
@@ -83,7 +83,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {
