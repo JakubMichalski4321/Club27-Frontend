@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {IPajacyzm} from '../models/IPajacyzm';
 import {IMem} from '../models/IMem';
 import {ISoundboard} from '../models/ISoundboard';
+import {IJugo} from '../models/IJugo';
 @Injectable()
 export class HttpService{
 
@@ -22,6 +23,10 @@ export class HttpService{
 
   public getAllSoundboardList(): Observable<ISoundboard[]>{
     return this.http.get<ISoundboard[]>(this.localBaseUrl + 'soundboard/allSoundboard');
+  }
+
+  public getAllJugoList(): Observable<IJugo[]>{
+    return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
 
 
