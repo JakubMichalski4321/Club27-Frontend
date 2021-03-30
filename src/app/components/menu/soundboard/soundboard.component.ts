@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ISoundboard} from '../../../models/ISoundboard';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-soundboard',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoundboardComponent implements OnInit {
 
-  constructor() { }
+  soundboardList?: Array<ISoundboard> = [];
+
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.getAllSoundboardList();
+  }
+
+  getAllSoundboardList(){
+    this.httpService.getAllSoundboardList().subscribe(data => {
+      console.log(data);
+      this.soundboardList = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
 }
