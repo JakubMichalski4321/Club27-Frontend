@@ -1,1 +1,12 @@
 <p>memy works!</p>
+<table>
+  <tbody>
+  <tr *ngFor="let meme of memyList;">
+    <td >{{meme.title}}</td>
+    <td>{{meme.imagePath}}</td>
+    <td>{{meme.author}}</td>
+    <td>{{meme.memeLikes}}</td>
+    <td>{{meme.createdDate.substr(0, 10)}}</td>
+  </tr>
+  </tbody>
+</table>
