@@ -29,5 +29,9 @@ export class HttpService{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
 
+  public submitPajacyzm(): Observable<IPajacyzm>{
+    return 
+  }
+
 
 }
