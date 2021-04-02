@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-image: url("./images/bg_1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%
+}
+
+.innerContainer{
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 4%;
+}

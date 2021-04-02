@@ -1,0 +1,23 @@
+
+.pajacyzmContent{
+  text-align: center;
+  padding-top: 1.5%;
+}
+
+.pajacyzmAuthor{
+  text-align: right;
+  font-weight: bold;
+}
+
+.pajacyzmDate{
+  text-align: center;
+}
+
+.pajacyzmIconSee{
+  text-align: center;
+}
+
+hr{
+  border: 1px solid grey;
+  width: 100%;
+}

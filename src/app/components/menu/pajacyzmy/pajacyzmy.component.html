@@ -1,11 +1,23 @@
-<p>pajacyzmy works!</p>
+<body>
 
-<table>
-  <tbody>
-  <tr *ngFor="let pajacyzm of pajacyzmyList;">
-    <td>{{pajacyzm.content}}</td>
-    <td>{{pajacyzm.author}}</td>
-    <td>{{pajacyzm.createdDate.substr(0, 10)}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8 rounded innerContainer">
+    <div class="row" *ngFor="let pajacyzm of pajacyzmyList;">
+      <div class="col-sm-12 pajacyzmContent">
+        <h4><b>"{{pajacyzm.content}}"</b></h4>
+      </div>
+      <div class="col-sm-7 pajacyzmIconSee"></div>
+      <div class="col-sm-3 pajacyzmAuthor">
+        ~ {{pajacyzm.author}}
+      </div>
+      <div class="col-sm-2 pajacyzmDate">
+        {{pajacyzm.createdDate.substr(0, 10)}}
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+</body>

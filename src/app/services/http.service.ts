@@ -28,10 +28,4 @@ export class HttpService{
   public getAllJugoList(): Observable<IJugo[]>{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
-
-  public submitPajacyzm(): Observable<IPajacyzm>{
-    return 
-  }
-
-
 }
