@@ -5,10 +5,12 @@ import {PajacyzmyComponent} from './components/menu/pajacyzmy/pajacyzmy.componen
 import {MemyComponent} from './components/menu/memy/memy.component';
 import {JugoComponent} from './components/menu/jugo/jugo.component';
 import {SoundboardComponent} from './components/menu/soundboard/soundboard.component';
+import {PajacyzmComponent} from './components/menu/pajacyzmy/pajacyzm/pajacyzm.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent, children: [
-      { path: 'pajacyzmy', component: PajacyzmyComponent },
+      { path: 'pajacyzmy', component: PajacyzmyComponent},
+      { path: 'pajacyzm/:pajacyzmId', component: PajacyzmComponent, pathMatch: 'full'},
       { path: 'memy', component: MemyComponent },
       { path: 'jugo', component: JugoComponent },
       { path: 'soundboard', component: SoundboardComponent },

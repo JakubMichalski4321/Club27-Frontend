@@ -15,6 +15,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     JugoComponent,
     SoundboardComponent,
     ErrorModalComponent,
+    PajacyzmComponent,
   ],
   imports: [
     BrowserModule,

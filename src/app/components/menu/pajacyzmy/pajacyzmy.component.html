@@ -7,7 +7,9 @@
       <div class="col-sm-12 pajacyzmContent">
         <h4><b>"{{pajacyzm.content}}"</b></h4>
       </div>
-      <div class="col-sm-7 pajacyzmIconSee"></div>
+      <div class="col-sm-7 pajacyzmIconSee">
+        <button [routerLink]="['../pajacyzm', pajacyzm.id]">See pajacyzm</button>
+      </div>
       <div class="col-sm-3 pajacyzmAuthor">
         ~ {{pajacyzm.author}}
       </div>

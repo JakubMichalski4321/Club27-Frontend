@@ -28,4 +28,8 @@ export class HttpService{
   public getAllJugoList(): Observable<IJugo[]>{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
+
+  public getPajacyzm(pajacyzmId: any): Observable<IPajacyzm> {
+    return this.http.get<IPajacyzm>(this.localBaseUrl + 'pajacyzmy/' + pajacyzmId);
+  }
 }
