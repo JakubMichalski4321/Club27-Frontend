@@ -21,3 +21,8 @@ hr{
   border: 1px solid grey;
   width: 100%;
 }
+
+.clickOnPajacyzm:hover{
+  color: white;
+  cursor: pointer;
+}

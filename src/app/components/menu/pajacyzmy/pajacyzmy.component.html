@@ -5,11 +5,9 @@
   <div class="col-sm-8 rounded innerContainer">
     <div class="row" *ngFor="let pajacyzm of pajacyzmyList;">
       <div class="col-sm-12 pajacyzmContent">
-        <h4><b>"{{pajacyzm.content}}"</b></h4>
+        <h4><b class = "clickOnPajacyzm" [routerLink]="['../pajacyzm', pajacyzm.id]">"{{pajacyzm.content}}"</b></h4>
       </div>
-      <div class="col-sm-7 pajacyzmIconSee">
-        <button [routerLink]="['../pajacyzm', pajacyzm.id]">See pajacyzm</button>
-      </div>
+      <div class="col-sm-7 pajacyzmIconSee"></div>
       <div class="col-sm-3 pajacyzmAuthor">
         ~ {{pajacyzm.author}}
       </div>
