@@ -30,4 +30,8 @@ export class MemyComponent implements OnInit {
   makeUrlTrust(url: string){
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  makeArrayOfNumbers(iterations: string){
+    return Array(iterations.valueOf());
+  }
 }
