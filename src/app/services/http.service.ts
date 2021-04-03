@@ -13,8 +13,16 @@ export class HttpService{
 
   private localBaseUrl = '';  // URL to web api
 
+  public getPajacyzm(pajacyzmId: any): Observable<IPajacyzm> {
+    return this.http.get<IPajacyzm>(this.localBaseUrl + 'pajacyzmy/' + pajacyzmId);
+  }
+
   public getAllPajacyzmyList(): Observable<IPajacyzm[]>{
     return this.http.get<IPajacyzm[]>(this.localBaseUrl + 'pajacyzmy/allPajacyzmy');
+  }
+
+  public getMem(memId: any): Observable<IMem>{
+    return this.http.get<IMem>(this.localBaseUrl + 'memy/' + memId);
   }
 
   public getAllMemyList(): Observable<IMem[]>{
@@ -29,7 +37,4 @@ export class HttpService{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
 
-  public getPajacyzm(pajacyzmId: any): Observable<IPajacyzm> {
-    return this.http.get<IPajacyzm>(this.localBaseUrl + 'pajacyzmy/' + pajacyzmId);
-  }
 }

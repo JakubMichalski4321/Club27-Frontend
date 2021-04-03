@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IMem} from '../../../models/IMem';
 import {HttpService} from '../../../services/http.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-memy',
@@ -11,7 +12,7 @@ export class MemyComponent implements OnInit {
 
   memyList?: Array<IMem> = [];
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.getAllMemy();
@@ -24,5 +25,9 @@ export class MemyComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  makeUrlTrust(url: string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
