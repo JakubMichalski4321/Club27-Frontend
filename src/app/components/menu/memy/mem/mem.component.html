@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-sm-2"></div>
-  <div class="col-sm-8 rounded innerContainer">
-    <div class="row" *ngFor="let mem of memyList;">
+  <div class="col-sm-8 rounded">
+    <div class="row">
       <div class="row oneMemeContainer rounded border border-secondary">
         <div class="col-sm-12 memeTitleContainer">
-          <h4><b class = "memeTitle" [routerLink]="['../mem', mem.id]">{{mem.title}}</b></h4>
+          <h4><b class = "memeTitle">{{mem.title}}</b></h4>
         </div>
         <div class="col-sm-12 memeImage">
           <img class="memeImageImg" [src]="mem.imagePath" alt="mem a cos zes sie spodziewal"/>
         </div>
         <div class="col-sm-4 authorContainer">Autor: {{mem.author}}</div>
         <div class="col-sm-8 dateContainer">{{mem.createdDate.substr(0, 10)}} {{mem.createdDate.substr(12, 7)}}</div>
-          <div class="col-sm-10 xdClass">
-            <div class="xdClass">x</div>
-            <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
-          </div>
+        <div class="col-sm-10 xdClass">
+          <div class="xdClass">x</div>
+          <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
+        </div>
         <div class="col-sm-2">
           <div class="xdIcon">
             xD

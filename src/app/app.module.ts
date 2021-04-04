@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm.component';
+import { MemComponent } from './components/menu/memy/mem/mem.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm
     SoundboardComponent,
     ErrorModalComponent,
     PajacyzmComponent,
+    MemComponent,
   ],
   imports: [
     BrowserModule,

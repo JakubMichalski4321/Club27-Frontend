@@ -1,12 +1,11 @@
-.innerContainer{
+.innerContainerMem{
   padding-top: 2%;
 }
 
 .oneMemeContainer{
   text-align: center;
-  padding-top: 1.5%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .xdClass{
@@ -26,19 +25,15 @@
 }
 
 .oneMemeContainer{
-  background: radial-gradient(circle, rgba(101,101,101,1) 0%, rgba(255,255,255,0) 100%);
+  margin-top: 4%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 100%, rgba(255,255,255,0) 100%);
   width: 100%;
   padding-bottom: 2%;
-  margin-bottom: 6%;
-}
-
-.memeTitle:hover{
-  color: white;
-  cursor: pointer;
 }
 
 .memeTitleContainer{
   margin-bottom: 1.5%;
+  margin-top: 1.5%;
 }
 
 .authorContainer{
