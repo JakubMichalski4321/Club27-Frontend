@@ -37,7 +37,6 @@ hr{
 }
 
 .buttonContainer{
-  margin-left: 2.5%;
 }
 
 
@@ -47,9 +46,9 @@ hr{
 
 .pajacyzmInputPajacyzmAuthor{
   height: 100%;
+  width: 100%;
 }
 
 .submitConfirm{
-  vertical-align: middle;
-  text-align: center;
+  margin-left: 45%;
 }

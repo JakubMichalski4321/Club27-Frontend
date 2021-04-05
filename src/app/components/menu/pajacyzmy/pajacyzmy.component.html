@@ -25,9 +25,13 @@
       </div>
     </div>
 
-    <div *ngIf="displaySend" class="row text-success submitConfirm">
-      Dodano pajacyzm! <br>
-      <button type="button" class="btn btn-primary" (click)="refreshPage()">Odświerz stronę</button>
+    <div  *ngIf="displaySend" class="submitConfirm">
+      <div class="row text-success">
+        Dodano pajacyzm!
+      </div>
+      <div class="row text-success">
+        <button type="button" class="btn btn-primary" (click)="refreshPage()">Odświerz stronę</button>
+      </div>
     </div>
 
     <div class="row" *ngFor="let pajacyzm of pajacyzmyList;">
