@@ -1,7 +1,37 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
+
+    <div *ngIf="!displaySend" class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <label>
+          <textarea [(ngModel)]="pajacyzmContent" class="pajacyzmInputPajacyzm" placeholder="Valo najlepsze"></textarea>
+        </label></div>
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <label>
+          <input [(ngModel)]="pajacyzmAuthor" type="text" class="pajacyzmInputPajacyzmAuthor" placeholder="Najbardziej obiektywny"/>
+        </label>
+      </div>
+      <div class="col-sm-3 buttonContainer">
+        <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
+          <button *ngIf="!areAllFillIn()" type="button" class="btn btn-success" disabled>Dodaj pajacyzm</button>
+        </div>
+        <div *ngIf="!areAllFillIn()" class="text-danger">{{showReasonText}}</div>
+        <button *ngIf="areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-success">Dodaj pajacyzm</button>
+      </div>
+    </div>
+
+    <div *ngIf="displaySend" class="row text-success submitConfirm">
+      Dodano pajacyzm! <br>
+      <button type="button" class="btn btn-primary" (click)="refreshPage()">Odświerz stronę</button>
+    </div>
+
     <div class="row" *ngFor="let pajacyzm of pajacyzmyList;">
+      <hr>
       <div class="col-sm-12 pajacyzmContent">
         <h4><b class = "clickOnPajacyzm" [routerLink]="['../pajacyzm', pajacyzm.id]">"{{pajacyzm.content}}"</b></h4>
       </div>
@@ -12,7 +42,6 @@
       <div class="col-sm-2 pajacyzmDate">
         {{pajacyzm.createdDate.substr(0, 10)}}
       </div>
-      <hr>
     </div>
   </div>
   <div class="col-sm-2"></div>

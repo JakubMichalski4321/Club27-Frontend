@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm.component';
 import { MemComponent } from './components/menu/memy/mem/mem.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,13 +31,14 @@ import { MemComponent } from './components/menu/memy/mem/mem.component';
     PajacyzmComponent,
     MemComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
-    NgbModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        RouterModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+    ],
   providers: [HttpService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
   ],

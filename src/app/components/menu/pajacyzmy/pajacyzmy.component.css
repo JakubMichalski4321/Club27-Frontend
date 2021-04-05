@@ -26,3 +26,30 @@ hr{
   color: white;
   cursor: pointer;
 }
+
+.pajacyzmInput{
+  text-align: right;
+}
+
+.pajacyzmInputPajacyzm{
+  text-align: left;
+  width: 160%;
+}
+
+.buttonContainer{
+  margin-left: 2.5%;
+}
+
+
+.innerContainer{
+  padding-top: 1%;
+}
+
+.pajacyzmInputPajacyzmAuthor{
+  height: 100%;
+}
+
+.submitConfirm{
+  vertical-align: middle;
+  text-align: center;
+}

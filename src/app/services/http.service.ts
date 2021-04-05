@@ -37,4 +37,9 @@ export class HttpService{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
   }
 
+  public submitPajacyzm(data: any){
+    this.http.post(this.localBaseUrl + 'pajacyzmy/submitPajacyzm', data).toPromise().then((data: IPajacyzm) => {
+      console.log(data);
+    });
+  }
 }

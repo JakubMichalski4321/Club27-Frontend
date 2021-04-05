@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { IPajacyzm } from '../../../models/IPajacyzm';
 import {HttpService} from '../../../services/http.service';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-pajacyzmy',
@@ -9,11 +10,20 @@ import {HttpService} from '../../../services/http.service';
 })
 export class PajacyzmyComponent implements OnInit {
   pajacyzmyList?: Array<IPajacyzm> = [];
+  pajacyzmContent = '';
+  pajacyzmAuthor = '';
+  showReasonText = '';
+  displaySend = false;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,  @Inject(DOCUMENT) private _document: Document) {
+  }
 
   ngOnInit(): void {
     this.getAllPajacyzmy();
+  }
+
+  refreshPage(){
+    this._document.defaultView.location.reload();
   }
 
   getAllPajacyzmy(){
@@ -23,5 +33,28 @@ export class PajacyzmyComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  areAllFillIn() {
+    return (this.pajacyzmContent != '' && this.pajacyzmContent != null) && (this.pajacyzmAuthor != '' && this.pajacyzmAuthor != null);
+  }
+
+  sendPajacyzm() {
+    let jsonText = this.convertDataToJson();
+    this.httpService.submitPajacyzm(jsonText);
+    this.displaySend = true;
+    this.getAllPajacyzmy();
+  }
+
+  showReason(reason: string) {
+    this.showReasonText = reason;
+    console.log(reason)
+  }
+
+  private convertDataToJson() {
+    return {
+      content: this.pajacyzmContent,
+      author: this.pajacyzmAuthor
+    };
   }
 }
