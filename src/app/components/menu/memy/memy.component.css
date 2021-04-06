@@ -69,3 +69,9 @@
   color: black;
   cursor: pointer;
 }
+
+.paginationContainer{
+  text-align: center;
+  margin-top: 1%;
+  color: black;
+}

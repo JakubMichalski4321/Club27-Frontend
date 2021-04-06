@@ -34,7 +34,11 @@
       </div>
     </div>
 
-    <div class="row" *ngFor="let pajacyzm of pajacyzmyList;">
+    <div class="row" *ngFor="let pajacyzm of pajacyzmyList | paginate: {
+        itemsPerPage: 10,
+        currentPage: currentPageDisplay,
+        totalItems: pajacyzmyList.length
+      };">
       <hr>
       <div class="col-sm-12 pajacyzmContent">
         <h4><b class = "clickOnPajacyzm" [routerLink]="['../pajacyzm', pajacyzm.id]">"{{pajacyzm.content}}"</b></h4>
@@ -47,6 +51,11 @@
         {{pajacyzm.createdDate.substr(0, 10)}}
       </div>
     </div>
+    <div class="col-sm-12 paginationContainer">
+      <pagination-controls class="text-center" (pageChange)="currentPageDisplay = $event"></pagination-controls>
+    </div>
   </div>
   <div class="col-sm-2"></div>
+
+
 </div>

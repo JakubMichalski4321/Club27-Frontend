@@ -17,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm.component';
 import { MemComponent } from './components/menu/memy/mem/mem.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {FormsModule} from '@angular/forms';
         AppRoutingModule,
         NgbModule,
         FormsModule,
+        NgxPaginationModule,
     ],
   providers: [HttpService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },

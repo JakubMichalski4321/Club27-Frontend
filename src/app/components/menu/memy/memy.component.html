@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
-    <div class="row" *ngFor="let mem of memyList;">
+    <div class="row" *ngFor="let mem of memyList | paginate: {
+        itemsPerPage: 10,
+        currentPage: currentPageDisplay,
+        totalItems: memyList.length
+      };">
       <div class="row oneMemeContainer rounded border border-secondary">
         <div class="col-sm-12 memeTitleContainer">
           <h4><b class = "memeTitle" [routerLink]="['../mem', mem.id]">{{mem.title}}</b></h4>
@@ -22,6 +26,9 @@
         </div>
       </div>
       <hr>
+    </div>
+    <div class="col-sm-12 paginationContainer">
+      <pagination-controls class="text-center" (pageChange)="currentPageDisplay = $event"></pagination-controls>
     </div>
   </div>
 </div>

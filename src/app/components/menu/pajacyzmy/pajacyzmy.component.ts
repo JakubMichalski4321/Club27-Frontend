@@ -14,6 +14,7 @@ export class PajacyzmyComponent implements OnInit {
   pajacyzmAuthor = '';
   showReasonText = '';
   displaySend = false;
+  currentPageDisplay = 1;
 
   constructor(private httpService: HttpService,  @Inject(DOCUMENT) private _document: Document) {
   }

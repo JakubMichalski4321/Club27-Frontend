@@ -11,6 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class MemyComponent implements OnInit {
 
   memyList?: Array<IMem> = [];
+  currentPageDisplay = 1;
 
   constructor(private httpService: HttpService, private sanitizer: DomSanitizer) { }
 
