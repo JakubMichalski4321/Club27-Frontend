@@ -19,6 +19,7 @@ import { PajacyzmComponent } from './components/menu/pajacyzmy/pajacyzm/pajacyzm
 import { MemComponent } from './components/menu/memy/mem/mem.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddMemeComponent } from './components/menu/memy/add-meme/add-meme.component';
 
 @NgModule({
   declarations: [
@@ -31,19 +32,21 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ErrorModalComponent,
     PajacyzmComponent,
     MemComponent,
+    AddMemeComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        RouterModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule,
-        NgxPaginationModule,
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    NgxPaginationModule,
     ],
   providers: [HttpService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddMemeComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
+<script src="../../../app.component.spec.ts"></script>
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
+    <div class="addMeme rounded" (click)="onClick()">DAWAJ MEMA</div>
     <div class="row" *ngFor="let mem of memyList | paginate: {
         itemsPerPage: 10,
         currentPage: currentPageDisplay,
@@ -32,3 +34,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">TYTUL</h4>
+  </div>
+</ng-template>
