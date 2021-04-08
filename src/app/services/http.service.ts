@@ -5,6 +5,7 @@ import {IPajacyzm} from '../models/IPajacyzm';
 import {IMem} from '../models/IMem';
 import {ISoundboard} from '../models/ISoundboard';
 import {IJugo} from '../models/IJugo';
+import {UploadMem} from '../models/uploadModels/UploadMem';
 @Injectable()
 export class HttpService{
 
@@ -39,6 +40,18 @@ export class HttpService{
 
   public submitPajacyzm(data: any){
     this.http.post(this.localBaseUrl + 'pajacyzmy/submitPajacyzm', data).toPromise().then((data: IPajacyzm) => {
+      console.log(data);
+    });
+  }
+
+  public submitMemeWithImage(data: UploadMem) {
+    this.http.post(this.localBaseUrl + 'memy/submitMemeWithImage', data).toPromise().then((data: UploadMem) => {
+      console.log(data);
+    });
+  }
+
+  public submitMemeWithUrl(data: UploadMem) {
+    this.http.post(this.localBaseUrl + 'memy/submitMemeWithUrl', data).toPromise().then((data: UploadMem) => {
       console.log(data);
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {UploadMem} from '../../../../models/uploadModels/UploadMem';
+import {HttpService} from '../../../../services/http.service';
 
 @Component({
   selector: 'app-add-meme',
@@ -17,7 +18,7 @@ export class AddMemeComponent implements OnInit {
   warmingMessage = '';
   showFileInput = true;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private httpService: HttpService) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +39,37 @@ export class AddMemeComponent implements OnInit {
     return memeToUpload;
   }
 
-  submitMeme() {
-    let memeToUpload = this.createMemeObject();
+  decideAndSubmitMemeImageOrUrl() {
+    if(this.showFileInput == true){
+      this.submitMemeWithImage(this.createMemeObjectWithImage())
+    }else {
+      this.submitMemeWithUrl(this.createMemeObjectWithUrl())
+    }
+  }
+
+  private createMemeObjectWithImage(): UploadMem {
+    let memeToUpload = new UploadMem();
+    memeToUpload.title = this.title;
+    memeToUpload.author = this.author;
+    memeToUpload.imagePath = this.file;
+    return memeToUpload;
+  }
+
+  private createMemeObjectWithUrl(): UploadMem {
+    let memeToUpload = new UploadMem();
+    memeToUpload.title = this.title;
+    memeToUpload.author = this.author;
+    memeToUpload.imagePath = this.imagePathUrl;
+    return memeToUpload;
+  }
+
+  //Services
+
+  private submitMemeWithImage(data: UploadMem) {
+    this.httpService.submitMemeWithImage(data)
+  }
+
+  private submitMemeWithUrl(data: UploadMem) {
+    this.httpService.submitMemeWithUrl(data)
   }
 }
