@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {UploadMem} from '../../../../models/uploadModels/UploadMem';
 
 @Component({
   selector: 'app-add-meme',
@@ -10,27 +11,34 @@ export class AddMemeComponent implements OnInit {
 
   title: string;
   author: string;
-  imagePath: string;
+  imagePathUrl: string;
   memeLikes: string;
   file: any;
   warmingMessage = '';
-  displayReason = false;
+  showFileInput = true;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
-  submitMeme() {
-
-  }
-
-  everythingIsOk() {
+  everythingIsOk(): boolean {
     let temp = true;
     if(this.title == '' || this.title == null) temp = false;
     if(this.author == '' || this.author == null) temp = false;
-    if(this.imagePath == '' || this.imagePath == null) temp = false;
+    if(this.imagePathUrl == '' || this.imagePathUrl == null) temp = false;
     return temp;
   }
 
+  private createMemeObject(): UploadMem {
+    let memeToUpload = new UploadMem();
+    memeToUpload.title = this.title;
+    memeToUpload.author = this.author;
+    memeToUpload.imagePath = this.imagePathUrl;
+    return memeToUpload;
+  }
+
+  submitMeme() {
+    let memeToUpload = this.createMemeObject();
+  }
 }
