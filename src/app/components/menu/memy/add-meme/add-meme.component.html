@@ -8,10 +8,10 @@
   <table class="table-add-meme">
     <tr *ngIf="showFileInput">
       <th class="input-add-meme-left-side">Dawaj plik<em class="text-danger">*</em></th>
-      <th><input [(ngModel)]="file" type="file" name="fileToUpload" id="fileToUpload"></th>
+      <th><input (change)="onFileSelected($event)" type="file" name="fileToUpload" id="fileToUpload"></th>
     </tr>
     <tr>
-      <td class="form-check" (change)="showFileInput = !showFileInput">
+      <td class="form-check" (change)="showFileInput = !showFileInput; file = null;">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label text-primary" for="flexCheckDefault">
           ..aaa ja chce z linka

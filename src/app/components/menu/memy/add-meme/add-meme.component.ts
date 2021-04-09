@@ -14,7 +14,7 @@ export class AddMemeComponent implements OnInit {
   author: string;
   imagePathUrl: string;
   memeLikes: string;
-  file: any;
+  file: File = null;
   warmingMessage = '';
   showFileInput = true;
 
@@ -23,39 +23,30 @@ export class AddMemeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  everythingIsOk(): boolean {
-    let temp = true;
-    if(this.title == '' || this.title == null) temp = false;
-    if(this.author == '' || this.author == null) temp = false;
-    if(this.imagePathUrl == '' || this.imagePathUrl == null) temp = false;
-    return temp;
+  onFileSelected(event) {
+    this.file = <File>event.target.files[0];
   }
 
-  private createMemeObject(): UploadMem {
-    let memeToUpload = new UploadMem();
-    memeToUpload.title = this.title;
-    memeToUpload.author = this.author;
-    memeToUpload.imagePath = this.imagePathUrl;
-    return memeToUpload;
+  everythingIsOk(): boolean {
+    if(this.title == '' || this.title == null) return false;
+    if(this.author == '' || this.author == null) return false;
+    if((this.imagePathUrl == '' || this.imagePathUrl == null) && (!this.showFileInput)) return false;
+    if((this.file == null) && (this.showFileInput)) return false;
+    return true;
   }
 
   decideAndSubmitMemeImageOrUrl() {
+    let currentDate = new Date();
+    let currentTime = currentDate.getTime();
     if(this.showFileInput == true){
-      this.submitMemeWithImage(this.createMemeObjectWithImage())
+      this.submitMemeImage(this.file, currentTime);
+      this.submitMeme(this.createMemeObjectOwnImage(currentTime));
     }else {
-      this.submitMemeWithUrl(this.createMemeObjectWithUrl())
+      this.submitMeme(this.createMemeObjectUrl());
     }
   }
 
-  private createMemeObjectWithImage(): UploadMem {
-    let memeToUpload = new UploadMem();
-    memeToUpload.title = this.title;
-    memeToUpload.author = this.author;
-    memeToUpload.imagePath = this.file;
-    return memeToUpload;
-  }
-
-  private createMemeObjectWithUrl(): UploadMem {
+  private createMemeObjectUrl(): UploadMem {
     let memeToUpload = new UploadMem();
     memeToUpload.title = this.title;
     memeToUpload.author = this.author;
@@ -63,13 +54,23 @@ export class AddMemeComponent implements OnInit {
     return memeToUpload;
   }
 
-  //Services
-
-  private submitMemeWithImage(data: UploadMem) {
-    this.httpService.submitMemeWithImage(data)
+  private createMemeObjectOwnImage(currentTime: number): UploadMem {
+    let memeToUpload = new UploadMem();
+    memeToUpload.title = this.title;
+    memeToUpload.author = this.author;
+    memeToUpload.imagePath = '../../../../assets/' + currentTime + '_' + this.file.name;
+    return memeToUpload;
   }
 
-  private submitMemeWithUrl(data: UploadMem) {
-    this.httpService.submitMemeWithUrl(data)
+
+  //Services
+
+  private submitMeme(data: UploadMem) {
+    console.log(data);
+    this.httpService.submitMeme(data);
+  }
+
+  private submitMemeImage(file: File, currentTime: number) {
+    this.httpService.submitMemeImage(file, currentTime);
   }
 }

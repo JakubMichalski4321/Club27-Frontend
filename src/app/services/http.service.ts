@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IPajacyzm} from '../models/IPajacyzm';
 import {IMem} from '../models/IMem';
@@ -44,14 +44,23 @@ export class HttpService{
     });
   }
 
-  public submitMemeWithImage(data: UploadMem) {
-    this.http.post(this.localBaseUrl + 'memy/submitMemeWithImage', data).toPromise().then((data: UploadMem) => {
+  public submitMeme(data: UploadMem) {
+    this.http.post(this.localBaseUrl + 'memy/submitMeme', data).toPromise().then((data: UploadMem) => {
       console.log(data);
     });
   }
 
-  public submitMemeWithUrl(data: UploadMem) {
-    this.http.post(this.localBaseUrl + 'memy/submitMemeWithUrl', data).toPromise().then((data: UploadMem) => {
+  public submitMemeImage(file: File, currentTime: number) {
+    let formData: FormData = new FormData();
+    formData.append('file', file, currentTime + '_' + file.name);
+    /*
+     const req = new HttpRequest('POST', `${this.localBaseUrl}memy/submitMemeImage`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+     */
+    this.http.post(this.localBaseUrl + 'memy/submitMemeImage', formData).toPromise().then((data: FormData) => {
       console.log(data);
     });
   }
