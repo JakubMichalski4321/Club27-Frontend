@@ -13,6 +13,8 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
   pajacyzm: IPajacyzm;
   pajacyzmId: any;
   private sub: any;
+  audio = new Audio();
+  playMusicNow = true;
 
   constructor(private route: ActivatedRoute, private httpService: HttpService) { }
 
@@ -20,12 +22,28 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
     this.sub = this.route.params.subscribe(params => {
       this.pajacyzmId = params['pajacyzmId'];
     });
-    this.getPajacyzm()
+    this.getPajacyzm();
+    this.audio.src = "../../../../../assets/pajacyzm.mp3";
+    this.audio.load();
+    this.startMusicPlay();
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    this.audio.pause();
   }
+
+  startMusicPlay(){
+    this.playMusicNow = true;
+    this.audio.play();
+  }
+
+  stopMusicPlay(){
+    this.audio.pause()
+    this.playMusicNow = false;
+  }
+
+
 
   getPajacyzm(){
     this.httpService.getPajacyzm(this.pajacyzmId).subscribe(data => {
