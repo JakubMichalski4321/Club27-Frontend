@@ -18,7 +18,7 @@
         <div class="col-sm-4 authorContainer">Autor: {{mem.author}}</div>
         <div class="col-sm-8 dateContainer">{{mem.createdDate.substr(0, 10)}} {{mem.createdDate.substr(12, 7)}}</div>
           <div class="col-sm-10 xdClass">
-            <div class="xdClass">x</div>
+            <div *ngIf="mem.memeLikes>0" class="xdClass">x</div>
             <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
           </div>
         <div class="col-sm-2">
@@ -34,9 +34,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">TYTUL</h4>
-  </div>
-</ng-template>
