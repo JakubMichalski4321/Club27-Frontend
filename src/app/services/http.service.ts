@@ -64,4 +64,8 @@ export class HttpService{
       console.log(data);
     });
   }
+
+  public getSoundboardWhoIsList() {
+    return this.http.get<string[]>(this.localBaseUrl + 'soundboard/soundboardWhoIsList');
+  }
 }

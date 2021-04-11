@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddMemeComponent } from './components/menu/memy/add-meme/add-meme.component';
 import { SoundboardOneComponent } from './components/menu/soundboard/soundboard-one/soundboard-one.component';
+import { AddSoundboardComponent } from './components/menu/soundboard/add-soundboard/add-soundboard.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SoundboardOneComponent } from './components/menu/soundboard/soundboard-
     MemComponent,
     AddMemeComponent,
     SoundboardOneComponent,
+    AddSoundboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,6 @@ import { SoundboardOneComponent } from './components/menu/soundboard/soundboard-
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddMemeComponent]
+  entryComponents: [AddMemeComponent, AddSoundboardComponent]
 })
 export class AppModule { }
