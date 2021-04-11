@@ -20,6 +20,7 @@ import { MemComponent } from './components/menu/memy/mem/mem.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddMemeComponent } from './components/menu/memy/add-meme/add-meme.component';
+import { SoundboardOneComponent } from './components/menu/soundboard/soundboard-one/soundboard-one.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AddMemeComponent } from './components/menu/memy/add-meme/add-meme.compo
     PajacyzmComponent,
     MemComponent,
     AddMemeComponent,
+    SoundboardOneComponent,
   ],
   imports: [
     BrowserModule,
