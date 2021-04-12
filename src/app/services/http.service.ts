@@ -6,6 +6,7 @@ import {IMem} from '../models/IMem';
 import {ISoundboard} from '../models/ISoundboard';
 import {IJugo} from '../models/IJugo';
 import {UploadMem} from '../models/uploadModels/UploadMem';
+import {UploadSoundboard} from '../models/uploadModels/UploadSoundboard';
 @Injectable()
 export class HttpService{
 
@@ -53,19 +54,23 @@ export class HttpService{
   public submitMemeImage(file: File, currentTime: number) {
     let formData: FormData = new FormData();
     formData.append('file', file, currentTime + '_' + file.name);
-    /*
-     const req = new HttpRequest('POST', `${this.localBaseUrl}memy/submitMemeImage`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-    return this.http.request(req);
-     */
     this.http.post(this.localBaseUrl + 'memy/submitMemeImage', formData).toPromise().then((data: FormData) => {
       console.log(data);
     });
   }
 
-  public getSoundboardWhoIsList() {
-    return this.http.get<string[]>(this.localBaseUrl + 'soundboard/soundboardWhoIsList');
+  public submitSoundboard(data: UploadSoundboard){
+    this.http.post(this.localBaseUrl + 'soundboard/submitSoundboard', data).toPromise().then((data: UploadSoundboard) => {
+      console.log(data);
+    });
   }
+
+  public submitSoundboardSound(file: File, pathToFile: any){
+    let formData: FormData = new FormData();
+    formData.append('file', file, pathToFile);
+    return this.http.post(this.localBaseUrl + 'soundboard/submitSoundboardSound', formData).toPromise().then((data: FormData) => {
+      console.log(data);
+    });
+  }
+
 }
