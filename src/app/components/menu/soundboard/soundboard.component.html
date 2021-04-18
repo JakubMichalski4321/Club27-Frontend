@@ -3,13 +3,24 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
     <div class="addSoundboard rounded" (click)="onClick()">DAWAJ SOUNDBOARD'A</div>
-    <div class="row">Seba</div>
-    <div class="row">Jackob</div>
-    <div class="row">Wojtuś</div>
-    <div class="row">Pajac</div>
-    <div class="row">Młody</div>
-    <div class="row">Niemmir</div>
-    <div class="row">Inni</div>
+    <div class="row">
+      <div class="col-sm-12 font-weight-bold">
+        <hr>
+        Seba
+        <br>
+        <div *ngFor="let soundboard of sebaList; let index=index;">
+          {{index}}
+          <button class="btn-primary rounded" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+          {{soundboard.pathToFile}}
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold"><hr>Jackob</div>
+      <div class="col-sm-12 font-weight-bold"><hr>Wojtuś</div>
+      <div class="col-sm-12 font-weight-bold"><hr>Pajac</div>
+      <div class="col-sm-12 font-weight-bold"><hr>Młody</div>
+      <div class="col-sm-12 font-weight-bold"><hr>Niemmir</div>
+      <div class="col-sm-12 font-weight-bold"><hr>Inni</div>
+    </div>
   </div>
   <div class="col-sm-2"></div>
 </div>
