@@ -96,3 +96,7 @@
   font-family: "Times New Roman", serif;
   display: inline-block;
 }
+
+.soundButton{
+  margin: 5px;
+}

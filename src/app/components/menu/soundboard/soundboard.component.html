@@ -9,17 +9,51 @@
         Seba
         <br>
         <div *ngFor="let soundboard of sebaList; let index=index;">
-          {{index}}
-          <button class="btn-primary rounded" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
-          {{soundboard.pathToFile}}
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
         </div>
       </div>
-      <div class="col-sm-12 font-weight-bold"><hr>Jackob</div>
-      <div class="col-sm-12 font-weight-bold"><hr>Wojtuś</div>
-      <div class="col-sm-12 font-weight-bold"><hr>Pajac</div>
-      <div class="col-sm-12 font-weight-bold"><hr>Młody</div>
-      <div class="col-sm-12 font-weight-bold"><hr>Niemmir</div>
-      <div class="col-sm-12 font-weight-bold"><hr>Inni</div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Jackob
+        <br>
+        <div *ngFor="let soundboard of jackobList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Wojtuś
+        <br>
+        <div *ngFor="let soundboard of wojtusList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Pajac
+        <br>
+        <div *ngFor="let soundboard of pajacList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Młody
+        <br>
+        <div *ngFor="let soundboard of mlodyList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Niemmir
+        <br>
+        <div *ngFor="let soundboard of niemmirList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
+      <div class="col-sm-12 font-weight-bold">
+        <hr>Inni
+        <br>
+        <div *ngFor="let soundboard of inniList; let index=index;">
+          <button class="btn btn-outline-primary rounded soundButton" (click)="playThisSoundboard(soundboard)">{{soundboard.title}}</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-sm-2"></div>

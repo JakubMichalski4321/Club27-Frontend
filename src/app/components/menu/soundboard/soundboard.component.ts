@@ -32,7 +32,12 @@ export class SoundboardComponent implements OnInit {
 
   filterLists(){
     this.sebaList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Pajac');
-    console.log('List of Pajac' + this.sebaList + 'xDDDDD');
+    this.jackobList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Jackob');
+    this.wojtusList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Wojtuś');
+    this.mlodyList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Młody');
+    this.pajacList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Pajac');
+    this.niemmirList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Niemmir');
+    this.inniList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Inni');
   }
 
   getAllSoundboardList(){
