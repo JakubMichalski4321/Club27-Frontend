@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AddMemeComponent } from './components/menu/memy/add-meme/add-meme.component';
 import { SoundboardOneComponent } from './components/menu/soundboard/soundboard-one/soundboard-one.component';
 import { AddSoundboardComponent } from './components/menu/soundboard/add-soundboard/add-soundboard.component';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AddSoundboardComponent } from './components/menu/soundboard/add-soundbo
     NgbModule,
     FormsModule,
     NgxPaginationModule,
+    NgxAudioPlayerModule
     ],
   providers: [HttpService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },

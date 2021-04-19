@@ -100,3 +100,9 @@
 .soundButton{
   margin: 5px;
 }
+
+.playerBox{
+  color: black;
+  background-color: white;
+  margin-top: 1%;
+}

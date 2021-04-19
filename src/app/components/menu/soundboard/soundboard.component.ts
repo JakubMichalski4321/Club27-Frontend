@@ -4,6 +4,7 @@ import {HttpService} from '../../../services/http.service';
 import {AddMemeComponent} from '../memy/add-meme/add-meme.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddSoundboardComponent} from './add-soundboard/add-soundboard.component';
+import {Track} from 'ngx-audio-player';
 
 @Component({
   selector: 'app-soundboard',
@@ -22,12 +23,23 @@ export class SoundboardComponent implements OnInit {
   pajacList?: Array<ISoundboard> = [];
   niemmirList?: Array<ISoundboard> = [];
   inniList?: Array<ISoundboard> = [];
+  msaapPlaylist: Track[];
+  msaapDisplayTitle = true;
+  msaapDisplayArtist = true;
+
+  //https://www.npmjs.com/package/ngx-audio-player
 
   constructor(private httpService: HttpService, private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.getAllSoundboardList();
     console.log('All soundboards' + this.soundboardList);
+    this.msaapPlaylist = [{
+      title: 'XD',
+      link: this.pathToDir + 'pajacyzm.mp3',
+      artist: 'Somebody',
+      duration: new Audio(this.pathToDir + 'pajacyzm.mp3').duration
+    }]
   }
 
   filterLists(){
