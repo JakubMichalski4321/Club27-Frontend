@@ -23,6 +23,7 @@ export class SoundboardComponent implements OnInit {
   pajacList?: Array<ISoundboard> = [];
   niemmirList?: Array<ISoundboard> = [];
   inniList?: Array<ISoundboard> = [];
+
   msaapPlaylist: Track[];
   msaapDisplayTitle = true;
   msaapDisplayArtist = true;
@@ -69,7 +70,10 @@ export class SoundboardComponent implements OnInit {
   playThisSoundboard(soundboard: ISoundboard) {
     let audio = new Audio();
     audio.src = this.pathToDir + soundboard.pathToFile;
-    audio.load();
-    audio.play();
+    let soundboardTrack = {title: soundboard.title, link: this.pathToDir + soundboard.pathToFile, artist: soundboard.whoIs, duration: audio.duration}
+    this.msaapPlaylist.pop();
+    this.msaapPlaylist.push(soundboardTrack);
+  //  audio.load();
+  //  audio.play();
   }
 }

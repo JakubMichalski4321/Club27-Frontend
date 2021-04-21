@@ -6,8 +6,12 @@
     <div class="row">
       <div class="col-sm-3"></div>
       <div class="col-sm-6 playerBox rounded">
-        <ngx-audio-player [playlist]="msaapPlaylist" [autoPlay]="true"
-                          muted="muted" [displayPlaylist]="false"
+        <ngx-audio-player [playlist]="msaapPlaylist"
+                          [autoPlay]="false"
+                          [displayRepeatControls]="true"
+                          [displayTitle]="true"
+                          [disablePositionSlider]="false"
+                          [displayPlaylist]="false"
                           [displayVolumeControls]="true"
                           [displayArtist]="msaapDisplayArtist"
                           [displayDuration]="true">
