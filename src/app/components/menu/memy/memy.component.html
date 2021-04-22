@@ -13,7 +13,7 @@
           <h4><b class = "memeTitle" [routerLink]="['../mem', mem.id]">{{mem.title}}</b></h4>
         </div>
         <div class="col-sm-12 memeImage">
-          <img class="memeImageImg" [src]="mem.imagePath" alt="coś się zesrało"/>
+          <img class="memeImageImg" [src]="pathToDir + mem.imagePath" alt="coś się zesrało"/>
         </div>
         <div class="col-sm-4 authorContainer">Autor: {{mem.author}}</div>
         <div class="col-sm-8 dateContainer">{{mem.createdDate.substr(0, 10)}} {{mem.createdDate.substr(12, 7)}}</div>

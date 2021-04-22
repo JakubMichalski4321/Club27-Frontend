@@ -4,6 +4,7 @@ import { HttpService } from '../../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddMemeComponent} from './add-meme/add-meme.component';
+import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 @Component({
   selector: 'app-memy',
@@ -12,6 +13,7 @@ import {AddMemeComponent} from './add-meme/add-meme.component';
 })
 export class MemyComponent implements OnInit {
 
+  pathToDir = 'assets/memeImages/';
   memyList?: Array<IMem> = [];
   currentPageDisplay = 1;
 

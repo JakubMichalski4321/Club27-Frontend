@@ -73,7 +73,5 @@ export class SoundboardComponent implements OnInit {
     let soundboardTrack = {title: soundboard.title, link: this.pathToDir + soundboard.pathToFile, artist: soundboard.whoIs, duration: audio.duration}
     this.msaapPlaylist.pop();
     this.msaapPlaylist.push(soundboardTrack);
-  //  audio.load();
-  //  audio.play();
   }
 }

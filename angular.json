@@ -21,7 +21,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {"glob": "**/*",
+                "input": "../../data/memeImages",
+                "output": "./assets/memeImages",
+                "allowOutsideOutDir": true
+              }
             ],
             "styles": [
               "src/styles.css",
