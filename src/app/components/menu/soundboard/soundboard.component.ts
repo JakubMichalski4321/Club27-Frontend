@@ -13,7 +13,7 @@ import {Track} from 'ngx-audio-player';
 })
 export class SoundboardComponent implements OnInit {
 
-  pathToDir = '../../../../../assets/';
+  pathToDir = 'assets/soundboardSounds/';
 
   soundboardList?: Array<ISoundboard> = [];
   sebaList?: Array<ISoundboard> = [];
@@ -22,6 +22,7 @@ export class SoundboardComponent implements OnInit {
   mlodyList?: Array<ISoundboard> = [];
   pajacList?: Array<ISoundboard> = [];
   niemmirList?: Array<ISoundboard> = [];
+  debataList?: Array<ISoundboard> = [];
   inniList?: Array<ISoundboard> = [];
 
   msaapPlaylist: Track[];
@@ -34,7 +35,6 @@ export class SoundboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSoundboardList();
-    console.log('All soundboards' + this.soundboardList);
     this.msaapPlaylist = [{
       title: 'XD',
       link: this.pathToDir + 'pajacyzm.mp3',
@@ -44,13 +44,14 @@ export class SoundboardComponent implements OnInit {
   }
 
   filterLists(){
-    this.sebaList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Pajac');
-    this.jackobList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Jackob');
-    this.wojtusList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Wojtuś');
-    this.mlodyList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Młody');
-    this.pajacList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Pajac');
-    this.niemmirList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Niemmir');
-    this.inniList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'Inni');
+    this.sebaList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'seba');
+    this.jackobList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'jackob');
+    this.wojtusList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'wojtek');
+    this.mlodyList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'mlody');
+    this.pajacList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'pajac');
+    this.niemmirList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'niemmir');
+    this.debataList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'debata');
+    this.inniList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'inni' || soundboard.whoIs == 'qbolid');
   }
 
   getAllSoundboardList(){

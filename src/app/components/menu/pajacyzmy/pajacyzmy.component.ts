@@ -21,6 +21,9 @@ export class PajacyzmyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPajacyzmy();
+    this.pajacyzmyList.sort((pajacyzm1, pajacyzm2) =>
+      (pajacyzm1.createdDate > pajacyzm2.createdDate) ? 1 : ((pajacyzm2.createdDate > pajacyzm1.createdDate)? -1 :0
+      ))
   }
 
   refreshPage(){
