@@ -24,8 +24,11 @@
               "src/assets",
               {"glob": "**/*",
                 "input": "../../data/memeImages",
-                "output": "./assets/memeImages",
-                "allowOutsideOutDir": true
+                "output": "./assets/memeImages"
+              },
+              {"glob": "**/*",
+                "input": "../../data/soundboardSounds",
+                "output": "./assets/soundboardSounds"
               }
             ],
             "styles": [

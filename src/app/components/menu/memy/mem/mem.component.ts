@@ -13,7 +13,7 @@ export class MemComponent implements OnInit, OnDestroy {
   mem: IMem;
   memId: any;
   private sub: any;
-
+  pathToDir = 'assets/memeImages/';
 
   constructor(private route: ActivatedRoute, private httpService: HttpService) { }
 

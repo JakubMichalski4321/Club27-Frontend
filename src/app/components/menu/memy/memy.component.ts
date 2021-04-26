@@ -21,6 +21,9 @@ export class MemyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllMemy();
+    this.memyList.sort((mem1, mem2) =>
+      (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate)? -1 :0
+    ))
   }
 
   getAllMemy(){
