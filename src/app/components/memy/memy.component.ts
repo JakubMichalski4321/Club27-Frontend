@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IMem } from '../../../models/IMem';
-import { HttpService } from '../../../services/http.service';
+import { IMem } from '../../models/IMem';
+import { HttpService } from '../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddMemeComponent} from './add-meme/add-meme.component';

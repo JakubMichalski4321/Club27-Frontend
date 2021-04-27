@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { IPajacyzm } from '../../../models/IPajacyzm';
-import {HttpService} from '../../../services/http.service';
+import { IPajacyzm } from '../../models/IPajacyzm';
+import {HttpService} from '../../services/http.service';
 import {DOCUMENT} from '@angular/common';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IJugo} from '../../../models/IJugo';
-import {HttpService} from '../../../services/http.service';
+import {IJugo} from '../../models/IJugo';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-jugo',

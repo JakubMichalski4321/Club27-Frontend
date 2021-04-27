@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ISoundboard} from '../../../models/ISoundboard';
-import {HttpService} from '../../../services/http.service';
+import {ISoundboard} from '../../models/ISoundboard';
+import {HttpService} from '../../services/http.service';
 import {AddMemeComponent} from '../memy/add-meme/add-meme.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddSoundboardComponent} from './add-soundboard/add-soundboard.component';

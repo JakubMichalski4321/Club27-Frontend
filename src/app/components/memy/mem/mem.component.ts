@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpService} from '../../../../services/http.service';
-import {IMem} from '../../../../models/IMem';
+import {HttpService} from '../../../services/http.service';
+import {IMem} from '../../../models/IMem';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

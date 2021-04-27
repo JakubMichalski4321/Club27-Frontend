@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {UploadMem} from '../../../../models/uploadModels/UploadMem';
-import {HttpService} from '../../../../services/http.service';
+import {UploadMem} from '../../../models/uploadModels/UploadMem';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-add-meme',
