@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import { IPajacyzm } from '../../models/IPajacyzm';
 import {HttpService} from '../../services/http.service';
 import {DOCUMENT} from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-pajacyzmy',
@@ -16,14 +17,25 @@ export class PajacyzmyComponent implements OnInit {
   displaySend = false;
   currentPageDisplay = 1;
 
-  constructor(private httpService: HttpService,  @Inject(DOCUMENT) private _document: Document) {
+  protected aFormGroup: FormGroup;
+  siteKey = '6LcSeL0aAAAAAD6JHiwL-qd89Fmhymt9fXFHdpia';
+  canBeSend = false;
+
+  constructor(private httpService: HttpService,
+              @Inject(DOCUMENT)
+              private _document: Document,
+              private formBuilder: FormBuilder
+              ) {
   }
 
   ngOnInit(): void {
     this.getAllPajacyzmy();
     this.pajacyzmyList.sort((pajacyzm1, pajacyzm2) =>
       (pajacyzm1.createdDate > pajacyzm2.createdDate) ? 1 : ((pajacyzm2.createdDate > pajacyzm1.createdDate)? -1 :0
-      ))
+      ));
+    this.aFormGroup = this.formBuilder.group({
+      recaptcha: ['', Validators.required]
+    });
   }
 
   refreshPage(){

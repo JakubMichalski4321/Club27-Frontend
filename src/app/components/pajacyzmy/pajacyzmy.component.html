@@ -22,16 +22,19 @@
           </div>
           <div class="col-sm-5 buttonContainer">
             <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
-              <button *ngIf="!areAllFillIn()" type="button" class="btn btn-sm btn-success float-lg-right" disabled>Dodaj pajacyzm</button>
+              <button *ngIf="!canBeSend" type="button" class="btn btn-sm btn-success float-lg-right" disabled>Dodaj pajacyzm</button>
             </div>
-            <div *ngIf="!areAllFillIn()" class="text-danger">{{showReasonText}}</div>
-            <button *ngIf="areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success float-lg-right">Dodaj pajacyzm</button>
+            <div *ngIf="!canBeSend" class="text-danger">{{showReasonText}}</div>
+            <button *ngIf="canBeSend" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success float-lg-right">Dodaj pajacyzm</button>
           </div>
         </div>
 
         <div *ngIf="areAllFillIn()" class="row">
           <div class="col-12">
-
+            <ngx-recaptcha2 #captchaElem
+                            [siteKey]="siteKey"
+                            (success)="canBeSend = true;">
+            </ngx-recaptcha2>
           </div>
         </div>
       </div>
