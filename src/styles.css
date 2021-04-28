@@ -3,7 +3,7 @@ body{
   background-image: url("./images/bg_1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%
+  background-attachment: fixed;
 }
 
 .innerContainer{
