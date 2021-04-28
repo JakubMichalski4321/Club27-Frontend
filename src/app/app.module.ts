@@ -24,6 +24,7 @@ import { SoundboardOneComponent } from './components/soundboard/soundboard-one/s
 import { AddSoundboardComponent } from './components/soundboard/add-soundboard/add-soundboard.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { Timer27Component } from './components/navigation-bar/timer27/timer27.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AddMemeComponent,
     SoundboardOneComponent,
     AddSoundboardComponent,
+    Timer27Component,
   ],
   imports: [
     BrowserModule,
