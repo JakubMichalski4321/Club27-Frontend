@@ -19,13 +19,13 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
   constructor(private route: ActivatedRoute, private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.audio.src = "../../../../../assets/pajacyzm.mp3";
+    this.audio.load();
+    this.startMusicPlay();
     this.sub = this.route.params.subscribe(params => {
       this.pajacyzmId = params['pajacyzmId'];
     });
     this.getPajacyzm();
-    this.audio.src = "../../../../../assets/pajacyzm.mp3";
-    this.audio.load();
-    this.startMusicPlay();
   }
 
   ngOnDestroy(): void {
