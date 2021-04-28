@@ -5,6 +5,7 @@ import {AddMemeComponent} from '../memy/add-meme/add-meme.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddSoundboardComponent} from './add-soundboard/add-soundboard.component';
 import {Track} from 'ngx-audio-player';
+import {SoundboardListObject} from '../../models/SoundboardListObject';
 
 @Component({
   selector: 'app-soundboard',
@@ -16,14 +17,7 @@ export class SoundboardComponent implements OnInit {
   pathToDir = 'assets/soundboardSounds/';
 
   soundboardList?: Array<ISoundboard> = [];
-  sebaList?: Array<ISoundboard> = [];
-  jackobList?: Array<ISoundboard> = [];
-  wojtusList?: Array<ISoundboard> = [];
-  mlodyList?: Array<ISoundboard> = [];
-  pajacList?: Array<ISoundboard> = [];
-  niemmirList?: Array<ISoundboard> = [];
-  debataList?: Array<ISoundboard> = [];
-  inniList?: Array<ISoundboard> = [];
+  soundboardListOfLists?: Array<SoundboardListObject> = [];
 
   msaapPlaylist: Track[];
   msaapDisplayTitle = true;
@@ -44,14 +38,16 @@ export class SoundboardComponent implements OnInit {
   }
 
   filterLists(){
-    this.sebaList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'seba');
-    this.jackobList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'jackob');
-    this.wojtusList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'wojtek');
-    this.mlodyList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'mlody');
-    this.pajacList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'pajac');
-    this.niemmirList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'niemmir');
-    this.debataList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'debata');
-    this.inniList = this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'inni' || soundboard.whoIs == 'qbolid');
+    this.soundboardListOfLists.push(
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'seba'), 'Seba'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'jackob'), 'Jackob'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'wojtek'), 'Wojtuś'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'mlody'), 'Młody'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'pajac'), 'Pajac'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'niemmir'), 'Niemmir'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'debata'), 'Debata'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'inni' || soundboard.whoIs == 'qbolid'), 'Inni')
+    );
   }
 
   getAllSoundboardList(){
