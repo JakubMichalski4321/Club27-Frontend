@@ -3,26 +3,39 @@
   <div class="col-sm-8 rounded innerContainer">
 
     <div *ngIf="!displaySend" class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <label>
-          <textarea [(ngModel)]="pajacyzmContent" class="pajacyzmInputPajacyzm" placeholder="Valo najlepsze"></textarea>
-        </label></div>
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-4"></div>
-      <div class="col-sm-2">
-        <label>
-          <input [(ngModel)]="pajacyzmAuthor" type="text" class="pajacyzmInputPajacyzmAuthor" placeholder="Najbardziej obiektywny"/>
-        </label>
-      </div>
-      <div class="col-sm-3 buttonContainer">
-        <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
-          <button *ngIf="!areAllFillIn()" type="button" class="btn btn-success" disabled>Dodaj pajacyzm</button>
+      <div class="col-4"></div>
+      <div class="col-4">
+
+        <div class="row">
+          <div class="col-12">
+            <label>
+              <textarea [(ngModel)]="pajacyzmContent" class="pajacyzmInputPajacyzm" placeholder="Valo najlepsze"></textarea>
+            </label>
+          </div>
         </div>
-        <div *ngIf="!areAllFillIn()" class="text-danger">{{showReasonText}}</div>
-        <button *ngIf="areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-success">Dodaj pajacyzm</button>
+
+        <div class="row">
+          <div class="col-sm-7">
+            <label>
+              <input [(ngModel)]="pajacyzmAuthor" type="text" class="pajacyzmInputPajacyzmAuthor" placeholder="Najbardziej obiektywny"/>
+            </label>
+          </div>
+          <div class="col-sm-5 buttonContainer">
+            <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
+              <button *ngIf="!areAllFillIn()" type="button" class="btn btn-sm btn-success float-lg-right" disabled>Dodaj pajacyzm</button>
+            </div>
+            <div *ngIf="!areAllFillIn()" class="text-danger">{{showReasonText}}</div>
+            <button *ngIf="areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success float-lg-right">Dodaj pajacyzm</button>
+          </div>
+        </div>
+
+        <div *ngIf="areAllFillIn()" class="row">
+          <div class="col-12">
+
+          </div>
+        </div>
       </div>
+      <div class="col-4"></div>
     </div>
 
     <div  *ngIf="displaySend" class="submitConfirm">
