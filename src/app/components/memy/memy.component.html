@@ -9,42 +9,48 @@
         totalItems: memyList.length
       };">
       <div class="row oneMemeContainer rounded border border-secondary">
-        <div class="col-sm-12 memeTitleContainer">
+        <div class="col-12 memeTitleContainer">
           <h4><b class = "memeTitle" [routerLink]="['../mem', mem.id]">{{mem.title}}</b></h4>
         </div>
         <div class="col-sm-12 memeImage">
-          <img class="memeImageImg" [src]="pathToDir + mem.imagePath" alt="coś się zesrało"/>
+            <img class="memeImageImg" [src]="pathToDir + mem.imagePath" alt="coś się zesrało"/>
         </div>
         <div class="col-sm-4 authorContainer">Autor: {{mem.author}}</div>
         <div class="col-sm-8 dateContainer">{{mem.createdDate.substr(0, 10)}} {{mem.createdDate.substr(12, 7)}}</div>
-          <div class="col-sm-10 xdClass">
-            <div *ngIf="mem.memeLikes>0" class="xdClass">x</div>
-            <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
-          </div>
-          <div class="col-sm-2">
-            <div class="xdIcon">
-              xD
-            </div>
-          </div>
-        <div class="row" *ngFor="let comment of mem.commentsList;">
-          <div class="col-3">{{comment.author}}</div>
-          <div class="col-5">{{comment.content}}</div>
-          <div class="col-4">{{comment.createdDate.substr(0, 10) + ' ' + comment.createdDate.substr(11, 8)}}</div>
+        <div class="col-sm-10 xdClass">
+          <div *ngIf="mem.memeLikes>0" class="xdClass">x</div>
+          <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
         </div>
-        <div class="col-12 border border-light rounded">
-          <div class="text-center">
-            <div class="input-group mb-3">
-              <div class="col-3">
-                <textarea [(ngModel)]="memeCommentAuthor" class="form-control" placeholder="Autor" aria-label="Autor" aria-describedby="basic-addon2"></textarea>
+        <div class="col-sm-2">
+          <div class="xdIcon">
+            xD
+          </div>
+        </div>
+        <div class="col-sm-12"><hr></div>
+        <div class="col-sm-12" *ngFor="let comment of mem.commentsList;">
+          <div class="col-sm-3 d-inline-block">{{comment.author}}</div>
+          <div class="col-sm-5 d-inline-block text-left">{{comment.content}}</div>
+          <div class="col-sm-4 d-inline-block">{{comment.createdDate.substr(0, 10) + ' ' + comment.createdDate.substr(11, 8)}}</div>
+          <div class="col-sm-12"><hr></div>
+        </div>
+        <div class="col-12">
+          <div class="border border-secondary rounded text-center commentBox">
+            <div *ngIf="!displaySend" class="input-group mb-3">
+              <div class="col-3 justify-content-center">
+                <input [(ngModel)]="memeCommentAuthor" class="form-control" placeholder="Autor" aria-label="Autor" aria-describedby="basic-addon2">
               </div>
-              <div class="col-5">
-                <textarea [(ngModel)]="memeCommentContent" class="form-control" placeholder="Komentarz" aria-label="Komentarz" aria-describedby="basic-addon2"></textarea>
+              <div class="col-5 justify-content-center">
+                <textarea [(ngModel)]="memeCommentContent" class="form-control commentContent" placeholder="Komentarz" aria-label="Komentarz" aria-describedby="basic-addon2"></textarea>
               </div>
               <div class="col-4">
-                <div class="input-group-append float-md-right">
-                <button (click)="submitComment(mem.id)" class="btn btn-outline-success" type="button">Dodaj komentarz</button>
+                <div class="input-group-append justify-content-center">
+                  <button *ngIf="!allFieldsNotEmpty()" class="btn btn-outline-success submitCommentButton" type="button" disabled>Dodaj komentarz</button>
+                  <button *ngIf="allFieldsNotEmpty()" (click)="submitComment(mem)" class="btn btn-success submitCommentButton" type="button">Dodaj komentarz</button>
+                </div>
               </div>
-              </div>
+            </div>
+            <div *ngIf="displaySend" class="col-sm-12 text-center bg-success">
+                Dodano komentarz!
             </div>
           </div>
         </div>

@@ -96,3 +96,24 @@
   font-family: "Times New Roman", serif;
   display: inline-block;
 }
+
+.oneCommentBox{
+  display: inline-block;
+  text-align: left;
+}
+
+.submitCommentButton{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.commentBox{
+  padding-top: 2%;
+}
+
+.commentContent{
+  height: 38px;
+}

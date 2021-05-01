@@ -21,6 +21,7 @@ export class MemyComponent implements OnInit {
   currentPageDisplay = 1;
   memeCommentAuthor: any;
   memeCommentContent: any;
+  displaySend = false;
 
   constructor(private httpService: HttpService, private sanitizer: DomSanitizer, private modal: NgbModal) {
   }
@@ -63,8 +64,13 @@ export class MemyComponent implements OnInit {
     }
   }
 
-  submitComment(id: string) {
-    let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, id);
+  submitComment(mem: IMem) {
+    let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
     this.httpService.submitMemeComment(commentToSubmit);
+    this.displaySend = true;
+  }
+
+  allFieldsNotEmpty(): boolean {
+    return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
   }
 }
