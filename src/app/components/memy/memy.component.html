@@ -21,9 +21,31 @@
             <div *ngIf="mem.memeLikes>0" class="xdClass">x</div>
             <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
           </div>
-        <div class="col-sm-2">
-          <div class="xdIcon">
-            xD
+          <div class="col-sm-2">
+            <div class="xdIcon">
+              xD
+            </div>
+          </div>
+        <div class="row" *ngFor="let comment of mem.commentsList;">
+          <div class="col-3">{{comment.author}}</div>
+          <div class="col-5">{{comment.content}}</div>
+          <div class="col-4">{{comment.createdDate.substr(0, 10) + ' ' + comment.createdDate.substr(11, 8)}}</div>
+        </div>
+        <div class="col-12 border border-light rounded">
+          <div class="text-center">
+            <div class="input-group mb-3">
+              <div class="col-3">
+                <textarea [(ngModel)]="memeCommentAuthor" class="form-control" placeholder="Autor" aria-label="Autor" aria-describedby="basic-addon2"></textarea>
+              </div>
+              <div class="col-5">
+                <textarea [(ngModel)]="memeCommentContent" class="form-control" placeholder="Komentarz" aria-label="Komentarz" aria-describedby="basic-addon2"></textarea>
+              </div>
+              <div class="col-4">
+                <div class="input-group-append float-md-right">
+                <button (click)="submitComment(mem.id)" class="btn btn-outline-success" type="button">Dodaj komentarz</button>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

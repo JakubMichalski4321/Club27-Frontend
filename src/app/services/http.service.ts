@@ -7,6 +7,8 @@ import {ISoundboard} from '../models/ISoundboard';
 import {IJugo} from '../models/IJugo';
 import {UploadMem} from '../models/uploadModels/UploadMem';
 import {UploadSoundboard} from '../models/uploadModels/UploadSoundboard';
+import {IMemeComment} from '../models/IMemeComment';
+import {UploadMemeComment} from '../models/uploadModels/UploadMemeComment';
 @Injectable()
 export class HttpService{
 
@@ -37,6 +39,10 @@ export class HttpService{
 
   public getAllJugoList(): Observable<IJugo[]>{
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
+  }
+
+  public getMemeComments(id: string): Observable<IMemeComment[]> {
+    return this.http.get<IMemeComment[]>(this.localBaseUrl + 'memy/' + id + '/getAllComments');
   }
 
   public submitPajacyzm(data: any){
@@ -73,4 +79,9 @@ export class HttpService{
     });
   }
 
+  public submitMemeComment(data: UploadMemeComment) {
+    this.http.post(this.localBaseUrl + 'memy/submitMemeComment', data).toPromise().then((data: UploadMemeComment) => {
+      console.log(data);
+    });
+  }
 }
