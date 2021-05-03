@@ -58,7 +58,7 @@ export class AddMemeComponent implements OnInit {
     let memeToUpload = new UploadMem();
     memeToUpload.title = this.title;
     memeToUpload.author = this.author;
-    memeToUpload.imagePath = '../../../../assets/' + currentTime + '_' + this.file.name;
+    memeToUpload.imagePath = currentTime + '_' + this.file.name;
     return memeToUpload;
   }
 
