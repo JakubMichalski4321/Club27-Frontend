@@ -85,3 +85,7 @@
 .commentContent{
   height: 38px;
 }
+
+.wrapClass{
+  word-wrap: break-word;
+}

@@ -4,8 +4,6 @@
 .oneMemeContainer{
   text-align: center;
   padding-top: 1.5%;
-  margin-left: 20%;
-  margin-right: 20%;
 }
 
 .xdClass{
@@ -116,4 +114,13 @@
 
 .commentContent{
   height: 38px;
+}
+
+.wrapClass{
+  word-wrap: break-word;
+}
+
+.rowInMemeContainer{
+  margin-left: 1%;
+  margin-right: 1%;
 }

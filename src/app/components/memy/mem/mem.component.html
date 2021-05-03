@@ -22,8 +22,8 @@
         </div>
         <div class="col-sm-12"><hr></div>
         <div class="col-sm-12" *ngFor="let comment of mem.commentsList;">
-          <div class="col-sm-3 d-inline-block">{{comment.author}}</div>
-          <div class="col-sm-5 d-inline-block text-left">{{comment.content}}</div>
+          <div class="col-sm-3 d-inline-block wrapClass">{{comment.author}}</div>
+          <div class="col-sm-5 d-inline-block text-left wrapClass">{{comment.content}}</div>
           <div class="col-sm-4 d-inline-block">{{comment.createdDate.substr(0, 10) + ' ' + comment.createdDate.substr(11, 8)}}</div>
           <div class="col-sm-12"><hr></div>
         </div>
