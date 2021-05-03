@@ -73,4 +73,12 @@ export class MemyComponent implements OnInit {
   allFieldsNotEmpty(): boolean {
     return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
   }
+
+  checkIfUrl(imagePath: string) {
+    if(isNaN(Number(imagePath.substr(0, 4)))) {
+      return imagePath;
+    }else {
+      return this.pathToDir + imagePath;
+    }
+  }
 }
