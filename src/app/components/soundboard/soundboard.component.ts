@@ -39,14 +39,14 @@ export class SoundboardComponent implements OnInit {
 
   filterLists(){
     this.soundboardListOfLists.push(
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'seba'), 'Seba'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'jackob'), 'Jackob'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'wojtek'), 'Wojtuś'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'mlody'), 'Młody'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'pajac'), 'Pajac'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'niemmir'), 'Niemmir'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'debata'), 'Debata'),
-      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs == 'inni' || soundboard.whoIs == 'qbolid'), 'Inni')
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'seba'), 'Seba'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'jackob'), 'Jackob'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'wojtek'), 'Wojtuś'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'mlody'), 'Młody'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'pajac'), 'Pajac'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'niemmir'), 'Niemmir'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'debata'), 'Debata'),
+      new SoundboardListObject(this.soundboardList.filter((soundboard: ISoundboard) => soundboard.whoIs.toLowerCase() == 'inni' || soundboard.whoIs == 'qbolid'), 'Inni')
     );
   }
 
