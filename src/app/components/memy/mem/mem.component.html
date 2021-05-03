@@ -20,6 +20,34 @@
             xD
           </div>
         </div>
+        <div class="col-sm-12"><hr></div>
+        <div class="col-sm-12" *ngFor="let comment of mem.commentsList;">
+          <div class="col-sm-3 d-inline-block">{{comment.author}}</div>
+          <div class="col-sm-5 d-inline-block text-left">{{comment.content}}</div>
+          <div class="col-sm-4 d-inline-block">{{comment.createdDate.substr(0, 10) + ' ' + comment.createdDate.substr(11, 8)}}</div>
+          <div class="col-sm-12"><hr></div>
+        </div>
+        <div class="col-12">
+          <div class="border border-secondary rounded text-center commentBox">
+            <div *ngIf="!displaySend" class="input-group mb-3">
+              <div class="col-3 justify-content-center">
+                <input [(ngModel)]="memeCommentAuthor" class="form-control" placeholder="Autor" aria-label="Autor" aria-describedby="basic-addon2">
+              </div>
+              <div class="col-5 justify-content-center">
+                <textarea [(ngModel)]="memeCommentContent" class="form-control commentContent" placeholder="Komentarz" aria-label="Komentarz" aria-describedby="basic-addon2"></textarea>
+              </div>
+              <div class="col-4">
+                <div class="input-group-append justify-content-center">
+                  <button *ngIf="!allFieldsNotEmpty()" class="btn btn-outline-success submitCommentButton" type="button" disabled>Dodaj komentarz</button>
+                  <button *ngIf="allFieldsNotEmpty()" (click)="submitComment(mem)" class="btn btn-success submitCommentButton" type="button">Dodaj komentarz</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="displaySend" class="col-sm-12 text-center bg-success">
+              Dodano komentarz!
+            </div>
+          </div>
+        </div>
       </div>
       <hr>
     </div>
