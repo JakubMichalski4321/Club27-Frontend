@@ -11,20 +11,22 @@ export class Timer27Component implements OnInit {
   sub: Subscription;
   dateFrom1997: Date = new Date('1997-01-01');
   date27Finish: Date = new Date('2024-01-01');
-  differenceTime: any;
   timeToFinish: (number)[] = [];
+  showProgressBar: boolean;
+  private progressTime: number;
+  percentageTimeLeft: number;
 
   constructor() {
     this.sub = interval(1000).subscribe((x => {
       this.fillTimeToFinishArray();
       }));
+    this.showProgressBar = false;
   }
 
   ngOnInit(): void {
-    this.differenceTime = this.date27Finish.getTime() - this.dateFrom1997.getTime();
     this.fillTimeToFinishArray();
-    console.log(this.date27Finish);
-    console.log(this.timeToFinish);
+    this.progressTime = (Date.now() - this.dateFrom1997.getTime()) / (this.date27Finish.getTime() - this.dateFrom1997.getTime());
+    this.percentageTimeLeft = Math.floor(100 - this.progressTime*100) + 1;
   }
 
   fillTimeToFinishArray(){
@@ -42,4 +44,7 @@ export class Timer27Component implements OnInit {
     this.timeToFinish = [d, h, m, s];
   }
 
+  switchProgressBarDisplay() {
+    this.showProgressBar = !this.showProgressBar;
+  }
 }

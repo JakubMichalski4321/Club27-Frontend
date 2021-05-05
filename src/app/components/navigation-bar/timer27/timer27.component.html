@@ -1,12 +1,24 @@
-<div class="row text-white text-center">
-  <div class="col-3">{{timeToFinish[0]}}</div>
-  <div class="col-3">{{timeToFinish[1]}}</div>
-  <div class="col-3">{{timeToFinish[2]}}</div>
-  <div class="col-3">{{timeToFinish[3]}}</div>
+<div class="timer27" (click)="switchProgressBarDisplay()">
+  <div *ngIf="!showProgressBar" class="timer">
+    <div class="row text-white text-center">
+      <div class="col-3">{{timeToFinish[0]}}</div>
+      <div class="col-3">{{timeToFinish[1]}}</div>
+      <div class="col-3">{{timeToFinish[2]}}</div>
+      <div class="col-3">{{timeToFinish[3]}}</div>
+    </div>
+    <div class="row text-white float-md-none text-center small">
+      <div class="col-3">dni</div>
+      <div class="col-3">godzin</div>
+      <div class="col-3">minut</div>
+      <div class="col-3">sekunt</div>
+    </div>
+  </div>
+  <div *ngIf="showProgressBar" class="row">
+    <div class="progress club27ProgressBar">
+      <div class="progress-bar bg-success" role="progressbar" [style.width]="(100 - percentageTimeLeft).toString() + '%'" aria-valuenow="{{100 - percentageTimeLeft}}" aria-valuemin="0" aria-valuemax="100">{{100 - percentageTimeLeft}}%</div>
+      <div class="progress-bar bg-danger text-white font-weight-bold" role="progressbar" [style.width]="percentageTimeLeft.toString() + '%'" aria-valuenow="{{percentageTimeLeft}}" aria-valuemin="0" aria-valuemax="100">{{percentageTimeLeft}}%</div>
+    </div>
+  </div>
 </div>
-<div class="row text-white float-md-none text-center small">
-  <div class="col-3">dni</div>
-  <div class="col-3">godzin</div>
-  <div class="col-3">minut</div>
-  <div class="col-3">sekunt</div>
-</div>
+
+
