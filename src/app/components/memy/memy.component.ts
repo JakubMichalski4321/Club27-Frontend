@@ -4,10 +4,9 @@ import { HttpService } from '../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddMemeComponent} from './add-meme/add-meme.component';
-import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
-import {UploadMem} from '../../models/uploadModels/UploadMem';
-import {IMemeComment} from '../../models/IMemeComment';
 import {UploadMemeComment} from '../../models/uploadModels/UploadMemeComment';
+import {Like} from '../../models/Like';
+
 
 @Component({
   selector: 'app-memy',
@@ -22,6 +21,8 @@ export class MemyComponent implements OnInit {
   memeCommentAuthor: any;
   memeCommentContent: any;
   displaySend = false;
+  memeLikesGiven?: Array<Like> = [];
+
 
   constructor(private httpService: HttpService, private sanitizer: DomSanitizer, private modal: NgbModal) {
   }
@@ -31,16 +32,17 @@ export class MemyComponent implements OnInit {
     this.memyList.sort((mem1, mem2) =>
       (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate) ? -1 : 0
       ));
+    this.getMemeLikesGivenFromSession();
   }
 
-  getAllMemy() {
-    this.httpService.getAllMemyList().subscribe(data => {
-      console.log(data);
-      this.memyList = data;
-      this.getMemesComments();
-    }, error => {
-      console.log(error);
-    });
+  getMemeLikesGivenFromSession() {
+    for(let meme of this.memyList){
+      if(localStorage.getItem(meme.id) != null){
+        this.memeLikesGiven.push(new Like(meme.id, true));
+      }else {
+        this.memeLikesGiven.push(new Like(meme.id, false));
+      }
+    }
   }
 
   onClick() {
@@ -49,6 +51,35 @@ export class MemyComponent implements OnInit {
 
   makeArrayOfNumbers(iterations: string) {
     return Array(iterations.valueOf());
+  }
+
+  allFieldsNotEmpty(): boolean {
+    return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
+  }
+
+  checkIfUrl(imagePath: string) {
+    if(isNaN(Number(imagePath.substr(0, 4)))) {
+      return imagePath;
+    }else {
+      return this.pathToDir + imagePath;
+    }
+  }
+
+  likeGiven(id: string):boolean {
+    return localStorage.getItem(id) != null;
+  }
+
+
+  //Services
+
+  private getAllMemy() {
+    this.httpService.getAllMemyList().subscribe(data => {
+      console.log(data);
+      this.memyList = data;
+      this.getMemesComments();
+    }, error => {
+      console.log(error);
+    });
   }
 
   private getMemesComments() {
@@ -64,21 +95,15 @@ export class MemyComponent implements OnInit {
     }
   }
 
+  giveLikeToMeme(id: string) {
+    this.httpService.addLikeToMeme(id);
+    localStorage.setItem(id, "");
+    this.getMemeLikesGivenFromSession();
+  }
+
   submitComment(mem: IMem) {
     let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
     this.httpService.submitMemeComment(commentToSubmit);
     this.displaySend = true;
-  }
-
-  allFieldsNotEmpty(): boolean {
-    return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
-  }
-
-  checkIfUrl(imagePath: string) {
-    if(isNaN(Number(imagePath.substr(0, 4)))) {
-      return imagePath;
-    }else {
-      return this.pathToDir + imagePath;
-    }
   }
 }

@@ -84,4 +84,8 @@ export class HttpService{
       console.log(data);
     });
   }
+
+  public addLikeToMeme(memeId: string): Observable<any>{
+    return this.http.get<any>(this.localBaseUrl +"memy/" + memeId + "/addLike");
+  }
 }

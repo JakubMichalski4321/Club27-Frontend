@@ -22,10 +22,10 @@
           </div>
           <div class="col-sm-5 buttonContainer">
             <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
-              <button *ngIf="!canBeSend || !areAllFillIn()" type="button" class="btn btn-sm btn-success float-lg-right" disabled>Dodaj pajacyzm</button>
+              <button *ngIf="!canBeSend || !areAllFillIn()" type="button" class="btn btn-sm btn-success" disabled>Dodaj pajacyzm</button>
             </div>
             <div *ngIf="!canBeSend" class="text-danger">{{showReasonText}}</div>
-            <button *ngIf="canBeSend && areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success float-lg-right">Dodaj pajacyzm</button>
+            <button *ngIf="canBeSend && areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success">Dodaj pajacyzm</button>
           </div>
         </div>
 
