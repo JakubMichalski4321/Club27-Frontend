@@ -22,37 +22,29 @@ export class HttpService{
   }
 
   public getAllPajacyzmyList(): Observable<IPajacyzm[]>{
-    return this.http.get<IPajacyzm[]>(this.localBaseUrl + 'pajacyzmy/allPajacyzmy');
-  }
-
-  public getMem(memId: any): Observable<IMem>{
-    return this.http.get<IMem>(this.localBaseUrl + 'memy/' + memId);
-  }
-
-  public getAllMemyList(): Observable<IMem[]>{
-    return this.http.get<IMem[]>(this.localBaseUrl + 'memy/allMemy');
-  }
-
-  public getAllSoundboardList(): Observable<ISoundboard[]>{
-    return this.http.get<ISoundboard[]>(this.localBaseUrl + 'soundboard/allSoundboard');
-  }
-
-  public getAllJugoList(): Observable<IJugo[]>{
-    return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/allJugo');
-  }
-
-  public getMemeComments(id: string): Observable<IMemeComment[]> {
-    return this.http.get<IMemeComment[]>(this.localBaseUrl + 'memy/' + id + '/getAllComments');
+    return this.http.get<IPajacyzm[]>(this.localBaseUrl + 'pajacyzmy/pajacyzmy-all');
   }
 
   public submitPajacyzm(data: any){
-    this.http.post(this.localBaseUrl + 'pajacyzmy/submitPajacyzm', data).toPromise().then((data: IPajacyzm) => {
+    this.http.post(this.localBaseUrl + 'pajacyzmy/pajacyzm-submit', data).toPromise().then((data: IPajacyzm) => {
       console.log(data);
     });
   }
 
+  public getMem(memId: any): Observable<IMem>{
+    return this.http.get<IMem>(this.localBaseUrl + 'meme/' + memId);
+  }
+
+  public getAllMemyList(): Observable<IMem[]>{
+    return this.http.get<IMem[]>(this.localBaseUrl + 'meme/meme-all');
+  }
+
+  public getMemeComments(id: string): Observable<IMemeComment[]> {
+    return this.http.get<IMemeComment[]>(this.localBaseUrl + 'meme/' + id + '/comments-all');
+  }
+
   public submitMeme(data: UploadMem) {
-    this.http.post(this.localBaseUrl + 'memy/submitMeme', data).toPromise().then((data: UploadMem) => {
+    this.http.post(this.localBaseUrl + 'meme/meme-submit', data).toPromise().then((data: UploadMem) => {
       console.log(data);
     });
   }
@@ -60,13 +52,31 @@ export class HttpService{
   public submitMemeImage(file: File, currentTime: number) {
     let formData: FormData = new FormData();
     formData.append('file', file, currentTime + '_' + file.name);
-    this.http.post(this.localBaseUrl + 'memy/submitMemeImage', formData).toPromise().then((data: FormData) => {
+    this.http.post(this.localBaseUrl + 'meme/meme-image-submit', formData).toPromise().then((data: FormData) => {
       console.log(data);
     });
   }
 
+  public submitMemeComment(data: UploadMemeComment) {
+    this.http.post(this.localBaseUrl + 'meme/meme-comment-submit', data).toPromise().then((data: UploadMemeComment) => {
+      console.log(data);
+    });
+  }
+
+  public addLikeToMeme(memeId: string): Observable<any>{
+    return this.http.get<any>(this.localBaseUrl +"meme/" + memeId + "/like-add");
+  }
+
+  public getAllJugoList(): Observable<IJugo[]>{
+    return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/jugo-all');
+  }
+
+  public getAllSoundboardList(): Observable<ISoundboard[]>{
+    return this.http.get<ISoundboard[]>(this.localBaseUrl + 'soundboard/all-soundboard');
+  }
+
   public submitSoundboard(data: UploadSoundboard){
-    this.http.post(this.localBaseUrl + 'soundboard/submitSoundboard', data).toPromise().then((data: UploadSoundboard) => {
+    this.http.post(this.localBaseUrl + 'soundboard/soundboard-submit', data).toPromise().then((data: UploadSoundboard) => {
       console.log(data);
     });
   }
@@ -74,18 +84,8 @@ export class HttpService{
   public submitSoundboardSound(file: File, pathToFile: any){
     let formData: FormData = new FormData();
     formData.append('file', file, pathToFile);
-    return this.http.post(this.localBaseUrl + 'soundboard/submitSoundboardSound', formData).toPromise().then((data: FormData) => {
+    return this.http.post(this.localBaseUrl + 'soundboard/soundboard-sound-submit', formData).toPromise().then((data: FormData) => {
       console.log(data);
     });
-  }
-
-  public submitMemeComment(data: UploadMemeComment) {
-    this.http.post(this.localBaseUrl + 'memy/submitMemeComment', data).toPromise().then((data: UploadMemeComment) => {
-      console.log(data);
-    });
-  }
-
-  public addLikeToMeme(memeId: string): Observable<any>{
-    return this.http.get<any>(this.localBaseUrl +"memy/" + memeId + "/addLike");
   }
 }
