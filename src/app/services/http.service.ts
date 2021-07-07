@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {IPajacyzm} from '../models/IPajacyzm';
 import {IMem} from '../models/IMem';
 import {ISoundboard} from '../models/ISoundboard';
@@ -63,8 +63,8 @@ export class HttpService{
     });
   }
 
-  public addLikeToMeme(memeId: string): Observable<any>{
-    return this.http.get<any>(this.localBaseUrl +"meme/" + memeId + "/like-add");
+  public addLikeToMeme(memeId: string): Subscription{
+    return this.http.get<any>(this.localBaseUrl +"meme/" + memeId + "/like-add").subscribe();;
   }
 
   public getAllJugoList(): Observable<IJugo[]>{
