@@ -4,22 +4,6 @@
   <div class="col-sm-8 rounded innerContainer">
     <div class="addSoundboard rounded" (click)="onClick()">DAWAJ SOUNDBOARD'A</div>
     <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 playerBox rounded">
-        <ngx-audio-player [playlist]="msaapPlaylist"
-                          [autoPlay]="false"
-                          [displayRepeatControls]="true"
-                          [displayTitle]="true"
-                          [disablePositionSlider]="false"
-                          [displayPlaylist]="false"
-                          [displayVolumeControls]="true"
-                          [displayArtist]="msaapDisplayArtist"
-                          [displayDuration]="true">
-        </ngx-audio-player>
-      </div>
-      <div class="col-sm-3"></div>
-    </div>
-    <div class="row">
       <div class="col-sm-12 font-weight-bold" *ngFor="let list of soundboardListOfLists;">
         <hr>
         {{list.nameOfList}}

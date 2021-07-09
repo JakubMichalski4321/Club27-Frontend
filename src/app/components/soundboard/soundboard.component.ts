@@ -18,23 +18,12 @@ export class SoundboardComponent implements OnInit {
 
   soundboardList?: Array<ISoundboard> = [];
   soundboardListOfLists?: Array<SoundboardListObject> = [];
-
-  msaapPlaylist: Track[];
-  msaapDisplayTitle = true;
-  msaapDisplayArtist = true;
-
-  //https://www.npmjs.com/package/ngx-audio-player
+  audio = new Audio();
 
   constructor(private httpService: HttpService, private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.getAllSoundboardList();
-    this.msaapPlaylist = [{
-      title: 'XD',
-      link: this.pathToDir + 'pajacyzm.mp3',
-      artist: 'Somebody',
-      duration: new Audio(this.pathToDir + 'pajacyzm.mp3').duration
-    }]
   }
 
   filterLists(){
@@ -65,10 +54,10 @@ export class SoundboardComponent implements OnInit {
   }
 
   playThisSoundboard(soundboard: ISoundboard) {
-    let audio = new Audio();
-    audio.src = this.pathToDir + soundboard.pathToFile;
-    let soundboardTrack = {title: soundboard.title, link: this.pathToDir + soundboard.pathToFile, artist: soundboard.whoIs, duration: audio.duration}
-    this.msaapPlaylist.pop();
-    this.msaapPlaylist.push(soundboardTrack);
+    this.audio.pause();
+    this.audio.src = this.pathToDir + soundboard.pathToFile;
+    this.audio.play();
   }
+
 }
+
