@@ -68,7 +68,10 @@ export class HttpService{
   }
 
   public getAllJugoList(): Observable<IJugo[]>{
+    console.log("CALL FOR JUGOS")
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/jugo-all');
+
+
   }
 
   public getAllSoundboardList(): Observable<ISoundboard[]>{
