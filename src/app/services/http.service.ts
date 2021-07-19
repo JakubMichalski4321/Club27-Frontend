@@ -70,12 +70,14 @@ export class HttpService{
   public getAllJugoList(): Observable<IJugo[]>{
     console.log("CALL FOR JUGOS")
     return this.http.get<IJugo[]>(this.localBaseUrl + 'jugo/jugo-all');
-
-
   }
 
   public getAllSoundboardList(): Observable<ISoundboard[]>{
     return this.http.get<ISoundboard[]>(this.localBaseUrl + 'soundboard/all-soundboard');
+  }
+
+  public addLikeToJugo(jugoId: string): Subscription{
+    return this.http.get<any>(this.localBaseUrl +"jugo/" + jugoId + "/like-add").subscribe();;
   }
 
   public submitSoundboard(data: UploadSoundboard){
@@ -91,4 +93,5 @@ export class HttpService{
       console.log(data);
     });
   }
+
 }

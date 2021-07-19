@@ -14,8 +14,13 @@
         <div class="col-12">
           <iframe class="e2e-iframe-trusted-src" width="100%" height="600px" [src]="jugo.videoURL"></iframe>
         </div>
-        <div class="col-8 dateContainer">{{jugo.createdDate.substr(0, 10)}} {{jugo.createdDate.substr(12, 7)}}</div>
-        <div *ngIf="jugo.videoLikes>0" class="col-4 xdClass">
+        <div class="col-12 dateContainer">{{jugo.createdDate.substr(0, 10)}} {{jugo.createdDate.substr(12, 7)}}</div>
+        <div class="col-1">
+          <div *ngIf="!likeGiven(jugo.id)" (click)="giveLikeToMeme(jugo.id)" class="xdIcon">
+            xD
+          </div>
+        </div>
+        <div *ngIf="jugo.videoLikes>0" class="col-11 xdClass">
           <div class="xdClass">x</div>
           <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(jugo.videoLikes)">D</div>
         </div>
