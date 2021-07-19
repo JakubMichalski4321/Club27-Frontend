@@ -3,6 +3,7 @@ import {HttpService} from '../../../services/http.service';
 import {IMem} from '../../../models/IMem';
 import {ActivatedRoute} from '@angular/router';
 import {UploadMemeComment} from '../../../models/uploadModels/UploadMemeComment';
+import {Like} from "../../../models/Like";
 
 @Component({
   selector: 'app-mem',
@@ -67,4 +68,12 @@ export class MemComponent implements OnInit, OnDestroy {
     });
   }
 
+  likeGiven(id: string):boolean {
+    return localStorage.getItem(id) != null;
+  }
+
+  giveLikeToMeme(id: string) {
+    this.httpService.addLikeToMeme(id);
+    localStorage.setItem(id, "");
+  }
 }

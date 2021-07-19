@@ -16,7 +16,7 @@
           <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
         </div>
         <div class="col-sm-2">
-          <div class="xdIcon">
+          <div *ngIf="!likeGiven(mem.id)" (click)="giveLikeToMeme(mem.id)" class="xdIcon">
             xD
           </div>
         </div>
