@@ -5,8 +5,8 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class HttpAddressInterceptor implements HttpInterceptor {
 
-    // private baseUrl = 'http://145.239.92.211:8080/';
-    private baseUrl = 'http://localhost:8080/';
+  //private baseUrl = 'http://145.239.92.211:8080/';
+  private baseUrl = 'http://localhost:8080/';
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const relativeUrl = req.url;
