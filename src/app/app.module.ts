@@ -20,7 +20,6 @@ import { MemComponent } from './components/memy/mem/mem.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddMemeComponent } from './components/memy/add-meme/add-meme.component';
-import { SoundboardOneComponent } from './components/soundboard/soundboard-one/soundboard-one.component';
 import { AddSoundboardComponent } from './components/soundboard/add-soundboard/add-soundboard.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { NgxCaptchaModule } from 'ngx-captcha';
@@ -38,7 +37,6 @@ import { Timer27Component } from './components/navigation-bar/timer27/timer27.co
     PajacyzmComponent,
     MemComponent,
     AddMemeComponent,
-    SoundboardOneComponent,
     AddSoundboardComponent,
     Timer27Component,
   ],

@@ -3,6 +3,14 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
     <div class="addSoundboard rounded" (click)="onClick()">DAWAJ SOUNDBOARD'A</div>
+    <div class="row addSoundboardLink" *ngIf="currentAudioSrc!=null">
+      <div class="col-12">
+        <button (click)="copyMessage(currentAudioSrc)" value="click to copy" class="btn btn-primary rounded">Dawaj linka!</button>
+      </div>
+      <div class="col-12">
+        {{currentAudioSrc}}
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12 font-weight-bold" *ngFor="let list of soundboardListOfLists;">
         <hr>

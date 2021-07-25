@@ -19,6 +19,7 @@ export class SoundboardComponent implements OnInit {
   soundboardList?: Array<ISoundboard> = [];
   soundboardListOfLists?: Array<SoundboardListObject> = [];
   audio = new Audio();
+  currentAudioSrc?: any;
 
   constructor(private httpService: HttpService, private modal: NgbModal) { }
 
@@ -56,8 +57,22 @@ export class SoundboardComponent implements OnInit {
   playThisSoundboard(soundboard: ISoundboard) {
     this.audio.pause();
     this.audio.src = this.pathToDir + soundboard.pathToFile;
+    this.currentAudioSrc = this.audio.src;
     this.audio.play();
   }
 
+  copyMessage(currentAudioSrc: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = currentAudioSrc;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
 }
 
