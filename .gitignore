@@ -48,3 +48,4 @@ Thumbs.db
 /src/assets/memeImages/*
 /src/assets/soundboardSounds/*
 src/app/interceptors/http-address-interceptor.ts
+src/app/interceptors/http-address-interceptor.ts
