@@ -24,6 +24,7 @@ import { AddSoundboardComponent } from './components/soundboard/add-soundboard/a
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Timer27Component } from './components/navigation-bar/timer27/timer27.component';
+import { DeptComponent } from './components/dept/dept.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { Timer27Component } from './components/navigation-bar/timer27/timer27.co
     AddMemeComponent,
     AddSoundboardComponent,
     Timer27Component,
+    DeptComponent,
   ],
   imports: [
     BrowserModule,
