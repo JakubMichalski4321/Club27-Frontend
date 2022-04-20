@@ -10,7 +10,7 @@ export class Timer27Component implements OnInit {
 
   sub: Subscription;
   dateFrom1997: Date = new Date('1997-01-01');
-  date27Finish: Date = new Date('2024-01-01');
+  date27Finish: Date = new Date('2025-01-01');
   timeToFinish: (number)[] = [];
   showProgressBar: boolean;
   private progressTime: number;
@@ -30,7 +30,7 @@ export class Timer27Component implements OnInit {
   }
 
   fillTimeToFinishArray(){
-    let date27Finish: Date = new Date('2024-01-01');
+    let date27Finish: Date = new Date('2025-01-01');
     let timeDifference = date27Finish.getTime() - Date.now();
     let s: number = Math.floor(timeDifference / 1000);
     let m: number = Math.floor(s / 60);
