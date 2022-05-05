@@ -7,6 +7,7 @@ import {SoundboardComponent} from './components/soundboard/soundboard.component'
 import {PajacyzmComponent} from './components/pajacyzmy/pajacyzm/pajacyzm.component';
 import {MemComponent} from './components/memy/mem/mem.component';
 import {DeptComponent} from "./components/dept/dept.component";
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
     { path: 'pajacyzmy', component: PajacyzmyComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'jugo', component: JugoComponent },
     { path: 'soundboard', component: SoundboardComponent },
     { path: 'dept', component: DeptComponent },
+    { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

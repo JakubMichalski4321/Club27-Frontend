@@ -1,0 +1,47 @@
+<head>
+    <title>Login</title>
+</head>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 rounded innerContainer">
+        <div class="wrapper fadeInDown zero-raduis">
+        <div id="formContent">
+            <h2 class="my-5 text-center">Logowanko</h2>
+            </div>
+        
+            <!-- Login Form -->
+            <form>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <label for="email"></label>
+                        <input type="email" [(ngModel)]="userModel.name" id="email" class="form-control" name="email" placeholder="email" required>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <label for="password"></label>
+                        <input type="password" [(ngModel)]="userModel.pass" id="password" class="form-control" name="password" placeholder="password" required>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-3 text-center">
+                        <button *ngIf="!showLoading" (click)="login(userModel.name, userModel.pass)" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
+                        <button *ngIf="showLoading" class="btn btn-outline-primary disabled">Loading... <br>
+                            <div class="spinner-border text-primary m-auto" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-3 text-center">
+                        <button type="button" class="btn btn-outline-info fadeIn fourth">Register</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <br><br>
+        </div>
+    </div>
+</div>
