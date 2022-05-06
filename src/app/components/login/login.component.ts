@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
+import { IJwtToken } from 'src/app/components/login/IJwtToken';
 
 @Component({
   selector: 'app-login',
@@ -23,14 +24,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(username: string, password: string): void{
+  login(): void{
     this.showLoading = true;
-    this.http.post<HttpResponse<any>>("/user/login", this.userModel, {observe: 'response'})
+    this.http.post<IJwtToken>("user/login", this.userModel, {observe: 'response'})
     .subscribe(resp => {
-      let headers = resp.headers;
-      let token = headers.get("Authorization");
-      this.tokenService.saveToken(token);
-      // this.idService.fetchId();
+      this.tokenService.saveToken(resp.body.jwt);
       this.router.navigateByUrl("pajacyzmy");
       this.showLoading = false;
     },

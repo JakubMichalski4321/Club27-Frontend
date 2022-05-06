@@ -15,18 +15,18 @@
                 <div class="row justify-content-center">
                     <div class="col-3">
                         <label for="email"></label>
-                        <input type="email" [(ngModel)]="userModel.name" id="email" class="form-control" name="email" placeholder="email" required>
+                        <input type="email" [(ngModel)]="userModel.username" id="email" class="form-control" name="email" placeholder="email" required>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-3">
                         <label for="password"></label>
-                        <input type="password" [(ngModel)]="userModel.pass" id="password" class="form-control" name="password" placeholder="password" required>
+                        <input type="password" [(ngModel)]="userModel.password" id="password" class="form-control" name="password" placeholder="password" required>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-3 text-center">
-                        <button *ngIf="!showLoading" (click)="login(userModel.name, userModel.pass)" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
+                        <button *ngIf="!showLoading" (click)="login()" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
                         <button *ngIf="showLoading" class="btn btn-outline-primary disabled">Loading... <br>
                             <div class="spinner-border text-primary m-auto" role="status">
                                 <span class="sr-only">Loading...</span>
