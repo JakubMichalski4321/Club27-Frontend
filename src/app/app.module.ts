@@ -27,6 +27,7 @@ import { Timer27Component } from './components/navigation-bar/timer27/timer27.co
 import { DeptComponent } from './components/dept/dept.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { NavBarService } from './services/nav-bar.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { RegisterComponent } from './components/user/register/register.component
     ],
   providers: [HttpService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
+    NavBarService
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddMemeComponent, AddSoundboardComponent]

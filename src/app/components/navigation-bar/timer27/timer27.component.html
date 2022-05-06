@@ -13,8 +13,8 @@
       <div class="col-3">sekunt</div>
     </div>
   </div>
-  <div *ngIf="showProgressBar" class="row">
-    <div class="progress club27ProgressBar">
+  <div *ngIf="showProgressBar" class="club27ProgressBar">
+    <div class="progress">
       <div class="progress-bar bg-danger" role="progressbar" [style.width]="(100 - percentageTimeLeft).toString() + '%'" aria-valuenow="{{100 - percentageTimeLeft}}" aria-valuemin="0" aria-valuemax="100">{{100 - percentageTimeLeft}}%</div>
       <div class="progress-bar bg-success text-white font-weight-bold" role="progressbar" [style.width]="percentageTimeLeft.toString() + '%'" aria-valuenow="{{percentageTimeLeft}}" aria-valuemin="0" aria-valuemax="100">{{percentageTimeLeft}}%</div>
     </div>

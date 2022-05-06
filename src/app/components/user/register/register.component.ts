@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   showPass2And3NotEqual = false;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +53,7 @@ export class RegisterComponent implements OnInit {
     this.http.post<HttpResponse<any>>("user/register-user", this.userModel, {observe: 'response'})
     .subscribe(resp => {
       this.showLoading = false;
+      this.router.navigate(['pajacyzmy']);
     },
     err => {
       this.showLoading = false;

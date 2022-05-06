@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { IJwtToken } from 'src/app/components/user/login/IJwtToken';
+import { NavBarService } from 'src/app/services/nav-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private tokenService: BearerTokenService,
+    private navBarService: NavBarService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class LoginComponent implements OnInit {
     err => {
       this.showLoading = false;
     })
+  }
+
+  goToRagister(): void{
+    this.router.navigate(['register']);
   }
 
 }
