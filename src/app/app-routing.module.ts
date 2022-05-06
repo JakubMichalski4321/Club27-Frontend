@@ -7,7 +7,8 @@ import {SoundboardComponent} from './components/soundboard/soundboard.component'
 import {PajacyzmComponent} from './components/pajacyzmy/pajacyzm/pajacyzm.component';
 import {MemComponent} from './components/memy/mem/mem.component';
 import {DeptComponent} from "./components/dept/dept.component";
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
 
 const routes: Routes = [
     { path: 'pajacyzmy', component: PajacyzmyComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'soundboard', component: SoundboardComponent },
     { path: 'dept', component: DeptComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

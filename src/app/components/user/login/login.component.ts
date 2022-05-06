@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
-import { IJwtToken } from 'src/app/components/login/IJwtToken';
+import { IJwtToken } from 'src/app/components/user/login/IJwtToken';
 
 @Component({
   selector: 'app-login',
