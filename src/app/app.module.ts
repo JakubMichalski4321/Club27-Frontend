@@ -30,40 +30,39 @@ import { RegisterComponent } from './components/user/register/register.component
 import { NavBarService } from './services/nav-bar.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationBarComponent,
-    PajacyzmyComponent,
-    MemyComponent,
-    JugoComponent,
-    SoundboardComponent,
-    ErrorModalComponent,
-    PajacyzmComponent,
-    MemComponent,
-    AddMemeComponent,
-    AddSoundboardComponent,
-    Timer27Component,
-    DeptComponent,
-    LoginComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    NgxPaginationModule,
-    NgxAudioPlayerModule,
-    ReactiveFormsModule,
-    NgxCaptchaModule
+    declarations: [
+        AppComponent,
+        NavigationBarComponent,
+        PajacyzmyComponent,
+        MemyComponent,
+        JugoComponent,
+        SoundboardComponent,
+        ErrorModalComponent,
+        PajacyzmComponent,
+        MemComponent,
+        AddMemeComponent,
+        AddSoundboardComponent,
+        Timer27Component,
+        DeptComponent,
+        LoginComponent,
+        RegisterComponent,
     ],
-  providers: [HttpService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
-    NavBarService
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [AddMemeComponent, AddSoundboardComponent]
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        RouterModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        NgxPaginationModule,
+        NgxAudioPlayerModule,
+        ReactiveFormsModule,
+        NgxCaptchaModule
+    ],
+    providers: [HttpService,
+        { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
+        NavBarService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

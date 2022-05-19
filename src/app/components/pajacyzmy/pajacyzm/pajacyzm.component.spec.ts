@@ -8,8 +8,9 @@ describe('PajacyzmComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PajacyzmComponent ]
-    })
+    declarations: [PajacyzmComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 

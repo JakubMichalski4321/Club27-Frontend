@@ -8,8 +8,9 @@ describe('MemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MemComponent ]
-    })
+    declarations: [MemComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 

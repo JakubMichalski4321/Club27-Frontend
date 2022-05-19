@@ -8,8 +8,9 @@ describe('AddSoundboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSoundboardComponent ]
-    })
+    declarations: [AddSoundboardComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 
