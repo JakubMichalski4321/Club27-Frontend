@@ -9,6 +9,9 @@ import {UploadMem} from '../models/uploadModels/UploadMem';
 import {UploadSoundboard} from '../models/uploadModels/UploadSoundboard';
 import {IMemeComment} from '../models/IMemeComment';
 import {UploadMemeComment} from '../models/uploadModels/UploadMemeComment';
+import { PageRequest } from '../models/PageRequest';
+import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
+import { IPajacyzmyWithCounter } from '../models/IPajacyzmyWithCounter';
 @Injectable()
 export class HttpService{
 
@@ -25,8 +28,8 @@ export class HttpService{
     return this.http.get<IPajacyzm>(this.localBaseUrl + this.pajacyzmyUrl + pajacyzmId);
   }
 
-  public getAllPajacyzmyList(): Observable<IPajacyzm[]>{
-    return this.http.get<IPajacyzm[]>(this.localBaseUrl + this.pajacyzmyUrl + 'pajacyzmy');
+  public getAllPajacyzmyList(pageRequest: PageRequest): Observable<IPajacyzmyWithCounter>{
+    return this.http.post<IPajacyzmyWithCounter>(this.localBaseUrl + this.pajacyzmyUrl + 'pajacyzmy', pageRequest);
   }
 
   public submitPajacyzm(data: any){

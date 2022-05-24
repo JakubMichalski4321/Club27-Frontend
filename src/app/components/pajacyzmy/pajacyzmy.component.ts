@@ -3,6 +3,8 @@ import { IPajacyzm } from '../../models/IPajacyzm';
 import {HttpService} from '../../services/http.service';
 import {DOCUMENT} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { PageRequest } from 'src/app/models/PageRequest';
+import { IPajacyzmyWithCounter } from 'src/app/models/IPajacyzmyWithCounter';
 
 @Component({
   selector: 'app-pajacyzmy',
@@ -16,20 +18,25 @@ export class PajacyzmyComponent implements OnInit {
   showReasonText = '';
   displaySend = false;
   currentPageDisplay = 1;
+  itemsPerPage = 10;
+  pajacyzmyListWithCounter?: IPajacyzmyWithCounter;
+  allPajacyzmy = 0;
+
+  pageRequest = new PageRequest();
 
   protected aFormGroup: FormGroup;
-  siteKey = '6LcSeL0aAAAAAD6JHiwL-qd89Fmhymt9fXFHdpia';
-  canBeSend = false;
 
   constructor(private httpService: HttpService,
               @Inject(DOCUMENT)
               private _document: Document,
               private formBuilder: FormBuilder
               ) {
+                this.pageRequest.pageNumber = 1;
+                this.pageRequest.numberPerPage = 10;
   }
 
   ngOnInit(): void {
-    this.getAllPajacyzmy();
+    this.getAllPajacyzmy(0);
     this.pajacyzmyList.sort((pajacyzm1, pajacyzm2) =>
       (pajacyzm1.createdDate > pajacyzm2.createdDate) ? 1 : ((pajacyzm2.createdDate > pajacyzm1.createdDate)? -1 :0
       ));
@@ -42,10 +49,13 @@ export class PajacyzmyComponent implements OnInit {
     this._document.defaultView.location.reload();
   }
 
-  getAllPajacyzmy(){
-    this.httpService.getAllPajacyzmyList().subscribe(data => {
-      console.log(data);
-      this.pajacyzmyList = data;
+  getAllPajacyzmy(pageNumber: number){
+    this.pageRequest.pageNumber = pageNumber;
+    console.log(this.pageRequest.pageNumber);
+    this.httpService.getAllPajacyzmyList(this.pageRequest).subscribe(data => {
+      this.pajacyzmyListWithCounter = data;
+      this.allPajacyzmy = this.pajacyzmyListWithCounter.counter;
+      this.pajacyzmyList = this.pajacyzmyListWithCounter.pajacyzmy;
     }, error => {
       console.log(error);
     });
@@ -59,7 +69,7 @@ export class PajacyzmyComponent implements OnInit {
     let jsonText = this.convertDataToJson();
     this.httpService.submitPajacyzm(jsonText);
     this.displaySend = true;
-    this.getAllPajacyzmy();
+    this.getAllPajacyzmy(0);
   }
 
   showReason(reason: string) {
