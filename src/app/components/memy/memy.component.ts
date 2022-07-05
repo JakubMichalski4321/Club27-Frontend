@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { IMem } from '../../models/IMem';
+import { IMeme } from '../../models/IMeme';
 import { HttpService } from '../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddMemeComponent} from './add-meme/add-meme.component';
 import {UploadMemeComment} from '../../models/uploadModels/UploadMemeComment';
 import {Like} from '../../models/Like';
+import { PageRequest } from 'src/app/models/PageRequest';
+import { IMemesWithCounter } from 'src/app/models/IMemesWithCounter';
 
 
 @Component({
@@ -16,19 +18,25 @@ import {Like} from '../../models/Like';
 export class MemyComponent implements OnInit {
 
   pathToDir = 'assets/memeImages/';
-  memyList?: Array<IMem> = [];
+  memesListWithCounter?: IMemesWithCounter;
+  memyList?: Array<IMeme> = [];
+  memesNumber?: number;
   currentPageDisplay = 1;
   memeCommentAuthor: any;
   memeCommentContent: any;
   displaySend = false;
   memeLikesGiven?: Array<Like> = [];
+  pageRequest = new PageRequest();
+  allMemesCounter = 0;
 
 
   constructor(private httpService: HttpService, private sanitizer: DomSanitizer, private modal: NgbModal) {
+    this.pageRequest.pageNumber = 1;
+    this.pageRequest.numberPerPage = 10;
   }
 
   ngOnInit(): void {
-    this.getAllMemy();
+    this.getAllMemy(0);
     this.memyList.sort((mem1, mem2) =>
       (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate) ? -1 : 0
       ));
@@ -72,10 +80,12 @@ export class MemyComponent implements OnInit {
 
   //Services
 
-  private getAllMemy() {
-    this.httpService.getAllMemyList().subscribe(data => {
-      console.log(data);
-      this.memyList = data;
+  getAllMemy(pageNumber: number) {
+    this.pageRequest.pageNumber = pageNumber;
+    this.httpService.getAllMemesList(this.pageRequest).subscribe(data => {
+      this.memesListWithCounter = data;
+      this.memyList = this.memesListWithCounter.memes;
+      this.allMemesCounter = this.memesListWithCounter.counter;
       this.getMemesComments();
     }, error => {
       console.log(error);
@@ -101,7 +111,7 @@ export class MemyComponent implements OnInit {
     this.getMemeLikesGivenFromSession();
   }
 
-  submitComment(mem: IMem) {
+  submitComment(mem: IMeme) {
     let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
     this.httpService.submitMemeComment(commentToSubmit);
     this.displaySend = true;

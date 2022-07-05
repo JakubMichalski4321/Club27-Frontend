@@ -1,6 +1,6 @@
 import {IMemeComment} from './IMemeComment';
 
-export interface IMem{
+export interface IMeme{
   id: string;
   title: string;
   author: string;

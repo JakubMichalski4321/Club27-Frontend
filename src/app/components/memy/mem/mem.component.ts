@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
-import {IMem} from '../../../models/IMem';
+import {IMeme} from '../../../models/IMeme';
 import {ActivatedRoute} from '@angular/router';
 import {UploadMemeComment} from '../../../models/uploadModels/UploadMemeComment';
 import {Like} from "../../../models/Like";
@@ -12,7 +12,7 @@ import {Like} from "../../../models/Like";
 })
 export class MemComponent implements OnInit, OnDestroy {
 
-  mem: IMem;
+  mem: IMeme;
   memId: any;
   private sub: any;
   pathToDir = 'assets/memeImages/';
@@ -34,7 +34,7 @@ export class MemComponent implements OnInit, OnDestroy {
   }
 
   getMem(){
-    this.httpService.getMem(this.memId).subscribe(data => {
+    this.httpService.getMeme(this.memId).subscribe(data => {
       console.log(data);
       this.mem = data;
       this.getMemeComments();
@@ -51,7 +51,7 @@ export class MemComponent implements OnInit, OnDestroy {
     return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
   }
 
-  submitComment(mem: IMem) {
+  submitComment(mem: IMeme) {
     let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
     this.httpService.submitMemeComment(commentToSubmit);
     this.displaySend = true;

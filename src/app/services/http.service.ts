@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
 import {IPajacyzm} from '../models/IPajacyzm';
-import {IMem} from '../models/IMem';
+import {IMeme} from '../models/IMeme';
 import {ISoundboard} from '../models/ISoundboard';
 import {IJugo} from '../models/IJugo';
 import {UploadMem} from '../models/uploadModels/UploadMem';
@@ -12,6 +12,7 @@ import {UploadMemeComment} from '../models/uploadModels/UploadMemeComment';
 import { PageRequest } from '../models/PageRequest';
 import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 import { IPajacyzmyWithCounter } from '../models/IPajacyzmyWithCounter';
+import { IMemesWithCounter } from '../models/IMemesWithCounter';
 @Injectable()
 export class HttpService{
 
@@ -38,12 +39,12 @@ export class HttpService{
     });
   }
 
-  public getMem(memId: any): Observable<IMem>{
-    return this.http.get<IMem>(this.localBaseUrl + this.memeUrl + memId);
+  public getMeme(memeId: any): Observable<IMeme>{
+    return this.http.get<IMeme>(this.localBaseUrl + this.memeUrl + memeId);
   }
 
-  public getAllMemyList(): Observable<IMem[]>{
-    return this.http.get<IMem[]>(this.localBaseUrl + this.memeUrl + 'memy');
+  public getAllMemesList(pageRequest: PageRequest): Observable<IMemesWithCounter>{
+    return this.http.post<IMemesWithCounter>(this.localBaseUrl + this.memeUrl + 'memes', pageRequest);
   }
 
   public getMemeComments(id: string): Observable<IMemeComment[]> {
@@ -80,7 +81,7 @@ export class HttpService{
   }
 
   public getAllSoundboardList(): Observable<ISoundboard[]>{
-    return this.http.get<ISoundboard[]>(this.localBaseUrl + this.soudboardUrl + 'all-soundboard');
+    return this.http.get<ISoundboard[]>(this.localBaseUrl + this.soudboardUrl + 'soundboards');
   }
 
   public addLikeToJugo(jugoId: string): Subscription{
