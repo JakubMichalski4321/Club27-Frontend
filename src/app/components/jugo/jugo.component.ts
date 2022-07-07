@@ -34,7 +34,6 @@ export class JugoComponent implements OnInit {
         videoURL = sanitizer.bypassSecurityTrustResourceUrl(jugoList[i].videoURL);
       });
     }
-    console.log(this.allJugos)
   }
 
   makeArrayOfNumbers(iterations: number){
@@ -66,7 +65,6 @@ export class JugoComponent implements OnInit {
 
   getJugoList(){
     this.httpService.getAllJugoList().subscribe(data => {
-      console.log(data);
       this.createJugoList(data);
     }, error => {
       console.log(error);

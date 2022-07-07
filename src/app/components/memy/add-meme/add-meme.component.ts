@@ -66,7 +66,6 @@ export class AddMemeComponent implements OnInit {
   //Services
 
   private submitMeme(data: UploadMem) {
-    console.log(data);
     this.httpService.submitMeme(data);
   }
 

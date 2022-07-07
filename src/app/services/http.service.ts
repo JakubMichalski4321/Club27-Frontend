@@ -35,7 +35,6 @@ export class HttpService{
 
   public submitPajacyzm(data: any){
     this.http.post(this.localBaseUrl +  this.pajacyzmyUrl + 'pajacyzm-submit', data).toPromise().then((data: IPajacyzm) => {
-      console.log(data);
     });
   }
 
@@ -53,7 +52,6 @@ export class HttpService{
 
   public submitMeme(data: UploadMem) {
     this.http.post(this.localBaseUrl + this.memeUrl + 'meme-submit', data).toPromise().then((data: UploadMem) => {
-      console.log(data);
     });
   }
 
@@ -61,13 +59,11 @@ export class HttpService{
     let formData: FormData = new FormData();
     formData.append('file', file, currentTime + '_' + file.name);
     this.http.post(this.localBaseUrl + this.memeUrl + 'meme-image-submit', formData).toPromise().then((data: FormData) => {
-      console.log(data);
     });
   }
 
   public submitMemeComment(data: UploadMemeComment) {
     this.http.post(this.localBaseUrl + this.memeUrl + 'meme-comment-submit', data).toPromise().then((data: UploadMemeComment) => {
-      console.log(data);
     });
   }
 
@@ -76,7 +72,6 @@ export class HttpService{
   }
 
   public getAllJugoList(): Observable<IJugo[]>{
-    console.log("CALL FOR JUGOS")
     return this.http.get<IJugo[]>(this.localBaseUrl + this.jugoUrl + 'jugos');
   }
 
@@ -90,7 +85,6 @@ export class HttpService{
 
   public submitSoundboard(data: UploadSoundboard){
     this.http.post(this.localBaseUrl + this.jugoUrl + 'soundboard-submit', data).toPromise().then((data: UploadSoundboard) => {
-      console.log(data);
     });
   }
 
@@ -98,7 +92,6 @@ export class HttpService{
     let formData: FormData = new FormData();
     formData.append('file', file, pathToFile);
     return this.http.post(this.localBaseUrl + this.soudboardUrl + 'soundboard-sound-submit', formData).toPromise().then((data: FormData) => {
-      console.log(data);
     });
   }
 

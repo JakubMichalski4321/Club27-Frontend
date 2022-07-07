@@ -42,7 +42,6 @@ export class SoundboardComponent implements OnInit {
 
   getAllSoundboardList(){
     this.httpService.getAllSoundboardList().subscribe(data => {
-      console.log(data);
       this.soundboardList = data;
       this.filterLists();
     }, error => {

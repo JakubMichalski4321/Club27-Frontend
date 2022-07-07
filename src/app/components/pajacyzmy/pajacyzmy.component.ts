@@ -51,7 +51,6 @@ export class PajacyzmyComponent implements OnInit {
 
   getAllPajacyzmy(pageNumber: number){
     this.pageRequest.pageNumber = pageNumber;
-    console.log(this.pageRequest.pageNumber);
     this.httpService.getAllPajacyzmyList(this.pageRequest).subscribe(data => {
       this.pajacyzmyListWithCounter = data;
       this.allPajacyzmy = this.pajacyzmyListWithCounter.counter;
@@ -74,7 +73,6 @@ export class PajacyzmyComponent implements OnInit {
 
   showReason(reason: string) {
     this.showReasonText = reason;
-    console.log(reason)
   }
 
   private convertDataToJson() {

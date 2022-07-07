@@ -47,7 +47,6 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
 
   getPajacyzm(){
     this.httpService.getPajacyzm(this.pajacyzmId).subscribe(data => {
-      console.log(data);
       this.pajacyzm = data;
     }, error => {
       console.log(error);

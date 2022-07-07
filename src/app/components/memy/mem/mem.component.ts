@@ -35,7 +35,6 @@ export class MemComponent implements OnInit, OnDestroy {
 
   getMem(){
     this.httpService.getMeme(this.memId).subscribe(data => {
-      console.log(data);
       this.mem = data;
       this.getMemeComments();
     }, error => {
