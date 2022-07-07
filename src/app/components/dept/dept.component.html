@@ -1,6 +1,13 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
-    <div class="addMeme rounded">DAWAJ MEMA</div>
+    <div>
+      <div *ngIf="!showLogin" class="row d-flex justify-content-center">
+        <img src="https://c.tenor.com/mZZoOtDcouoAAAAM/stop-it-get-some-help.gif" class="border rounded" alt="Anebo zaloguj się" />
+      </div>
+      <div *ngIf="showLogin">
+        <app-login></app-login>
+      </div>
+    </div>
   </div>
 </div>
