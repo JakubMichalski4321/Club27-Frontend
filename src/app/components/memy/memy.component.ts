@@ -30,7 +30,10 @@ export class MemyComponent implements OnInit {
   allMemesCounter = 0;
 
 
-  constructor(private httpService: HttpService, private sanitizer: DomSanitizer, private modal: NgbModal) {
+  constructor(
+    private httpService: HttpService,
+    private sanitizer: DomSanitizer,
+    private modal: NgbModal) {
     this.pageRequest.pageNumber = 1;
     this.pageRequest.numberPerPage = 10;
   }

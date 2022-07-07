@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
-    <div>
+
+    <div *ngIf="!isLoggedIn()">
       <div *ngIf="!showLogin" class="row d-flex justify-content-center">
         <img src="https://c.tenor.com/mZZoOtDcouoAAAAM/stop-it-get-some-help.gif" class="border rounded" alt="Anebo zaloguj się" />
       </div>
@@ -9,5 +10,18 @@
         <app-login></app-login>
       </div>
     </div>
+
+    <div *ngIf="isLoggedIn()">
+      <div class="row">
+        <div class="col-12">
+          <button class="btn" (click)="openCreatAccount()" placement="bottom" ngbTooltip="Dodaj nowy profil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-plus-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

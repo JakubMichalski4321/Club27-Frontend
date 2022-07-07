@@ -28,6 +28,7 @@ import { DeptComponent } from './components/dept/dept.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { NavBarService } from './services/nav-bar.service';
+import { AddDeptComponent } from './components/dept/add-dept/add-dept.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { NavBarService } from './services/nav-bar.service';
         DeptComponent,
         LoginComponent,
         RegisterComponent,
+        AddDeptComponent,
     ],
     imports: [
         BrowserModule,

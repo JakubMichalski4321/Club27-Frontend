@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">Dodawanie konta</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <table class="table-add-meme">
+    <tr>
+      <td class="input-add-meme-left-side">Nazwa konta<em class="text-danger">*</em></td>
+    </tr>
+    <tr>
+      <td>
+        <input [(ngModel)]="accountName" class="form-control" type="text" name="title" placeholder="Konto Ani i Kuby">
+      </td>
+    </tr>
+    <tr>
+      <td class="input-add-meme-left-side">Wybierz użytkownika z którym chcesz mieć konto<em class="text-danger">*</em></td>
+    </tr>
+    <tr>
+      <td>
+        <select [(ngModel)]="secoundUserId" class="form-select">
+          <option *ngFor="let user of deptUsers" [value]="user.id">{{user.username}}</option>
+        </select>
+      </td>
+    </tr>
+    </table>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!everythingIsOk()" (click)="warmingMessage = 'Debilu byś wypełnij wszystdkie pola, co?';" type="button" class="btn btn-success" disabled>Dodaj konto</button>
+  <div *ngIf="warmingMessage != ''" class="text-danger">{{warmingMessage}}</div>
+  <button *ngIf="everythingIsOk()" type="button" class="btn btn-success" (click)="activeModal.close('Close click'); createNewAccount();">Dodaj konto</button>
+</div>

@@ -13,6 +13,8 @@ import { PageRequest } from '../models/PageRequest';
 import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 import { IPajacyzmyWithCounter } from '../models/IPajacyzmyWithCounter';
 import { IMemesWithCounter } from '../models/IMemesWithCounter';
+import { IDeptUser } from '../models/IDeptUser';
+import { discardPeriodicTasks } from '@angular/core/testing';
 @Injectable()
 export class HttpService{
 
@@ -24,6 +26,7 @@ export class HttpService{
   private memeUrl = 'meme/';
   private jugoUrl = 'jugo/'
   private soudboardUrl = 'soundboard/';
+  private deptUrl = 'dept/';
 
   public getPajacyzm(pajacyzmId: any): Observable<IPajacyzm> {
     return this.http.get<IPajacyzm>(this.localBaseUrl + this.pajacyzmyUrl + pajacyzmId);
@@ -80,7 +83,7 @@ export class HttpService{
   }
 
   public addLikeToJugo(jugoId: string): Subscription{
-    return this.http.get<any>(this.localBaseUrl + this.jugoUrl + jugoId + "/like-add").subscribe();;
+    return this.http.get<any>(this.localBaseUrl + this.jugoUrl + jugoId + "/like-add").subscribe();
   }
 
   public submitSoundboard(data: UploadSoundboard){
@@ -95,4 +98,21 @@ export class HttpService{
     });
   }
 
+  public getDeptUsersList(): Observable<IDeptUser[]>{
+    return this.http.get<IDeptUser[]>(this.localBaseUrl + this.deptUrl + 'deptsusers');
+  }
+
+  public createNewAccount(accountName: string, userId: string, deptUsersIds: string[]){
+    const reqest = {
+      accountName: accountName,
+      userId: userId,
+      deptUsersIds: deptUsersIds
+    }
+    return this.http.post(this.localBaseUrl + this.deptUrl + 'create', reqest).toPromise().then(() => {
+    });
+  }
+
+  public getUserIdByUserName(userName: string) {
+    return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'getUserIdByName/' + userName);
+  }
 }
