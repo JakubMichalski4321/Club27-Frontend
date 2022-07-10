@@ -15,6 +15,7 @@ import { IPajacyzmyWithCounter } from '../models/IPajacyzmyWithCounter';
 import { IMemesWithCounter } from '../models/IMemesWithCounter';
 import { IDeptUser } from '../models/IDeptUser';
 import { discardPeriodicTasks } from '@angular/core/testing';
+import { IDeptAccount } from '../models/IDeptAccount';
 @Injectable()
 export class HttpService{
 
@@ -115,4 +116,9 @@ export class HttpService{
   public getUserIdByUserName(userName: string) {
     return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'getUserIdByName/' + userName);
   }
+
+  public getDeptAccountByUserId(userId: string): Observable<IDeptAccount[]>{
+    return this.http.get<IDeptAccount[]>(this.localBaseUrl + this.deptUrl + 'depts/' + userId);
+  }
+  
 }

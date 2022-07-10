@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { IDeptAccount } from 'src/app/models/IDeptAccount';
+import { BearerTokenService } from 'src/app/services/bearer-token.service';
+import { HttpService } from 'src/app/services/http.service';
 import { NavBarService } from 'src/app/services/nav-bar.service';
 import { AddDeptComponent } from './add-dept/add-dept.component';
 
@@ -10,17 +13,21 @@ import { AddDeptComponent } from './add-dept/add-dept.component';
 })
 export class DeptComponent implements OnInit {
   showLogin = false;
+  userDeptAccounts?: Array<IDeptAccount> = [];
 
   constructor(
     private navBarService: NavBarService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private httpService: HttpService,
+    private bearerTokenService: BearerTokenService
   ) {}
 
   ngOnInit(): void {
-    this.openCreatAccount();
-    if(!this.isLoggedIn) {
+    //this.openCreatAccount();
+    if(!this.isLoggedIn()) {
       this.delay(2700);
     }
+    this.getUserDeptAccountsList();
   }
 
   isLoggedIn(): boolean {
@@ -37,5 +44,20 @@ export class DeptComponent implements OnInit {
         this.showLogin = true;
       }, ms)
     );
+  }
+
+  private getUserDeptAccountsList() {
+
+      this.httpService.getDeptAccountByUserId(
+        this.bearerTokenService.getUserId()
+      ).subscribe(
+        (data) => {
+          this.userDeptAccounts = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    
   }
 }

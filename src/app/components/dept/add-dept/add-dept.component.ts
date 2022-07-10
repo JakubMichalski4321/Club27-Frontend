@@ -36,7 +36,6 @@ export class AddDeptComponent implements OnInit {
 
   createNewAccount() {
     this.choosenUsersIdList.push(this.secoundUserId);
-    console.log( this.choosenUsersIdList)
     return this.httpService.createNewAccount(
       this.accountName,
       this.bearerTokenService.getUserId(),

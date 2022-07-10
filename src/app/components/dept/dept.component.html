@@ -21,6 +21,11 @@
           </button>
         </div>
       </div>
+      <div class="row">
+        <div class="col-3" *ngFor="let account of userDeptAccounts">
+           {{account.deptAccountName}} 
+        </div>
+      </div>
     </div>
 
   </div>
