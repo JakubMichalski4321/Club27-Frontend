@@ -22,8 +22,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-3" *ngFor="let account of userDeptAccounts">
-           {{account.deptAccountName}} 
+        <div class="col-3" *ngFor="let account of userDeptAccounts" [routerLink]="['../dept-account', account.id]">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-dark border border-dark">{{account.deptAccountName}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{account.balance}} zł</h5>
+            </div>
+          </div>
         </div>
       </div>
     </div>

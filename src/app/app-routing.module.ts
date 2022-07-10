@@ -9,6 +9,7 @@ import {MemComponent} from './components/memy/mem/mem.component';
 import {DeptComponent} from "./components/dept/dept.component";
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { DeptAccountComponent } from './components/dept/dept-account/dept-account.component';
 
 const routes: Routes = [
     { path: 'pajacyzmy', component: PajacyzmyComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'jugo', component: JugoComponent },
     { path: 'soundboard', component: SoundboardComponent },
     { path: 'dept', component: DeptComponent },
+    { path: 'dept-account/:accountId', component: DeptAccountComponent, pathMatch: 'full'},
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
 ];

@@ -58,6 +58,6 @@ export class DeptComponent implements OnInit {
           console.log(error);
         }
       );
-    
+
   }
 }
