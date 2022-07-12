@@ -16,6 +16,8 @@ import { IMemesWithCounter } from '../models/IMemesWithCounter';
 import { IDeptUser } from '../models/IDeptUser';
 import { discardPeriodicTasks } from '@angular/core/testing';
 import { IDeptAccount } from '../models/IDeptAccount';
+import { IDeptStatement } from '../models/IDeptStatement';
+import { IDeptDto } from '../models/IDeptDto';
 @Injectable()
 export class HttpService{
 
@@ -117,8 +119,24 @@ export class HttpService{
     return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'getUserIdByName/' + userName);
   }
 
-  public getDeptAccountByUserId(userId: string): Observable<IDeptAccount[]>{
-    return this.http.get<IDeptAccount[]>(this.localBaseUrl + this.deptUrl + 'depts/' + userId);
+  public getDeptAccountByUserId(userId: string): Observable<IDeptDto[]>{
+    return this.http.get<IDeptDto[]>(this.localBaseUrl + this.deptUrl + 'list/' + userId);
   }
-  
+
+  public getDeptAccountDetailsById(accountId: string): Observable<IDeptAccount>{
+    return this.http.get<IDeptAccount>(this.localBaseUrl + this.deptUrl + accountId);
+  }
+
+  public addDeptStatement(accountStatement: IDeptStatement, deptId: string, deptUserId: string) {
+    const reqest = {
+      amount: accountStatement.amount,
+      title: accountStatement.title,
+      description: accountStatement.description,
+      deptId: deptId,
+      deptUserId: deptUserId,
+    }
+    return this.http.post(this.localBaseUrl + this.deptUrl + 'addStatement', reqest).toPromise().then(() => {
+    });
+  }
+
 }
