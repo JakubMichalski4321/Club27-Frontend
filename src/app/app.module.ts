@@ -30,6 +30,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { NavBarService } from './services/nav-bar.service';
 import { AddDeptComponent } from './components/dept/add-dept/add-dept.component';
 import { DeptAccountComponent } from './components/dept/dept-account/dept-account.component';
+import { AddStatementComponent } from './components/dept/dept-account/add-statement/add-statement.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { DeptAccountComponent } from './components/dept/dept-account/dept-accoun
         RegisterComponent,
         AddDeptComponent,
         DeptAccountComponent,
+        AddStatementComponent,
     ],
     imports: [
         BrowserModule,
@@ -61,7 +63,7 @@ import { DeptAccountComponent } from './components/dept/dept-account/dept-accoun
         NgxPaginationModule,
         NgxAudioPlayerModule,
         ReactiveFormsModule,
-        NgxCaptchaModule
+        NgxCaptchaModule,
     ],
     providers: [HttpService,
         { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },

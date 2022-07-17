@@ -1,4 +1,4 @@
 export interface IDeptUser{
   id: string;
-  username: string;
+  name: string;
 }

@@ -5,51 +5,31 @@
   </button>
 </div>
 <div class="modal-body">
-  <table class="table-add-meme">
-    <tr>
-      <td>
-        <div class="row">
-          <div class="col-3">Tytuł<em class="text-danger">*</em></div>
-          <div class="col-9">
-            <input [(ngModel)]="accountStatement.title" class="form-control" type="text" name="title" placeholder="kebsik"/>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="row my-3">
-          <div *ngIf="iAmDept" class="col-5 text-right">Ja wiszę kasę</div>
-          <div *ngIf="!iAmDept" class="col-5 text-right"><del>Ja wiszę kasę</del></div>
-          <div class="col-2">
-            <label class="switch">
-              <input type="checkbox" (change)="this.iAmDept = this.iAmDept == false; show()">
-              <span class="slider round"></span>
-            </label>
-          </div>
-          <div *ngIf="iAmDept" class="col-5"><del>On mi wisi</del></div>
-          <div *ngIf="!iAmDept" class="col-5">On mi wisi</div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="row my-3">
-          <div class="col-3">$$$$$<em class="text-danger">*</em></div>
-          <div class="col-9">
-            <input [(ngModel)]="accountStatement.amount" class="form-control" type="number" min="0.00" step="0.50" value="10.00"
-              name="amount" placeholder="10.00"/>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <textarea [(ngModel)]="accountStatement.description" class="form-control" rows="4" cols="50" name="description"
-          placeholder="za treściwego kebsika"></textarea>
-      </td>
-    </tr>
-  </table>
+  <div class="row">
+    <div class="col-3">Tytuł<em class="text-danger">*</em></div>
+      <input [(ngModel)]="accountStatement.title" class="col-8 form-control" type="text" name="title" placeholder="kebsik"/>
+  </div>
+  <div class="row my-3">
+    <div *ngIf="iAmDept" class="col-5 text-right">Ja wiszę kasę</div>
+    <div *ngIf="!iAmDept" class="col-5 text-right"><del>Ja wiszę kasę</del></div>
+    <div class="col-2">
+      <label class="switch">
+        <input type="checkbox" (change)="this.iAmDept = this.iAmDept == false;">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div *ngIf="iAmDept" class="col-5"><del>On mi wisi</del></div>
+    <div *ngIf="!iAmDept" class="col-5">On mi wisi</div>
+  </div>
+  <div class="row mx-3">
+    <div class="col-3">$$$$$<em class="text-danger">*</em></div>
+    <input [(ngModel)]="accountStatement.amount" class="form-control col-3" type="number" min="0.00" step="0.50" value="10.00"
+        name="amount" placeholder="10.00"/>
+  </div>
+  <div class="row my-3">
+      <textarea [(ngModel)]="accountStatement.description" name="description" rows="4" cols="50" name="description"
+      placeholder="za treściwego kebsika" class="mx-auto col-10">{{deptAccountUsers}}</textarea>
+  </div>
 </div>
 <div class="modal-footer">
   <button *ngIf="!everythingIsOk()" type="button" class="btn btn-secondary" disabled>Dodaj wpis</button>

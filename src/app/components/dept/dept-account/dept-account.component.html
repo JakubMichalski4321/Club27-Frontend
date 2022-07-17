@@ -2,8 +2,12 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
 
-    <div class="row">
-      <div class="col-12">
+    <div class="row my-2">
+      <div class="col-2 "></div>
+      <div class="col-8 text-center font-weight-bold h1">
+        {{accountData.deptAccountName}}
+      </div>
+      <div class="col-2 text-right">
         <button class="btn" (click)="openAddStatement()" placement="bottom" ngbTooltip="Dodaj nowy wpis">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
             class="bi bi-plus-circle-fill text-success" viewBox="0 0 16 16">
@@ -14,23 +18,41 @@
       </div>
     </div>
 
+    <div class="row text-center font-weight-bold h4">
+      <div class="col-12">
+        Moje saldo:
+        <div [ngClass]="thisUserBalance < 0 ? 'text-danger' : 'text-success'"> {{calculateThisUserBalance()}} zł</div>
+      </div>
+    </div>
+
+    <div class="row text-center font-weight-bold h4">
+      <div class="col-12">
+        {{accountData.userAccounts[0].name.charAt(0).toUpperCase() + accountData.userAccounts[0].name.slice(1)}} -
+        {{accountData.userAccounts[1].name.charAt(0).toUpperCase() + accountData.userAccounts[1].name.slice(1)}}
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12">
         <table class="table table-striped table-hover">
           <thead class="thead-dark">
-            <tr>
+            <tr class="text-center">
               <th scope="col">#</th>
               <th scope="col">Tytół</th>
-              <th scope="col">$</th>
+              <th scope="col">$ PLN $</th>
               <th scope="col">Opis</th>
+              <th scope="col">Kiedy</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let statement of accountData.statements; let index=index">
-              <th scope="row">{{index}}</th>
+              <th scope="row" class="text-center">{{index+1}}</th>
               <td>{{statement.title}}</td>
-              <td>{{statement.amount}}</td>
+              <td class="text-center font-weight-bold" [ngClass]="statement.deptUserId === thisUserId ? 'text-danger' : 'text-success'">
+                {{statement.deptUserId === thisUserId ? '-' : ''}} {{toTwoDecimalNumber(statement.amount)}} zł
+              </td>
               <td>{{statement.description}}</td>
+              <td class="text-center">{{statement.createdDate.substr(0, 10)}} {{statement.createdDate.substr(11, 5)}}</td>
             </tr>
           </tbody>
         </table>

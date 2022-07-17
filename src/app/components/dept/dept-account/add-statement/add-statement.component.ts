@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptAccount } from 'src/app/models/IDeptAccount';
 import { IDeptStatement } from 'src/app/models/IDeptStatement';
+import { IDeptUser } from 'src/app/models/IDeptUser';
+import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -13,17 +15,23 @@ export class AddStatementComponent implements OnInit {
   @Input()
   deptAccountId: string;
   @Input()
-  deptAccountUsers: IDeptAccount[];
+  deptAccountUsers: IDeptUser[];
 
   accountStatement: IDeptStatement;
   iAmDept = true;
 
+  title: string;
+  amount: number;
+  description: string;
+
   constructor(
     private httpService: HttpService,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private bearerTokenService: BearerTokenService
     ) {}
 
   ngOnInit(): void {
+
     this.accountStatement = this.initData();
   }
 
@@ -31,12 +39,10 @@ export class AddStatementComponent implements OnInit {
     return this.accountStatement = {
       amount: 10.00,
       title: '',
-      description: ''
+      description: '',
+      createdDate: '',
+      deptUserId: ''
     }
-  }
-
-  show(){
-    console.log(this.deptAccountUsers);
   }
 
   everythingIsOk(): boolean {
@@ -51,7 +57,19 @@ export class AddStatementComponent implements OnInit {
     return true;
   }
 
+  private otherUserId(): string {
+    return this.deptAccountUsers.map(user => user.id).filter(id => id !== this.getThisUserId())[0];
+  }
+
+  private getThisUserId(): string {
+    return this.bearerTokenService.getUserId();
+  }
+
   addNewStatement(): void {
-    this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, 'xD');
+    if(this.iAmDept) {
+      this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, this.getThisUserId());
+    } else {
+      this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, this.otherUserId());
+    }
   }
 }
