@@ -32,8 +32,8 @@
         <div *ngIf="areAllFillIn()" class="row">
           <div class="col-12">
             <ngx-recaptcha2 #captchaElem
-                            [siteKey]="siteKey"
-                            (success)="canBeSend = true;">
+                    [siteKey]="siteKey"
+                    (success)="canBeSend = true;">
             </ngx-recaptcha2>
           </div>
         </div>

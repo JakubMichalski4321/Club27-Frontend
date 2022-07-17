@@ -52,4 +52,8 @@ export class BearerTokenService {
       return null;
     }
   }
+
+  logOut(): void {
+    localStorage.removeItem('klub27User');
+  }
 }

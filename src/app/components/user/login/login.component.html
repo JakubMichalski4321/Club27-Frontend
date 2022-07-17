@@ -1,13 +1,12 @@
-<div class="row">
+<div class="row mb-5">
     <div class="col-sm-2"></div>
-    <div class="col-sm-8 rounded innerContainer">
+    <div class="col-sm-8 rounded">
         <div class="wrapper fadeInDown zero-raduis">
         <div id="formContent">
-            <h2 class="my-5 text-center">Logowanko</h2>
-            </div>
+          <h2 class="my-2 text-center">Logowanko kolego</h2>
+        </div>
 
             <!-- Login Form -->
-            <form>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-3">
@@ -21,9 +20,16 @@
                         <input type="password" [(ngModel)]="userModel.password" id="password" class="form-control" name="password" placeholder="password" required>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                  <!-- <div class="col-3">
+                    <ngx-recaptcha2 #captchaElem
+                                (success)="captchaTrue = true;">
+                    </ngx-recaptcha2>
+                  </div> -->
+                </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-3 text-center">
-                        <button *ngIf="!showLoading" (click)="login()" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
+                        <button *ngIf="!showLoading" [disabled]="!captchaTrue" (click)="login()" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
                         <button *ngIf="showLoading" class="btn btn-outline-primary disabled">Loading... <br>
                             <div class="spinner-border text-primary m-auto" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -37,7 +43,6 @@
                     </div>
                 </div>
             </div>
-            </form>
             <br><br>
         </div>
     </div>

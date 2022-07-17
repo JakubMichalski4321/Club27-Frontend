@@ -51,7 +51,7 @@
         <a class="nav-link" aria-current="page" routerLink="login">Logowanko</a>
       </div>
       <div *ngIf="isLoggedIn()">
-        <a class="text-primary">{{getUserNameFromToken()}}</a>
+        <div (click)="logOut()" class="btn btn-outline-light">{{getUserNameFromToken()}}</div>
       </div>
     </div>
     <app-timer27></app-timer27>

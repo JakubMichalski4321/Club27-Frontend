@@ -23,8 +23,12 @@ export class NavBarService {
     return this.tokenService.getToken() != null;
   }
 
-  getUserNameFromTOken(): string {
+  getUserNameFromToken(): string {
     return this.tokenService.getUserNameFromToken();
+  }
+
+  logOut(): void {
+    this.tokenService.logOut();
   }
 
 }
