@@ -36,7 +36,14 @@ export class DeptComponent implements OnInit {
   }
 
   openCreatAccount(): void {
-    this.modal.open(AddDeptComponent);
+    const modalRef = this.modal.open(AddDeptComponent);
+    (<AddDeptComponent>modalRef.componentInstance).outData.subscribe(
+      (added) => {
+        if (added) {
+          this.getUserDeptAccountsList();
+        }
+      }
+    );
   }
 
   private delay(ms: number) {

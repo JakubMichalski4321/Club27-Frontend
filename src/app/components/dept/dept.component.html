@@ -13,17 +13,19 @@
 
     <div *ngIf="isLoggedIn()">
       <div class="row">
-        <div class="col-12">
-          <button class="btn" (click)="openCreatAccount()" placement="bottom" ngbTooltip="Dodaj nowy profil">
+        <div class="col-2"></div>
+        <div class="col-8 text-center mt-3 h3 font-weight-bold">Moje konta</div>
+        <div class="col-2 text-right">
+          <button class="btn m-3" (click)="openCreatAccount()" placement="bottom" ngbTooltip="Dodaj nowy profil">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-plus-circle-fill text-success" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
             </svg>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row m-3">
         <div class="col-3" *ngFor="let account of userDeptAccounts" [routerLink]="['../dept-account', account.deptId]">
-          <div class="card text-white mb-3" style="max-width: 18rem;">
+          <div class="card text-white mb-3 onHover" style="max-width: 18rem;">
             <div class="card-header bg-dark border border-dark">{{account.title}}</div>
             <div class="card-body">
               <h5 class="card-title text-primary">{{account.balance}} zł</h5>

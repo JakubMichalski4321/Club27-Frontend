@@ -5,26 +5,20 @@
   </button>
 </div>
 <div class="modal-body">
-  <table class="table-add-meme">
-    <tr>
-      <td class="input-add-meme-left-side">Nazwa konta<em class="text-danger">*</em></td>
-    </tr>
-    <tr>
-      <td>
-        <input [(ngModel)]="accountName" class="form-control" type="text" name="title" placeholder="Konto Ani i Kuby">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-add-meme-left-side">Wybierz użytkownika z którym chcesz mieć konto<em class="text-danger">*</em></td>
-    </tr>
-    <tr>
-      <td>
-        <select [(ngModel)]="secoundUserId" class="form-select">
-          <option *ngFor="let user of deptUsers" [value]="user.id">{{user.username}}</option>
-        </select>
-      </td>
-    </tr>
-    </table>
+  <div class="row">
+    <div class="col-12">
+      Nazwa konta<em class="text-danger">*</em><br>
+      <input [(ngModel)]="accountName" class="form-control" type="text" name="title" placeholder="Konto Ani i Kuby">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12">
+      Wybierz użytkownika z którym chcesz mieć konto<em class="text-danger">*</em><br>
+      <select [(ngModel)]="secoundUserId" class="form-control mt-2">
+        <option *ngFor="let user of deptUsers" [value]="user.id">{{user.username}}</option>
+      </select>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button *ngIf="!everythingIsOk()" (click)="warmingMessage = 'Debilu byś wypełnij wszystdkie pola, co?';" type="button" class="btn btn-success" disabled>Dodaj konto</button>

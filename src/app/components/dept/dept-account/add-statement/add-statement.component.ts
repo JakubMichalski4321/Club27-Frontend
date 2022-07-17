@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptAccount } from 'src/app/models/IDeptAccount';
 import { IDeptStatement } from 'src/app/models/IDeptStatement';
@@ -16,6 +16,8 @@ export class AddStatementComponent implements OnInit {
   deptAccountId: string;
   @Input()
   deptAccountUsers: IDeptUser[];
+  @Output()
+  outData: EventEmitter<any> = new EventEmitter();
 
   accountStatement: IDeptStatement;
   iAmDept = true;
@@ -31,7 +33,6 @@ export class AddStatementComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-
     this.accountStatement = this.initData();
   }
 
@@ -71,5 +72,6 @@ export class AddStatementComponent implements OnInit {
     } else {
       this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, this.otherUserId());
     }
+    this.outData.emit(true);
   }
 }

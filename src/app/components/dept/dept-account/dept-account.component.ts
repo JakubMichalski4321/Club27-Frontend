@@ -54,10 +54,15 @@ export class DeptAccountComponent implements OnInit {
 
   openAddStatement(): void {
     const modalRef = this.modal.open(AddStatementComponent);
-    (<AddStatementComponent>modalRef.componentInstance).deptAccountId =
-      this.accountId;
-    (<AddStatementComponent>modalRef.componentInstance).deptAccountUsers =
-      this.accountData.userAccounts;
+    (<AddStatementComponent>modalRef.componentInstance).deptAccountId = this.accountId;
+    (<AddStatementComponent>modalRef.componentInstance).deptAccountUsers = this.accountData.userAccounts;
+    (<AddStatementComponent>modalRef.componentInstance).outData.subscribe(
+      (added) => {
+        if (added) {
+          this.getAccountData();
+        }
+      }
+    );
   }
 
   calculateThisUserBalance(): number {
