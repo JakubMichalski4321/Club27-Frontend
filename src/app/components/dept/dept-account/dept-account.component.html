@@ -21,7 +21,7 @@
     <div class="row text-center font-weight-bold h4">
       <div class="col-12">
         Moje saldo:
-        <div [ngClass]="thisUserBalance < 0 ? 'text-danger' : 'text-success'"> {{calculateThisUserBalance()}} zł</div>
+        <div [ngClass]="calculateThisUserBalance() < 0 ? 'text-danger' : 'text-success'"> {{toTwoDecimalNumber(calculateThisUserBalance())}} zł</div>
       </div>
     </div>
 
@@ -56,6 +56,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-outline-danger" (click)="openConfirmDeleteModal()">Usuń konto</button>
       </div>
     </div>
 

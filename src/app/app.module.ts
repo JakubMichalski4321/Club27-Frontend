@@ -31,6 +31,8 @@ import { NavBarService } from './services/nav-bar.service';
 import { AddDeptComponent } from './components/dept/add-dept/add-dept.component';
 import { DeptAccountComponent } from './components/dept/dept-account/dept-account.component';
 import { AddStatementComponent } from './components/dept/dept-account/add-statement/add-statement.component';
+import { ConfirmDialogComponent } from './models/dialogs/confirm-dialog/confirm-dialog.component';
+import { InfoDialogComponent } from './models/dialogs/info-dialog/info-dialog.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,8 @@ import { AddStatementComponent } from './components/dept/dept-account/add-statem
         AddDeptComponent,
         DeptAccountComponent,
         AddStatementComponent,
+        ConfirmDialogComponent,
+        InfoDialogComponent,
     ],
     imports: [
         BrowserModule,

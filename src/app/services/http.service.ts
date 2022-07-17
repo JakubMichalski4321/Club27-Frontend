@@ -139,4 +139,8 @@ export class HttpService{
     });
   }
 
+  public deleteDeptAccount(accountId: string): Observable<string> {
+    return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'deleteDept/' + accountId);
+  }
+
 }

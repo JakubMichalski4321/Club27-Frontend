@@ -42,14 +42,16 @@ export class AddDeptComponent implements OnInit {
     );
   }
 
-  getDeptUsersList() {
+  private getDeptUsersList() {
     this.httpService.getDeptUsersList().subscribe(
       (data) => {
         this.deptUsers = data;
+        //this.deptUsers = this.deptUsers.filter(user => user.id !== this.bearerTokenService.getUserId());
       },
       (error) => {
         console.log(error);
       }
     );
   }
+
 }
