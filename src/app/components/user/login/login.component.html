@@ -1,6 +1,6 @@
-<div class="row mb-5">
+<div *ngIf="!badLogin" class="row mb-5" id="XD">
     <div class="col-sm-2"></div>
-    <div class="col-sm-8 rounded">
+    <div class="col-sm-8 innerContainer rounded">
         <div class="wrapper fadeInDown zero-raduis">
         <div id="formContent">
           <h2 class="my-2 text-center">Logowanko kolego</h2>
@@ -21,11 +21,15 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                  <!-- <div class="col-3">
-                    <ngx-recaptcha2 #captchaElem
-                                (success)="captchaTrue = true;">
-                    </ngx-recaptcha2>
-                  </div> -->
+                  <div class="col-3 text-danger">
+                     {{badLoginMessage}}
+                  </div>
+              </div>
+                <div class="row justify-content-center">
+                  <div class="col-3">
+                    <!-- <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" (success)="captchaTrue = true;">
+                    </ngx-recaptcha2> -->
+                  </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-3 text-center">
@@ -47,3 +51,6 @@
         </div>
     </div>
 </div>
+<canvas (click)="removeCanvas()">
+
+</canvas>
