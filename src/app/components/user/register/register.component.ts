@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
 
   showPass1And2NotEqual = false;
   showPass2And3NotEqual = false;
+  errorMessage: string;
 
   constructor(
     private http: HttpClient,
@@ -56,7 +57,9 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['dept']);
     },
     err => {
+      console.log(err);
       this.showLoading = false;
+      this.errorMessage = 'Nazwa zajęta... albo jakiś inny bład nw nie chciało mi się już xD';
     })
   }
 
