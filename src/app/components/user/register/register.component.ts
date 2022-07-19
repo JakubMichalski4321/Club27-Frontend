@@ -38,9 +38,9 @@ export class RegisterComponent implements OnInit {
     else this.showPass2And3NotEqual = false;
 
     if(
-      this.userModel.username != null 
+      this.userModel.username != null
       && this.userModel.username !== ''
-      && this.userModel.password != null 
+      && this.userModel.password != null
       && this.userModel.password !== ''
       && !this.showPass1And2NotEqual
       && !this.showPass2And3NotEqual)
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
     this.http.post<HttpResponse<any>>("user/register-user", this.userModel, {observe: 'response'})
     .subscribe(resp => {
       this.showLoading = false;
-      this.router.navigate(['pajacyzmy']);
+      this.router.navigate(['dept']);
     },
     err => {
       this.showLoading = false;
