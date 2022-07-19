@@ -19,28 +19,29 @@ export class BearerTokenService {
       this.token = token;
       localStorage.setItem('klub27User', JSON.stringify(
         {
-          token: token,
-          userName: this.getUserNameFromToken(),
+          token: token
         }
       ));
   }
 
   getToken(): string{
-    const fromStorage = JSON.parse(localStorage.getItem('klub27User'));
-    if(fromStorage) {
-      this.token = fromStorage.token;
-    }
-    return this.token;
+    if(this.token) {
+      return this.token;
+    } else if (JSON.parse(localStorage.getItem('klub27User'))){
+      return JSON.parse(localStorage.getItem('klub27User')).token;
+    };
   }
 
   getUserId(): string {
     let fromStorage = JSON.parse(localStorage.getItem('klub27User'));
-    if(fromStorage.userId) {
+    if(fromStorage && fromStorage.userId) {
       return fromStorage.userId;
     } else {
       this.httpService.getUserIdByUserName(this.getUserNameFromToken()).subscribe(response =>  {
+        console.log(response);
         fromStorage.userId = response;
         localStorage.setItem('klub27User', JSON.stringify(fromStorage));
+        return response;
       });
     }
   }
