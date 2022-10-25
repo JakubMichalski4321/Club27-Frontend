@@ -115,9 +115,7 @@ export class DeptAccountComponent implements OnInit {
   }
 
   private getAccountData(): void {
-    this.httpService
-      .getDeptAccountDetailsById(this.accountId)
-      .subscribe((response) => {
+    this.httpService.getDeptAccountDetailsById(this.accountId).subscribe((response) => {
         this.accountData = response;
       });
   }

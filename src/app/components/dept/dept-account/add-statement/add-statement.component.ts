@@ -12,12 +12,10 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./add-statement.component.css'],
 })
 export class AddStatementComponent implements OnInit {
-  @Input()
-  deptAccountId: string;
-  @Input()
-  deptAccountUsers: IDeptUser[];
-  @Output()
-  outData: EventEmitter<any> = new EventEmitter();
+
+  @Input() deptAccountId: string;
+  @Input() deptAccountUsers: IDeptUser[];
+  @Output() outData: EventEmitter<any> = new EventEmitter();
 
   accountStatement: IDeptStatement;
   iAmDept = true;

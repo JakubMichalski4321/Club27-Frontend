@@ -19,7 +19,8 @@ export class BearerTokenService {
       this.token = token;
       localStorage.setItem('klub27User', JSON.stringify(
         {
-          token: token
+          token: token,
+          username: jwt_decode(token)['sub']
         }
       ));
   }
@@ -37,16 +38,19 @@ export class BearerTokenService {
     if(fromStorage && fromStorage.userId) {
       return fromStorage.userId;
     } else {
-      this.httpService.getUserIdByUserName(this.getUserNameFromToken()).subscribe(response =>  {
-        console.log(response);
-        fromStorage.userId = response;
+      this.httpService.getUserIdByUserName(this.getUserNameFromToken()).subscribe(resp =>  {
+        console.log(resp.value);
+        fromStorage.userId = resp.value;
         localStorage.setItem('klub27User', JSON.stringify(fromStorage));
-        return response;
+        return resp.value;
       });
     }
   }
 
   getUserNameFromToken(): string {
+    if(JSON.parse(localStorage.getItem('klub27User')).username) {
+      return JSON.parse(localStorage.getItem('klub27User')).username;
+    }
     try {
       return jwt_decode(this.getToken())['sub'];
     } catch(Error) {

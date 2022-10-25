@@ -40,13 +40,11 @@ export class LoginComponent implements OnInit {
     this.showLoading = true;
     this.http.post<IJwtToken>('user/login', this.userModel).subscribe(
         (resp) => {
-          console.log(resp);
           this.tokenService.saveToken(resp.jwt);
-          this.router.navigateByUrl('pajacyzmy');
+          this.router.navigateByUrl('dept');
           this.showLoading = false;
         },
         (err) => {
-          console.log(err);
           this.showLoading = false;
           this.someFun();
         }
@@ -62,45 +60,77 @@ export class LoginComponent implements OnInit {
   }
 
   someFun(): void {
-    let canvas = document.querySelector('canvas');
-    let ctx = canvas.getContext('2d');
-    canvas.width = 1920;
-    canvas.height = 1000;
-    canvas.style.left = "-25%";
-    canvas.style.top = "-150px";
-    canvas.style.position = "absolute";
 
-    // Setting up the letters
-    let letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
-    let lettersArray = letters.split('');
+      let canvas = document.querySelector('canvas');
+      let ctx = canvas.getContext('2d');
+      canvas.width = 1920;
+      canvas.height = 1000;
+      canvas.style.left = "-25%";
+      canvas.style.top = "-150px";
+      canvas.style.position = "absolute";
 
-    // Setting up the columns
-    var fontSize = 10,
-      columns = canvas.width / fontSize;
+      // Setting up the letters
+      let letters = 'BCDEFGHIJAKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZBCDEFGHIJKLMNOPQRSTUVXYZBCDEFGHIJKLMNOPQRSTUVXYZBCDEFGHIJKLMNOPQRSTUVXYZBCDEFGHIJKLMNOPQRSTUVXYZ';
+      // letters = 'xxxxK';
+      let lettersArray = letters.split('');
 
-    // Setting up the drops
-    var drops = [];
-    for (var i = 0; i < columns; i++) {
-      drops[i] = 1;
-    }
+      // Setting up the columns
+      var fontSize = 10,
+        columns = canvas.width / fontSize;
 
-    // Setting up the draw function
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      for (var i = 0; i < drops.length; i++) {
-        var text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
-        ctx.fillStyle = '#0f0';
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        drops[i]++;
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-          drops[i] = 0;
-        }
+      //   columns = 1;
+
+      // Setting up the drops
+      var drops = [];
+      for (var i = 0; i < columns; i++) {
+        drops[i] = 1;
       }
-    }
 
-    // Loop the animation
-    setInterval(draw, 33);
+      let fancyString = 'A   KAMIL ŻADZI   ';
+      let fancyStringArray = fancyString.split('');
+
+      var memory = [];
+      for (var i = 0; i < columns; i++) {
+          memory[i] = 0;
+      }
+
+      // Setting up the draw function
+      function draw() {
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (var i = 0; i < drops.length; i++) {
+              ctx.fillStyle = '#0f0';
+              if (memory[i] > 0) {
+                  var text = fancyStringArray[memory[i]];
+                  memory[i]++;
+                  ctx.fillStyle = '#f00';
+              } else {
+                  var text = lettersArray[Math.floor(Math.random() * lettersArray.length)]; //losowa litera
+              }
+
+              if (text == fancyStringArray[0] && memory[i] == 0) {
+                  memory[i]++;
+                  ctx.fillStyle = '#f00';
+              }
+              if (memory[i] == fancyStringArray.length) {
+                  memory[i] = 0;
+              }
+
+              // ctx.fillStyle = '#0f0';
+              ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+              drops[i]++;
+
+              if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                  drops[i] = 1;
+              }
+          }
+      }
+
+      // Loop the animation
+      setInterval(draw, 33);
+
+
+    //someFun();
   }
 
   removeCanvas(){

@@ -56,8 +56,8 @@ export class RegisterComponent implements OnInit {
       this.showLoading = false;
       this.router.navigate(['dept']);
     },
-    err => {
-      console.log(err);
+    error => {
+      console.log(error);
       this.showLoading = false;
       this.errorMessage = 'Nazwa zajęta... albo jakiś inny bład nw nie chciało mi się już xD';
     })

@@ -102,7 +102,7 @@ export class HttpService{
   }
 
   public getDeptUsersList(): Observable<IDeptUser[]>{
-    return this.http.get<IDeptUser[]>(this.localBaseUrl + this.deptUrl + 'deptsusers');
+    return this.http.post<IDeptUser[]>(this.localBaseUrl + this.deptUrl + 'deptsusers', 'sth');
   }
 
   public createNewAccount(accountName: string, userId: string, deptUsersIds: string[]){
@@ -111,12 +111,12 @@ export class HttpService{
       userId: userId,
       deptUsersIds: deptUsersIds
     }
-    return this.http.post(this.localBaseUrl + this.deptUrl + 'create', reqest).toPromise().then(() => {
+    return this.http.post<any>(this.localBaseUrl + this.deptUrl + 'create', reqest).toPromise().then(() => {
     });
   }
 
   public getUserIdByUserName(userName: string) {
-    return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'getUserIdByName/' + userName);
+    return this.http.get<any>(this.localBaseUrl + this.deptUrl + 'getUserIdByName/' + userName);
   }
 
   public getDeptAccountByUserId(userId: string): Observable<IDeptDto[]>{
