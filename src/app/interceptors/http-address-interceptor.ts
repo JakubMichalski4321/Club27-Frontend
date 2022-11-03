@@ -34,11 +34,6 @@ export class HttpAddressInterceptor implements HttpInterceptor {
           url: this.baseUrl + relativeUrl,
           headers: req.headers
             .append("Access-Control-Allow-Origin", "*")
-            //.append('Content-Type', 'application/json')
-            // .append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-            // .append("Access-Control-Max-Age", "3600")
-            // .append("Access-Control-Allow-Headers", "access-control-allow-origin, authorization, content-type, xsrf-token")
-            // .append("Access-Control-Expose-Headers", "xsrf-token")
             .append('Authorization', 'Bearer ' + this.bearerService.getToken())
       });
       return next.handle(req);

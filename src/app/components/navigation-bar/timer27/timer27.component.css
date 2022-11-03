@@ -4,5 +4,9 @@
 
 .club27ProgressBar{
   width: 50vh;
-  height: 4vh;
+  height: 6vh;
+}
+
+.progress{
+  height: 100%;
 }
