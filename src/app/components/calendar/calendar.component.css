@@ -1,0 +1,39 @@
+table.table tbody tr td {
+  border-left: 1px solid white;
+}
+
+.th {
+  text-align: center;
+}
+
+.usercharBox {
+  border-style: solid;
+  background-color: #23d5ab;
+  border-width: 3px;
+}
+
+.hourCheckBox:hover {
+  cursor: pointer;
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+  background-size: 1000% 1000%;
+  animation: gradient 5s ease infinite;
+}
+
+.hourCheckBoxChecked {
+  cursor: pointer;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 1000% 1000%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+}

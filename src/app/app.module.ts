@@ -33,6 +33,7 @@ import { DeptAccountComponent } from './components/dept/dept-account/dept-accoun
 import { AddStatementComponent } from './components/dept/dept-account/add-statement/add-statement.component';
 import { ConfirmDialogComponent } from './models/dialogs/confirm-dialog/confirm-dialog.component';
 import { InfoDialogComponent } from './models/dialogs/info-dialog/info-dialog.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import { InfoDialogComponent } from './models/dialogs/info-dialog/info-dialog.co
         AddStatementComponent,
         ConfirmDialogComponent,
         InfoDialogComponent,
+        CalendarComponent,
     ],
     imports: [
         BrowserModule,

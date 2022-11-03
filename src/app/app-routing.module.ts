@@ -10,6 +10,7 @@ import {DeptComponent} from "./components/dept/dept.component";
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { DeptAccountComponent } from './components/dept/dept-account/dept-account.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
     { path: 'pajacyzmy', component: PajacyzmyComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'dept-account/:accountId', component: DeptAccountComponent, pathMatch: 'full'},
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'calendar', component: CalendarComponent },
 ];
 
 @NgModule({
