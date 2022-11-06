@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-1"></div>
-  <div class="col-sm-10 rounded innerContainer">
+  <div class="col-sm-10 rounded innerContainer my-3">
 
-    <div *ngIf="!isLoggedIn()">
+    <div *ngIf="!isLoggedIn()" class="my-3">
       <div *ngIf="!showLogin" class="row d-flex justify-content-center">
         <img src="https://c.tenor.com/mZZoOtDcouoAAAAM/stop-it-get-some-help.gif" class="border rounded" alt="Anebo zaloguj się" />
       </div>
@@ -11,15 +11,29 @@
       </div>
     </div>
 
-    <div *ngIf="isLoggedIn()">
+    <div *ngIf="isLoggedIn()" class="my-3">
+
+      <div class="row my-1">
+        <div class="col-12 text-center d-flex justify-content-center">
+          <svg (click)="goBeforeWeek()" role="button" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+          </svg>
+          <div class="my-2 mx-4">
+            <b>{{mondayDate.format('DD.MM.YYYY')}} - {{sundayDate.format('DD.MM.YYYY')}}</b>
+          </div>
+          <svg (click)="goNextWeek()"role="button" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+            <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+          </svg>
+        </div>
+      </div>
 
       <div class="row">
-        <div class="col-12 my-3">
+        <div class="col-12">
           <table class="table table-sm table-striped">
             <thead class="thead-dark text-center">
               <tr>
                 <th scope="col">Godzina</th>
-                <th *ngFor="let dayName of dayOfWeeksName" scope="col" style="width: 14.28%">{{dayName}}</th>
+                <th *ngFor="let dayName of DAY_OF_THE_WEEK_NAMES" scope="col" style="width: 14.28%">{{dayName}}</th>
               </tr>
             </thead>
             <tbody>
