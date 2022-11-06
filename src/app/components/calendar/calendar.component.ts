@@ -65,7 +65,7 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  getHourUsers(day: number, hour: number): string[] {
+  public getHourUsers(day: number, hour: number): string[] {
     return this.calendarHourArray
       .filter(
         (user) =>
@@ -75,11 +75,11 @@ export class CalendarComponent implements OnInit {
       .map((user) => user.username);
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.navBarService.isLoggedIn();
   }
 
-  checkOrUncheckHour(day: number, hour: number): void {
+  public checkOrUncheckHour(day: number, hour: number): void {
     if (this.isChecked(day, hour)) {
       const id = this.getHourFromArray(day, hour).checkedHours.find(
         (ch) => ch.day == day && ch.hour == hour
@@ -147,7 +147,7 @@ export class CalendarComponent implements OnInit {
     );
   }
 
-  isChecked(day: number, hour: number): boolean {
+  public isChecked(day: number, hour: number): boolean {
     return this.getHourFromArray(day, hour) != null;
   }
 
@@ -159,7 +159,7 @@ export class CalendarComponent implements OnInit {
     this.sundayDate = moment(sundayDate);
   }
 
-  goNextWeek(): void {
+  public goNextWeek(): void {
     const mondayDate = new Date(
       this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() + 6)
     );
@@ -171,7 +171,7 @@ export class CalendarComponent implements OnInit {
     this.getWeekCalendar();
   }
 
-  goBeforeWeek(): void {
+  public goBeforeWeek(): void {
     const mondayDate = new Date(
       this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() - 6)
     );
@@ -191,4 +191,9 @@ export class CalendarComponent implements OnInit {
       this.calendarHourArray = resp;
     });
   }
+
+  public refreshList(): void {
+    this.getWeekCalendar();
+  }
+
 }
