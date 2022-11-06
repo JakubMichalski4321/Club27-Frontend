@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
@@ -14,6 +14,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
+  @Input() routeSite: string;
+
   userModel = new LoginUser();
   showLoading = false;
   captchaTrue = true;
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.http.post<IJwtToken>('user/login', this.userModel).subscribe(
         (resp) => {
           this.tokenService.saveToken(resp.jwt);
-          this.router.navigateByUrl('dept');
+          this.router.navigateByUrl(this.routeSite);
           this.showLoading = false;
         },
         (err) => {

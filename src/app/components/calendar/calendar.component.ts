@@ -15,6 +15,8 @@ import { CalendarWeekRequest } from 'src/app/models/calendar/CalendarWeekRequest
 })
 export class CalendarComponent implements OnInit {
 
+  showLogin = false;
+
   DAY_OF_THE_WEEK_NAMES: string[] = ['Pon', 'Wt', 'Śr', 'Czw', 'Piątunio', 'Sobota', '..i humor popsuty'];
   hours: number[] = [];
   dayOfWeek: number[] = [1, 2, 3, 4, 5, 6, 7];
@@ -30,9 +32,20 @@ export class CalendarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(!this.isLoggedIn()) {
+      this.delay(2700);
+    }
     this.setMondayAndSundayDate();
     this.generateHours();
     this.getWeekCalendar();
+  }
+
+  private delay(ms: number) {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        this.showLogin = true;
+      }, ms)
+    );
   }
 
   private generateHours() {
