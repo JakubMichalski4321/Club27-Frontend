@@ -37,9 +37,8 @@ export class BearerTokenService {
     let fromStorage = JSON.parse(localStorage.getItem('klub27User'));
     if(fromStorage && fromStorage.userId) {
       return fromStorage.userId;
-    } else {
+    } else if(this.getUserNameFromToken()) {
       this.httpService.getUserIdByUserName(this.getUserNameFromToken()).subscribe(resp =>  {
-        console.log(resp.value);
         fromStorage.userId = resp.value;
         localStorage.setItem('klub27User', JSON.stringify(fromStorage));
         return resp.value;
@@ -48,7 +47,7 @@ export class BearerTokenService {
   }
 
   getUserNameFromToken(): string {
-    if(JSON.parse(localStorage.getItem('klub27User')).username) {
+    if(JSON.parse(localStorage.getItem('klub27User')) != null && JSON.parse(localStorage.getItem('klub27User')).username) {
       return JSON.parse(localStorage.getItem('klub27User')).username;
     }
     try {

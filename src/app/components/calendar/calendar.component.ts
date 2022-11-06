@@ -26,7 +26,6 @@ export class CalendarComponent implements OnInit {
   ];
   DAY_OF_WEEK_NUM: number[] = [1, 2, 3, 4, 5, 6, 7];
 
-  username: string;
   showLogin = false;
   hours: number[] = [];
   mondayDate: any;
@@ -39,7 +38,6 @@ export class CalendarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.username = this.navBarService.getUserNameFromToken();
     if (!this.isLoggedIn()) {
       this.delay(2700);
     }
@@ -85,10 +83,10 @@ export class CalendarComponent implements OnInit {
         (ch) => ch.day == day && ch.hour == hour
       ).id;
       this.calendarHourArray
-        .find((user) => user.username === this.username)
+        .find((user) => user.username === this.navBarService.getUserNameFromToken())
         .checkedHours.splice(
           this.calendarHourArray
-            .find((user) => user.username === this.username)
+            .find((user) => user.username === this.navBarService.getUserNameFromToken())
             .checkedHours.findIndex((ch) => ch.id === id),
           1
         );
@@ -104,7 +102,7 @@ export class CalendarComponent implements OnInit {
     checkedHours.hour = hour;
 
     const request = new CalendarAddRequest();
-    request.username = this.username;
+    request.username = this.navBarService.getUserNameFromToken();
     request.day = day;
     request.hour = hour;
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
@@ -112,15 +110,15 @@ export class CalendarComponent implements OnInit {
 
     this.httpService.addCalendar(request).subscribe((resp) => {
       if (
-        this.calendarHourArray.filter((user) => user.username === this.username)
+        this.calendarHourArray.filter((user) => user.username === this.navBarService.getUserNameFromToken())
           .length > 0
       ) {
         this.calendarHourArray
-          .find((user) => user.username === this.username)
+          .find((user) => user.username === this.navBarService.getUserNameFromToken())
           .checkedHours.push(this.createCheckedHour(day, hour, resp.value));
       } else {
         this.calendarHourArray.push({
-          username: this.username,
+          username: this.navBarService.getUserNameFromToken(),
           checkedHours: [this.createCheckedHour(day, hour, resp.value)],
         });
       }
@@ -142,7 +140,7 @@ export class CalendarComponent implements OnInit {
   private getHourFromArray(day: number, hour: number): IHourCheck {
     return this.calendarHourArray.find(
       (user) =>
-        user.username === this.username &&
+        user.username === this.navBarService.getUserNameFromToken() &&
         user.checkedHours.find((ch) => ch.day == day && ch.hour == hour) != null
     );
   }
@@ -184,6 +182,9 @@ export class CalendarComponent implements OnInit {
   }
 
   private getWeekCalendar(): void {
+    if(!this.isLoggedIn()) {
+      return;
+    }
     const request = new CalendarWeekRequest();
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
     request.weekEndDate = this.sundayDate.format('DD.MM.YYYY');

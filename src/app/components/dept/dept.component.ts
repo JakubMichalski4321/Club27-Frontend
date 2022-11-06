@@ -55,7 +55,9 @@ export class DeptComponent implements OnInit {
   }
 
   private getUserDeptAccountsList() {
-
+    if(!this.isLoggedIn()) {
+      return;
+    }
       this.httpService.getDeptAccountByUserId(
         this.bearerTokenService.getUserId()
       ).subscribe(
