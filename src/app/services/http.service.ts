@@ -18,6 +18,11 @@ import { discardPeriodicTasks } from '@angular/core/testing';
 import { IDeptAccount } from '../models/IDeptAccount';
 import { IDeptStatement } from '../models/IDeptStatement';
 import { IDeptDto } from '../models/IDeptDto';
+import { CalendarAddRequest } from '../models/calendar/CalendarAddRequest';
+import { IUserWithCheckedHours } from '../models/calendar/IUserWithCheckedHours';
+import { CalendarWeekRequest } from '../models/calendar/CalendarWeekRequest';
+import { IStringWrapper } from '../models/IStringWrapper';
+
 @Injectable()
 export class HttpService{
 
@@ -30,6 +35,7 @@ export class HttpService{
   private jugoUrl = 'jugo/'
   private soudboardUrl = 'soundboard/';
   private deptUrl = 'dept/';
+  private calendarUrl = 'calendar/'
 
   public getPajacyzm(pajacyzmId: any): Observable<IPajacyzm> {
     return this.http.get<IPajacyzm>(this.localBaseUrl + this.pajacyzmyUrl + pajacyzmId);
@@ -141,6 +147,18 @@ export class HttpService{
 
   public deleteDeptAccount(accountId: string): Observable<string> {
     return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'deleteDept/' + accountId);
+  }
+
+  public getCalendarWeek(reqest: CalendarWeekRequest): Observable<IUserWithCheckedHours[]>{
+    return this.http.post<IUserWithCheckedHours[]>(this.localBaseUrl + this.calendarUrl + 'getWeek', reqest);
+  }
+
+  public addCalendar(request: CalendarAddRequest): Observable<IStringWrapper> {
+    return this.http.post<IStringWrapper>(this.localBaseUrl + this.calendarUrl + 'add', request);
+  }
+
+  public removeCalendar(id: string): Observable<void> {
+    return this.http.get<void>(this.localBaseUrl + this.calendarUrl + 'remove/' + id);
   }
 
 }

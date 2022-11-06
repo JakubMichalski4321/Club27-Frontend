@@ -1,6 +1,6 @@
 import { CheckedHour } from "./CheckedHour";
 
-export class UserWithCheckedHours {
+export interface IUserWithCheckedHours {
   checkedHours: CheckedHour[];
   username: string;
 }
