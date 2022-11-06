@@ -14,7 +14,6 @@ import { CalendarWeekRequest } from 'src/app/models/calendar/CalendarWeekRequest
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent implements OnInit {
-  showLogin = false;
 
   DAY_OF_THE_WEEK_NAMES: string[] = [
     'Pon',
@@ -26,19 +25,21 @@ export class CalendarComponent implements OnInit {
     '..i humor popsuty',
   ];
   DAY_OF_WEEK_NUM: number[] = [1, 2, 3, 4, 5, 6, 7];
-  hours: number[] = [];
 
+  username: string;
+  showLogin = false;
+  hours: number[] = [];
   mondayDate: any;
   sundayDate: any;
-
   calendarHourArray: IHourCheck[] = [];
 
   constructor(
     private navBarService: NavBarService,
-    private httpService: HttpService
+    private httpService: HttpService,
   ) {}
 
   ngOnInit(): void {
+    this.username = this.navBarService.getUserNameFromToken();
     if (!this.isLoggedIn()) {
       this.delay(2700);
     }
@@ -84,10 +85,10 @@ export class CalendarComponent implements OnInit {
         (ch) => ch.day == day && ch.hour == hour
       ).id;
       this.calendarHourArray
-        .find((user) => user.username === 'jackob')
+        .find((user) => user.username === this.username)
         .checkedHours.splice(
           this.calendarHourArray
-            .find((user) => user.username === 'jackob')
+            .find((user) => user.username === this.username)
             .checkedHours.findIndex((ch) => ch.id === id),
           1
         );
@@ -98,15 +99,12 @@ export class CalendarComponent implements OnInit {
   }
 
   private saveUserCheckedHours(day: number, hour: number): void {
-    //!!!!!!
-    let username: string = 'jackob';
-
     const checkedHours = new CheckedHour();
     checkedHours.day = day;
     checkedHours.hour = hour;
 
     const request = new CalendarAddRequest();
-    request.username = username;
+    request.username = this.username;
     request.day = day;
     request.hour = hour;
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
@@ -114,15 +112,15 @@ export class CalendarComponent implements OnInit {
 
     this.httpService.addCalendar(request).subscribe((resp) => {
       if (
-        this.calendarHourArray.filter((user) => user.username === 'jackob')
+        this.calendarHourArray.filter((user) => user.username === this.username)
           .length > 0
       ) {
         this.calendarHourArray
-          .find((user) => user.username === 'jackob')
+          .find((user) => user.username === this.username)
           .checkedHours.push(this.createCheckedHour(day, hour, resp.value));
       } else {
         this.calendarHourArray.push({
-          username: 'jackob',
+          username: this.username,
           checkedHours: [this.createCheckedHour(day, hour, resp.value)],
         });
       }
@@ -144,7 +142,7 @@ export class CalendarComponent implements OnInit {
   private getHourFromArray(day: number, hour: number): IHourCheck {
     return this.calendarHourArray.find(
       (user) =>
-        user.username === 'jackob' &&
+        user.username === this.username &&
         user.checkedHours.find((ch) => ch.day == day && ch.hour == hour) != null
     );
   }
