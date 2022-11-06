@@ -19,7 +19,7 @@ import { IDeptAccount } from '../models/IDeptAccount';
 import { IDeptStatement } from '../models/IDeptStatement';
 import { IDeptDto } from '../models/IDeptDto';
 import { CalendarAddRequest } from '../models/calendar/CalendarAddRequest';
-import { IUserWithCheckedHours } from '../models/calendar/IUserWithCheckedHours';
+import { IHourCheck } from '../models/calendar/IUserWithCheckedHours';
 import { CalendarWeekRequest } from '../models/calendar/CalendarWeekRequest';
 import { IStringWrapper } from '../models/IStringWrapper';
 
@@ -149,8 +149,8 @@ export class HttpService{
     return this.http.get<string>(this.localBaseUrl + this.deptUrl + 'deleteDept/' + accountId);
   }
 
-  public getCalendarWeek(reqest: CalendarWeekRequest): Observable<IUserWithCheckedHours[]>{
-    return this.http.post<IUserWithCheckedHours[]>(this.localBaseUrl + this.calendarUrl + 'getWeek', reqest);
+  public getCalendarWeek(reqest: CalendarWeekRequest): Observable<IHourCheck[]>{
+    return this.http.post<IHourCheck[]>(this.localBaseUrl + this.calendarUrl + 'getWeek', reqest);
   }
 
   public addCalendar(request: CalendarAddRequest): Observable<IStringWrapper> {

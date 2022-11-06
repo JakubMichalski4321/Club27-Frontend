@@ -39,7 +39,7 @@
             <tbody>
               <tr *ngFor="let hour of hours" class="text-center">
                 <th scope="row">{{hour}}</th>
-                <td *ngFor="let day of dayOfWeek"
+                <td *ngFor="let day of DAY_OF_WEEK_NUM"
                 [ngClass]="isChecked(day, hour) == true ? 'hourCheckBoxChecked' : 'hourCheckBox'"
                 (click)="checkOrUncheckHour(day, hour)">
                 <div class="row no-gutters">
