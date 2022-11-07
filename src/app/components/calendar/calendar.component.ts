@@ -159,10 +159,10 @@ export class CalendarComponent implements OnInit {
 
   public goNextWeek(): void {
     const mondayDate = new Date(
-      this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() + 6)
+      this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() + 7)
     );
     const sundayDate = new Date(
-      this.sundayDate.toDate().setDate(this.sundayDate.toDate().getDate() + 6)
+      this.sundayDate.toDate().setDate(this.sundayDate.toDate().getDate() + 7)
     );
     this.mondayDate = moment(mondayDate);
     this.sundayDate = moment(sundayDate);
@@ -171,10 +171,10 @@ export class CalendarComponent implements OnInit {
 
   public goBeforeWeek(): void {
     const mondayDate = new Date(
-      this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() - 6)
+      this.mondayDate.toDate().setDate(this.mondayDate.toDate().getDate() - 7)
     );
     const sundayDate = new Date(
-      this.sundayDate.toDate().setDate(this.sundayDate.toDate().getDate() - 6)
+      this.sundayDate.toDate().setDate(this.sundayDate.toDate().getDate() - 7)
     );
     this.mondayDate = moment(mondayDate);
     this.sundayDate = moment(sundayDate);
