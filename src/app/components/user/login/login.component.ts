@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
@@ -52,6 +52,14 @@ export class LoginComponent implements OnInit {
           this.someFun();
         }
       );
+  }
+
+
+  @HostListener('document:keydown', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+        this.login();
+    }
   }
 
   goToRagister(): void {
