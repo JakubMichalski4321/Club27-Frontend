@@ -58,7 +58,7 @@ export class CalendarComponent implements OnInit {
     for (let i = 12; i <= 24; i++) {
       this.hours.push(i);
     }
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i < 12; i++) {
       this.hours.push(i);
     }
   }
@@ -151,7 +151,7 @@ export class CalendarComponent implements OnInit {
 
   private setMondayAndSundayDate(): void {
     const firstDay = moment().startOf('week').toDate();
-    const mondayDate = new Date(firstDay.setDate(firstDay.getDate() - 6));
+    const mondayDate = new Date(firstDay.setDate(firstDay.getDate() + 1));
     const sundayDate = new Date(firstDay.setDate(firstDay.getDate() + 6));
     this.mondayDate = moment(mondayDate);
     this.sundayDate = moment(sundayDate);
