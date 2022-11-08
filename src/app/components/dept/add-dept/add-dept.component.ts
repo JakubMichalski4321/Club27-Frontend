@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptUser } from 'src/app/models/components/dept/IDeptUser';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
-import { HttpService } from '../../../services/http.service';
+import { DeptService } from 'src/app/services/comp/dept.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
+
 
 @Component({
   selector: 'app-add-dept',
@@ -21,7 +22,7 @@ export class AddDeptComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private httpService: HttpService,
+    private deptService: DeptService,
     private bearerTokenService: BearerTokenService
   ) {}
 
@@ -38,7 +39,7 @@ export class AddDeptComponent implements OnInit {
 
   createNewAccount() {
     this.choosenUsersIdList.push(this.secoundUserId);
-    this.httpService.createNewAccount(
+    this.deptService.createNewAccount(
       this.accountName,
       this.bearerTokenService.getUserId(),
       this.choosenUsersIdList
@@ -47,7 +48,7 @@ export class AddDeptComponent implements OnInit {
   }
 
   private getDeptUsersList() {
-    this.httpService.getDeptUsersList().subscribe(
+    this.deptService.getDeptUsersList().subscribe(
       (data) => {
         this.deptUsers = data;
         this.deptUsers = this.deptUsers.filter(user => user.id !== this.bearerTokenService.getUserId());

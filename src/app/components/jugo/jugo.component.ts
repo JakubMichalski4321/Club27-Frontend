@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {IJugo} from '../../models/components/jugo/IJugo';
-import {HttpService} from '../../services/http.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Like} from "../../models/components/meme/Like";
 import { IJugoSafeUrl } from 'src/app/models/components/jugo/IJugoSafeUrl';
+import { JugoService } from 'src/app/services/comp/jugo.service';
 
 @Component({
   selector: 'app-jugo',
@@ -16,7 +16,7 @@ export class JugoComponent implements OnInit {
   currentPageDisplay = 1;
   jugoLikesGiven?: Array<Like> = [];
 
-  constructor(private httpService: HttpService, private sanitizer: DomSanitizer) { }
+  constructor(private jugoService: JugoService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.getJugoList();
@@ -58,13 +58,13 @@ export class JugoComponent implements OnInit {
   //Services
 
   giveLikeToMeme(id: any) {
-    this.httpService.addLikeToJugo(id);
+    this.jugoService.addLikeToJugo(id);
     localStorage.setItem(id, "");
     this.getJugoLikesGivenFromSession();
   }
 
   getJugoList(){
-    this.httpService.getAllJugoList().subscribe(data => {
+    this.jugoService.getAllJugoList().subscribe(data => {
       this.createJugoList(data);
     }, error => {
       console.log(error);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from 'src/app/models/dialogs/confirm-dialog/confirm-dialog.component';
-import { NavBarService } from 'src/app/services/nav-bar.service';
+import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 
 @Component({
   selector: 'app-menu',

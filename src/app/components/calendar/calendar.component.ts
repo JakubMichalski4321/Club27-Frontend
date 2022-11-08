@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckedHour } from 'src/app/models/components/calendar/CheckedHour';
 import { IHourCheck } from 'src/app/models/components/calendar/IUserWithCheckedHours';
-import { NavBarService } from 'src/app/services/nav-bar.service';
+import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 import * as moment from 'moment';
 import { CalendarAddRequest } from 'src/app/models/components/calendar/CalendarAddRequest';
-import { HttpService } from 'src/app/services/http.service';
 import { CalendarWeekRequest } from 'src/app/models/components/calendar/CalendarWeekRequest';
+import { CalendarService } from 'src/app/services/comp/calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +33,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private navBarService: NavBarService,
-    private httpService: HttpService,
+    private calendarService: CalendarService,
   ) {}
 
   ngOnInit(): void {
@@ -108,7 +108,7 @@ export class CalendarComponent implements OnInit {
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
     request.weekEndDate = this.sundayDate.format('DD.MM.YYYY');
 
-    this.httpService.addCalendar(request).subscribe((resp) => {
+    this.calendarService.addCalendar(request).subscribe((resp) => {
       if (
         this.calendarHourArray.filter((user) => user.username === this.navBarService.getUserNameFromToken())
           .length > 0
@@ -126,7 +126,7 @@ export class CalendarComponent implements OnInit {
   }
 
   private removeUserCheckedHour(id: string): void {
-    this.httpService.removeCalendar(id).subscribe();
+    this.calendarService.removeCalendar(id).subscribe();
   }
 
   private createCheckedHour(day: number, hour: number, id?: string): CheckedHour {
@@ -188,7 +188,7 @@ export class CalendarComponent implements OnInit {
     const request = new CalendarWeekRequest();
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
     request.weekEndDate = this.sundayDate.format('DD.MM.YYYY');
-    this.httpService.getCalendarWeek(request).subscribe((resp) => {
+    this.calendarService.getCalendarWeek(request).subscribe((resp) => {
       this.calendarHourArray = resp;
     });
   }

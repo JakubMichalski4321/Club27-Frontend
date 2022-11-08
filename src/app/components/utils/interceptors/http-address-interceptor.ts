@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BearerTokenService } from '../../../services/bearer-token.service';
+import { BearerTokenService } from '../../../services/user/bearer-token.service';
 
 @Injectable()
 export class HttpAddressInterceptor implements HttpInterceptor {

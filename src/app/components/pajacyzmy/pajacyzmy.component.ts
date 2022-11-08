@@ -1,10 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { IPajacyzm } from '../../models/components/pajacyzm/IPajacyzm';
-import {HttpService} from '../../services/http.service';
-import {DOCUMENT} from '@angular/common';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageRequest } from 'src/app/models/common/PageRequest';
 import { IPajacyzmyWithCounter } from 'src/app/models/components/pajacyzm/IPajacyzmyWithCounter';
+import { PajacyzmService } from 'src/app/services/comp/pajacyzm.service';
 
 @Component({
   selector: 'app-pajacyzmy',
@@ -26,7 +26,7 @@ export class PajacyzmyComponent implements OnInit {
 
   protected aFormGroup: FormGroup;
 
-  constructor(private httpService: HttpService,
+  constructor(private pajacyzmService: PajacyzmService,
               @Inject(DOCUMENT)
               private _document: Document,
               private formBuilder: FormBuilder
@@ -51,7 +51,7 @@ export class PajacyzmyComponent implements OnInit {
 
   getAllPajacyzmy(pageNumber: number){
     this.pageRequest.pageNumber = pageNumber;
-    this.httpService.getAllPajacyzmyList(this.pageRequest).subscribe(data => {
+    this.pajacyzmService.getAllPajacyzmyList(this.pageRequest).subscribe(data => {
       this.pajacyzmyListWithCounter = data;
       this.allPajacyzmy = this.pajacyzmyListWithCounter.counter;
       this.pajacyzmyList = this.pajacyzmyListWithCounter.pajacyzmy;
@@ -66,7 +66,7 @@ export class PajacyzmyComponent implements OnInit {
 
   sendPajacyzm() {
     let jsonText = this.convertDataToJson();
-    this.httpService.submitPajacyzm(jsonText);
+    this.pajacyzmService.submitPajacyzm(jsonText);
     this.displaySend = true;
     this.getAllPajacyzmy(0);
   }

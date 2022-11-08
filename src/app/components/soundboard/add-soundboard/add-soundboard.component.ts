@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {HttpService} from '../../../services/http.service';
-import {UploadSoundboard} from '../../../models/components/soundboard/UploadSoundboard';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SoundboardService } from 'src/app/services/comp/soundboard.service';
+import { UploadSoundboard } from '../../../models/components/soundboard/UploadSoundboard';
 
 @Component({
   selector: 'app-add-soundboard',
@@ -16,7 +16,7 @@ export class AddSoundboardComponent implements OnInit {
   tempName: any;
 
 
-  constructor(public activeModal: NgbActiveModal, private httpService: HttpService) { }
+  constructor(public activeModal: NgbActiveModal, private soundboardService: SoundboardService) { }
 
   ngOnInit(): void {
   }
@@ -50,11 +50,11 @@ export class AddSoundboardComponent implements OnInit {
   //services
 
   sendSoundboardFile(pathToFile: any) {
-    this.httpService.submitSoundboardSound(this.file, pathToFile);
+    this.soundboardService.submitSoundboardSound(this.file, pathToFile);
   }
 
   sendSoundboard(soundboardToUpload: UploadSoundboard) {
-    this.httpService.submitSoundboard(soundboardToUpload);
+    this.soundboardService.submitSoundboard(soundboardToUpload);
   }
 
 }

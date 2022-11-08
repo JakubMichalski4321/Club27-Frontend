@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BearerTokenService } from './bearer-token.service';
+import { BearerTokenService } from '../user/bearer-token.service';
 
 @Injectable()
 export class NavBarService {

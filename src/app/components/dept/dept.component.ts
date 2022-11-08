@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptDto } from 'src/app/models/components/dept/IDeptDto';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
-import { HttpService } from 'src/app/services/http.service';
-import { NavBarService } from 'src/app/services/nav-bar.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
+import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 import { AddDeptComponent } from './add-dept/add-dept.component';
+import { DeptService } from 'src/app/services/comp/dept.service';
 
 @Component({
   selector: 'app-dept',
@@ -18,7 +18,7 @@ export class DeptComponent implements OnInit {
   constructor(
     private navBarService: NavBarService,
     private modal: NgbModal,
-    private httpService: HttpService,
+    private deptService: DeptService,
     private bearerTokenService: BearerTokenService
   ) {}
 
@@ -57,7 +57,7 @@ export class DeptComponent implements OnInit {
     if(!this.isLoggedIn()) {
       return;
     }
-      this.httpService.getDeptAccountByUserId(
+      this.deptService.getDeptAccountByUserId(
         this.bearerTokenService.getUserId()
       ).subscribe(
         (data) => {

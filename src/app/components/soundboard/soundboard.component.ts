@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ISoundboard} from '../../models/components/soundboard/ISoundboard';
-import {HttpService} from '../../services/http.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddSoundboardComponent} from './add-soundboard/add-soundboard.component';
-import {SoundboardListObject} from '../../models/components/soundboard/SoundboardListObject';
+import { ISoundboard } from '../../models/components/soundboard/ISoundboard';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddSoundboardComponent } from './add-soundboard/add-soundboard.component';
+import { SoundboardListObject } from '../../models/components/soundboard/SoundboardListObject';
+import { SoundboardService } from 'src/app/services/comp/soundboard.service';
+
 
 @Component({
   selector: 'app-soundboard',
@@ -19,7 +20,10 @@ export class SoundboardComponent implements OnInit {
   audio = new Audio();
   currentAudioSrc?: any;
 
-  constructor(private httpService: HttpService, private modal: NgbModal) { }
+  constructor(
+    private soundboardService: SoundboardService,
+    private modal: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.getAllSoundboardList();
@@ -39,7 +43,7 @@ export class SoundboardComponent implements OnInit {
   }
 
   getAllSoundboardList(){
-    this.httpService.getAllSoundboardList().subscribe(data => {
+    this.soundboardService.getAllSoundboardList().subscribe(data => {
       this.soundboardList = data;
       this.filterLists();
     }, error => {

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/models/common/login/LoginUser';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 import { IJwtToken } from 'src/app/components/user/login/IJwtToken';
-import { NavBarService } from 'src/app/services/nav-bar.service';
+import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({

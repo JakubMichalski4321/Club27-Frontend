@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { UploadMem } from 'src/app/models/components/meme/UploadMem';
-import {HttpService} from '../../../services/http.service';
+import { MemeService } from 'src/app/services/comp/meme.service';
 
 @Component({
   selector: 'app-add-meme',
@@ -18,7 +18,10 @@ export class AddMemeComponent implements OnInit {
   warmingMessage = '';
   showFileInput = true;
 
-  constructor(public activeModal: NgbActiveModal, private httpService: HttpService) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private memeService: MemeService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -66,10 +69,10 @@ export class AddMemeComponent implements OnInit {
   //Services
 
   private submitMeme(data: UploadMem) {
-    this.httpService.submitMeme(data);
+    this.memeService.submitMeme(data);
   }
 
   private submitMemeImage(file: File, currentTime: number) {
-    this.httpService.submitMemeImage(file, currentTime);
+    this.memeService.submitMemeImage(file, currentTime);
   }
 }

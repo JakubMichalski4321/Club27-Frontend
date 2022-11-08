@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from 'src/app/models/dialogs/confirm-dialog/confirm-dialog.component';
 import { IDeptAccount } from 'src/app/models/components/dept/IDeptAccount';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
-import { HttpService } from 'src/app/services/http.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 import { AddStatementComponent } from './add-statement/add-statement.component';
+import { DeptService } from 'src/app/services/comp/dept.service';
 
 @Component({
   selector: 'app-dept-account',
@@ -23,7 +23,7 @@ export class DeptAccountComponent implements OnInit {
   zero = 0.00;
 
   constructor(
-    private httpService: HttpService,
+    private deptService: DeptService,
     private route: ActivatedRoute,
     private modal: NgbModal,
     private bearerTokenService: BearerTokenService
@@ -108,14 +108,14 @@ export class DeptAccountComponent implements OnInit {
   }
 
   private deleteThisAccount(): void {
-    this.httpService.deleteDeptAccount(this.accountId).subscribe((response) => {
+    this.deptService.deleteDeptAccount(this.accountId).subscribe((response) => {
       this.deleteMessage = response;
       this.openInformationModal(response);
     });
   }
 
   private getAccountData(): void {
-    this.httpService.getDeptAccountDetailsById(this.accountId).subscribe((response) => {
+    this.deptService.getDeptAccountDetailsById(this.accountId).subscribe((response) => {
         this.accountData = response;
       });
   }

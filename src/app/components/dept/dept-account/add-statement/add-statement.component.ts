@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptStatement } from 'src/app/models/components/dept/IDeptStatement';
 import { IDeptUser } from 'src/app/models/components/dept/IDeptUser';
-import { BearerTokenService } from 'src/app/services/bearer-token.service';
-import { HttpService } from 'src/app/services/http.service';
+import { DeptService } from 'src/app/services/comp/dept.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 
 @Component({
   selector: 'app-add-statement',
@@ -24,7 +24,7 @@ export class AddStatementComponent implements OnInit {
   description: string;
 
   constructor(
-    private httpService: HttpService,
+    private deptService: DeptService,
     public activeModal: NgbActiveModal,
     private bearerTokenService: BearerTokenService
     ) {}
@@ -65,9 +65,9 @@ export class AddStatementComponent implements OnInit {
 
   addNewStatement(): void {
     if(this.iAmDept) {
-      this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, this.getThisUserId());
+      this.deptService.addDeptStatement(this.accountStatement, this.deptAccountId, this.getThisUserId());
     } else {
-      this.httpService.addDeptStatement(this.accountStatement, this.deptAccountId, this.otherUserId());
+      this.deptService.addDeptStatement(this.accountStatement, this.deptAccountId, this.otherUserId());
     }
     this.outData.emit(true);
   }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IMeme } from '../../models/components/meme/IMeme';
-import { HttpService } from '../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AddMemeComponent} from './add-meme/add-meme.component';
-import {UploadMemeComment} from '../../models/components/meme/UploadMemeComment';
-import {Like} from '../../models/components/meme/Like';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddMemeComponent } from './add-meme/add-meme.component';
+import { UploadMemeComment } from '../../models/components/meme/UploadMemeComment';
+import { Like } from '../../models/components/meme/Like';
 import { PageRequest } from 'src/app/models/common/PageRequest';
 import { IMemesWithCounter } from 'src/app/models/components/meme/IMemesWithCounter';
+import { MemeService } from 'src/app/services/comp/meme.service';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class MemyComponent implements OnInit {
 
 
   constructor(
-    private httpService: HttpService,
+    private memeService: MemeService,
     private sanitizer: DomSanitizer,
     private modal: NgbModal) {
     this.pageRequest.pageNumber = 1;
@@ -85,7 +85,7 @@ export class MemyComponent implements OnInit {
 
   getAllMemy(pageNumber: number) {
     this.pageRequest.pageNumber = pageNumber;
-    this.httpService.getAllMemesList(this.pageRequest).subscribe(data => {
+    this.memeService.getAllMemesList(this.pageRequest).subscribe(data => {
       this.memesListWithCounter = data;
       this.memyList = this.memesListWithCounter.memes;
       this.allMemesCounter = this.memesListWithCounter.counter;
@@ -97,7 +97,7 @@ export class MemyComponent implements OnInit {
 
   private getMemesComments() {
     for (let mem of this.memyList) {
-      this.httpService.getMemeComments(mem.id).subscribe(data => {
+      this.memeService.getMemeComments(mem.id).subscribe(data => {
         mem.commentsList = data;
         mem.commentsList.sort((comment1, comment2) =>
           (comment1.createdDate > comment2.createdDate) ? 1 : ((comment2.createdDate > comment1.createdDate) ? -1 : 0)
@@ -109,14 +109,14 @@ export class MemyComponent implements OnInit {
   }
 
   giveLikeToMeme(id: string) {
-    this.httpService.addLikeToMeme(id);
+    this.memeService.addLikeToMeme(id);
     localStorage.setItem(id, "");
     this.getMemeLikesGivenFromSession();
   }
 
   submitComment(mem: IMeme) {
     let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
-    this.httpService.submitMemeComment(commentToSubmit);
+    this.memeService.submitMemeComment(commentToSubmit);
     this.displaySend = true;
   }
 }

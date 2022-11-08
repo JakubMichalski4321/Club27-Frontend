@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpService} from '../../../services/http.service';
 import {IMeme} from '../../../models/components/meme/IMeme';
 import {ActivatedRoute} from '@angular/router';
 import {UploadMemeComment} from '../../../models/components/meme/UploadMemeComment';
+import { MemeService } from 'src/app/services/comp/meme.service';
 
 @Component({
   selector: 'app-mem',
@@ -19,7 +19,10 @@ export class MemComponent implements OnInit, OnDestroy {
   memeCommentContent: any;
   memeCommentAuthor: any;
 
-  constructor(private route: ActivatedRoute, private httpService: HttpService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private memeService: MemeService,
+  ) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
@@ -33,7 +36,7 @@ export class MemComponent implements OnInit, OnDestroy {
   }
 
   getMem(){
-    this.httpService.getMeme(this.memId).subscribe(data => {
+    this.memeService.getMeme(this.memId).subscribe(data => {
       this.mem = data;
       this.getMemeComments();
     }, error => {
@@ -51,12 +54,12 @@ export class MemComponent implements OnInit, OnDestroy {
 
   submitComment(mem: IMeme) {
     let commentToSubmit: UploadMemeComment = new UploadMemeComment(this.memeCommentContent, this.memeCommentAuthor, mem.id);
-    this.httpService.submitMemeComment(commentToSubmit);
+    this.memeService.submitMemeComment(commentToSubmit);
     this.displaySend = true;
   }
 
   private getMemeComments() {
-    this.httpService.getMemeComments(this.mem.id).subscribe(data => {
+    this.memeService.getMemeComments(this.mem.id).subscribe(data => {
       this.mem.commentsList = data;
       this.mem.commentsList.sort((comment1, comment2) =>
         (comment1.createdDate > comment2.createdDate) ? 1 : ((comment2.createdDate > comment1.createdDate) ? -1 : 0)
@@ -71,7 +74,7 @@ export class MemComponent implements OnInit, OnDestroy {
   }
 
   giveLikeToMeme(id: string) {
-    this.httpService.addLikeToMeme(id);
+    this.memeService.addLikeToMeme(id);
     localStorage.setItem(id, "");
   }
 }

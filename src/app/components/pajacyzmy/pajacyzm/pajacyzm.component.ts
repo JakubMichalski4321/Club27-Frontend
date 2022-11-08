@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HttpService} from '../../../services/http.service';
+import { PajacyzmService } from 'src/app/services/comp/pajacyzm.service';
 import {IPajacyzm} from '../../../models/components/pajacyzm/IPajacyzm';
 
 @Component({
@@ -16,7 +16,10 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
   audio = new Audio();
   playMusicNow = true;
 
-  constructor(private route: ActivatedRoute, private httpService: HttpService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private pajacyzmService: PajacyzmService,
+  ) { }
 
   ngOnInit(): void {
     this.audio.src = "../../../../../assets/pajacyzm.mp3";
@@ -46,7 +49,7 @@ export class PajacyzmComponent implements OnInit, OnDestroy{
 
 
   getPajacyzm(){
-    this.httpService.getPajacyzm(this.pajacyzmId).subscribe(data => {
+    this.pajacyzmService.getPajacyzm(this.pajacyzmId).subscribe(data => {
       this.pajacyzm = data;
     }, error => {
       console.log(error);
