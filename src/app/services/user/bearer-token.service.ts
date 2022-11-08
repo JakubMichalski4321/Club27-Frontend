@@ -68,6 +68,10 @@ export class BearerTokenService {
     }
   }
 
+  isLoggedIn(): boolean {
+    return this.getToken() && !this.isTokenAfterExpired(this.getToken());
+  }
+
   private getTokenFromStorage(): any {
     return JSON.parse(localStorage.getItem(this.STORAGE_TOKEN_NAME));
   }

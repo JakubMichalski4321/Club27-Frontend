@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeptDto } from 'src/app/models/components/dept/IDeptDto';
 import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
-import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 import { AddDeptComponent } from './add-dept/add-dept.component';
 import { DeptService } from 'src/app/services/comp/dept.service';
 
@@ -16,7 +15,6 @@ export class DeptComponent implements OnInit {
   userDeptAccounts?: Array<IDeptDto> = [];
 
   constructor(
-    private navBarService: NavBarService,
     private modal: NgbModal,
     private deptService: DeptService,
     private bearerTokenService: BearerTokenService
@@ -31,7 +29,7 @@ export class DeptComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return this.navBarService.isLoggedIn();
+    return this.bearerTokenService.isLoggedIn();
   }
 
   openCreatAccount(): void {

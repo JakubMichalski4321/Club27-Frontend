@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckedHour } from 'src/app/models/components/calendar/CheckedHour';
 import { IHourCheck } from 'src/app/models/components/calendar/IUserWithCheckedHours';
-import { NavBarService } from 'src/app/services/comp/nav-bar.service';
 import * as moment from 'moment';
 import { CalendarAddRequest } from 'src/app/models/components/calendar/CalendarAddRequest';
 import { CalendarWeekRequest } from 'src/app/models/components/calendar/CalendarWeekRequest';
 import { CalendarService } from 'src/app/services/comp/calendar.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 
 @Component({
   selector: 'app-calendar',
@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit {
   calendarHourArray: IHourCheck[] = [];
 
   constructor(
-    private navBarService: NavBarService,
+    private tokenService: BearerTokenService,
     private calendarService: CalendarService,
   ) {}
 
@@ -74,7 +74,7 @@ export class CalendarComponent implements OnInit {
   }
 
   public isLoggedIn(): boolean {
-    return this.navBarService.isLoggedIn();
+    return this.tokenService.isLoggedIn();
   }
 
   public checkOrUncheckHour(day: number, hour: number): void {
@@ -83,10 +83,10 @@ export class CalendarComponent implements OnInit {
         (ch) => ch.day == day && ch.hour == hour
       ).id;
       this.calendarHourArray
-        .find((user) => user.username === this.navBarService.getUserNameFromToken())
+        .find((user) => user.username === this.tokenService.getUserNameFromToken())
         .checkedHours.splice(
           this.calendarHourArray
-            .find((user) => user.username === this.navBarService.getUserNameFromToken())
+            .find((user) => user.username === this.tokenService.getUserNameFromToken())
             .checkedHours.findIndex((ch) => ch.id === id),
           1
         );
@@ -102,7 +102,7 @@ export class CalendarComponent implements OnInit {
     checkedHours.hour = hour;
 
     const request = new CalendarAddRequest();
-    request.username = this.navBarService.getUserNameFromToken();
+    request.username = this.tokenService.getUserNameFromToken();
     request.day = day;
     request.hour = hour;
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
@@ -110,15 +110,15 @@ export class CalendarComponent implements OnInit {
 
     this.calendarService.addCalendar(request).subscribe((resp) => {
       if (
-        this.calendarHourArray.filter((user) => user.username === this.navBarService.getUserNameFromToken())
+        this.calendarHourArray.filter((user) => user.username === this.tokenService.getUserNameFromToken())
           .length > 0
       ) {
         this.calendarHourArray
-          .find((user) => user.username === this.navBarService.getUserNameFromToken())
+          .find((user) => user.username === this.tokenService.getUserNameFromToken())
           .checkedHours.push(this.createCheckedHour(day, hour, resp.value));
       } else {
         this.calendarHourArray.push({
-          username: this.navBarService.getUserNameFromToken(),
+          username: this.tokenService.getUserNameFromToken(),
           checkedHours: [this.createCheckedHour(day, hour, resp.value)],
         });
       }
@@ -140,7 +140,7 @@ export class CalendarComponent implements OnInit {
   private getHourFromArray(day: number, hour: number): IHourCheck {
     return this.calendarHourArray.find(
       (user) =>
-        user.username === this.navBarService.getUserNameFromToken() &&
+        user.username === this.tokenService.getUserNameFromToken() &&
         user.checkedHours.find((ch) => ch.day == day && ch.hour == hour) != null
     );
   }

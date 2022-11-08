@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from 'src/app/models/dialogs/confirm-dialog/confirm-dialog.component';
 import { NavBarService } from 'src/app/services/comp/nav-bar.service';
+import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +14,7 @@ export class NavigationBarComponent implements OnInit {
   showMobileNevBar = false;
 
   constructor(
+    private tokenService: BearerTokenService,
     private navBarService: NavBarService,
     private modal: NgbModal,
   ) { }
@@ -21,11 +23,11 @@ export class NavigationBarComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return this.navBarService.isLoggedIn();
+    return this.tokenService.isLoggedIn();
   }
 
   getUserNameFromToken(): string{
-    return this.navBarService.getUserNameFromToken();
+    return this.tokenService.getUserNameFromToken();
   }
 
   logOut(): void {
@@ -40,7 +42,7 @@ export class NavigationBarComponent implements OnInit {
     (<ConfirmDialogComponent>ngbModalRef.componentInstance).outData.subscribe(
       (confirm) => {
         if (confirm) {
-          this.navBarService.logOut();
+          this.tokenService.logOut();
           this.navBarService.hide();
           window.location.reload();
         }
