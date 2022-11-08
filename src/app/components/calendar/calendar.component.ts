@@ -40,10 +40,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     if (!this.isLoggedIn()) {
       this.delay(2700);
+    } else {
+      this.setMondayAndSundayDate();
+      this.generateHours();
+      this.getWeekCalendar();
     }
-    this.setMondayAndSundayDate();
-    this.generateHours();
-    this.getWeekCalendar();
   }
 
   private delay(ms: number): Promise<void> {

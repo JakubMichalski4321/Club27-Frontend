@@ -20,7 +20,7 @@ export class NavBarService {
   }
 
   isLoggedIn(): boolean {
-    return this.tokenService.getToken() != null;
+    return this.tokenService.getToken() != null && !this.tokenService.isTokenAfterExpired(this.tokenService.getToken());
   }
 
   getUserNameFromToken(): string {

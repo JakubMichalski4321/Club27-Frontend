@@ -58,7 +58,6 @@ export class BearerTokenService {
 
   getUserNameFromToken(): string {
     if(JSON.parse(localStorage.getItem('klub27User')) != null && JSON.parse(localStorage.getItem('klub27User')).username) {
-      console.log(new Date(jwt_decode(this.getToken())['exp'] * 1000))
       return JSON.parse(localStorage.getItem('klub27User')).username;
     }
     try {

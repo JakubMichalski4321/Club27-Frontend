@@ -24,11 +24,11 @@ export class DeptComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //this.openCreatAccount();
     if(!this.isLoggedIn()) {
       this.delay(2700);
+    } else {
+      this.getUserDeptAccountsList();
     }
-    this.getUserDeptAccountsList();
   }
 
   isLoggedIn(): boolean {
