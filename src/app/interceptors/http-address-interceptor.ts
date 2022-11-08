@@ -1,5 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BearerTokenService } from '../services/bearer-token.service';
 
@@ -19,6 +20,7 @@ export class HttpAddressInterceptor implements HttpInterceptor {
 
   constructor(
     private bearerService: BearerTokenService,
+    private route: Router,
   ) {
 
   }
@@ -29,6 +31,9 @@ export class HttpAddressInterceptor implements HttpInterceptor {
             url: this.baseUrl + relativeUrl
         });
         return next.handle(req);
+      }
+      if(this.bearerService.isTokenAfterExpired(this.bearerService.getToken())) {
+        this.route.navigate(['login']);
       }
       req = req.clone({
           url: this.baseUrl + relativeUrl,

@@ -33,6 +33,16 @@ export class BearerTokenService {
     };
   }
 
+  isTokenAfterExpired(token: string): boolean {
+    if(!token) {
+      return true;
+    }
+    if(new Date() > new Date(jwt_decode(this.getToken())['exp'] * 1000)) {
+      return true;
+    }
+    return false;
+  }
+
   getUserId(): string {
     let fromStorage = JSON.parse(localStorage.getItem('klub27User'));
     if(fromStorage && fromStorage.userId) {
@@ -48,6 +58,7 @@ export class BearerTokenService {
 
   getUserNameFromToken(): string {
     if(JSON.parse(localStorage.getItem('klub27User')) != null && JSON.parse(localStorage.getItem('klub27User')).username) {
+      console.log(new Date(jwt_decode(this.getToken())['exp'] * 1000))
       return JSON.parse(localStorage.getItem('klub27User')).username;
     }
     try {
