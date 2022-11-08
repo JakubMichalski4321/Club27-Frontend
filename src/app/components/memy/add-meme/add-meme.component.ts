@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {UploadMem} from '../../../models/uploadModels/UploadMem';
+import { UploadMem } from 'src/app/models/components/meme/UploadMem';
 import {HttpService} from '../../../services/http.service';
 
 @Component({

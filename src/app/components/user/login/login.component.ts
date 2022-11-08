@@ -1,12 +1,11 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUser } from 'src/app/models/LoginUser';
+import { LoginUser } from 'src/app/models/common/login/LoginUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { IJwtToken } from 'src/app/components/user/login/IJwtToken';
 import { NavBarService } from 'src/app/services/nav-bar.service';
-import { DOCUMENT } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',

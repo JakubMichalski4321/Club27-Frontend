@@ -1,27 +1,25 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable, Subscription} from 'rxjs';
-import {IPajacyzm} from '../models/IPajacyzm';
-import {IMeme} from '../models/IMeme';
-import {ISoundboard} from '../models/ISoundboard';
-import {IJugo} from '../models/IJugo';
-import {UploadMem} from '../models/uploadModels/UploadMem';
-import {UploadSoundboard} from '../models/uploadModels/UploadSoundboard';
-import {IMemeComment} from '../models/IMemeComment';
-import {UploadMemeComment} from '../models/uploadModels/UploadMemeComment';
-import { PageRequest } from '../models/PageRequest';
-import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
-import { IPajacyzmyWithCounter } from '../models/IPajacyzmyWithCounter';
-import { IMemesWithCounter } from '../models/IMemesWithCounter';
-import { IDeptUser } from '../models/IDeptUser';
-import { discardPeriodicTasks } from '@angular/core/testing';
-import { IDeptAccount } from '../models/IDeptAccount';
-import { IDeptStatement } from '../models/IDeptStatement';
-import { IDeptDto } from '../models/IDeptDto';
-import { CalendarAddRequest } from '../models/calendar/CalendarAddRequest';
-import { IHourCheck } from '../models/calendar/IUserWithCheckedHours';
-import { CalendarWeekRequest } from '../models/calendar/CalendarWeekRequest';
-import { IStringWrapper } from '../models/IStringWrapper';
+import {IPajacyzm} from '../models/components/pajacyzm/IPajacyzm';
+import {IMeme} from '../models/components/meme/IMeme';
+import {ISoundboard} from '../models/components/soundboard/ISoundboard';
+import {IJugo} from '../models/components/jugo/IJugo';
+import {UploadSoundboard} from '../models/components/soundboard/UploadSoundboard';
+import {IMemeComment} from '../models/components/meme/IMemeComment';
+import {UploadMemeComment} from '../models/components/meme/UploadMemeComment';
+import { PageRequest } from '../models/common/PageRequest';
+import { IDeptAccount } from '../models/components/dept/IDeptAccount';
+import { CalendarAddRequest } from '../models/components/calendar/CalendarAddRequest';
+import { IHourCheck } from '../models/components/calendar/IUserWithCheckedHours';
+import { CalendarWeekRequest } from '../models/components/calendar/CalendarWeekRequest';
+import { IStringWrapper } from '../models/common/IStringWrapper';
+import { IDeptDto } from '../models/components/dept/IDeptDto';
+import { IDeptStatement } from '../models/components/dept/IDeptStatement';
+import { IDeptUser } from '../models/components/dept/IDeptUser';
+import { IMemesWithCounter } from '../models/components/meme/IMemesWithCounter';
+import { UploadMem } from '../models/components/meme/UploadMem';
+import { IPajacyzmyWithCounter } from '../models/components/pajacyzm/IPajacyzmyWithCounter';
 
 @Injectable()
 export class HttpService{

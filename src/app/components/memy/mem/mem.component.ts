@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../../../services/http.service';
-import {IMeme} from '../../../models/IMeme';
+import {IMeme} from '../../../models/components/meme/IMeme';
 import {ActivatedRoute} from '@angular/router';
-import {UploadMemeComment} from '../../../models/uploadModels/UploadMemeComment';
-import {Like} from "../../../models/Like";
+import {UploadMemeComment} from '../../../models/components/meme/UploadMemeComment';
 
 @Component({
   selector: 'app-mem',

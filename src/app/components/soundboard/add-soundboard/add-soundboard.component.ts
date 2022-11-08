@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from '../../../services/http.service';
-import {UploadSoundboard} from '../../../models/uploadModels/UploadSoundboard';
+import {UploadSoundboard} from '../../../models/components/soundboard/UploadSoundboard';
 
 @Component({
   selector: 'app-add-soundboard',

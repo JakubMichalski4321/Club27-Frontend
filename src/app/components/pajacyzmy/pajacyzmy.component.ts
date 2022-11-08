@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { IPajacyzm } from '../../models/IPajacyzm';
+import { IPajacyzm } from '../../models/components/pajacyzm/IPajacyzm';
 import {HttpService} from '../../services/http.service';
 import {DOCUMENT} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { PageRequest } from 'src/app/models/PageRequest';
-import { IPajacyzmyWithCounter } from 'src/app/models/IPajacyzmyWithCounter';
+import { PageRequest } from 'src/app/models/common/PageRequest';
+import { IPajacyzmyWithCounter } from 'src/app/models/components/pajacyzm/IPajacyzmyWithCounter';
 
 @Component({
   selector: 'app-pajacyzmy',

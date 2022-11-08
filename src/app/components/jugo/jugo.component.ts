@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IJugo} from '../../models/IJugo';
+import {IJugo} from '../../models/components/jugo/IJugo';
 import {HttpService} from '../../services/http.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {IJugoSafeUrl} from "../../models/IJugoSafeUrl";
-import {Like} from "../../models/Like";
+import {Like} from "../../models/components/meme/Like";
+import { IJugoSafeUrl } from 'src/app/models/components/jugo/IJugoSafeUrl';
 
 @Component({
   selector: 'app-jugo',

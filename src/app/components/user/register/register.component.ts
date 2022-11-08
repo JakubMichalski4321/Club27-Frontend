@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUser } from 'src/app/models/LoginUser';
+import { LoginUser } from 'src/app/models/common/login/LoginUser';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 

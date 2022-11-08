@@ -10,8 +10,8 @@ import { SoundboardComponent } from './components/soundboard/soundboard.componen
 import {RouterModule} from '@angular/router';
 import { HttpService } from './services/http.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {HttpAddressInterceptor} from './interceptors/http-address-interceptor';
-import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import {HttpAddressInterceptor} from './components/utils/interceptors/http-address-interceptor';
+import { ErrorModalComponent } from './components/utils/error-modal/error-modal.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';

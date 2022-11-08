@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IDeptAccount } from 'src/app/models/IDeptAccount';
-import { IDeptDto } from 'src/app/models/IDeptDto';
+import { IDeptDto } from 'src/app/models/components/dept/IDeptDto';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { HttpService } from 'src/app/services/http.service';
 import { NavBarService } from 'src/app/services/nav-bar.service';

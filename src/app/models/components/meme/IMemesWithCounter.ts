@@ -1,4 +1,4 @@
-import {IMeme} from './IMeme';
+import { IMeme } from "./IMeme";
 
 export interface IMemesWithCounter{
     memes: IMeme[];

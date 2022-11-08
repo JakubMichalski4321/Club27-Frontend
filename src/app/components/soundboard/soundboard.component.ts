@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ISoundboard} from '../../models/ISoundboard';
+import {ISoundboard} from '../../models/components/soundboard/ISoundboard';
 import {HttpService} from '../../services/http.service';
-import {AddMemeComponent} from '../memy/add-meme/add-meme.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddSoundboardComponent} from './add-soundboard/add-soundboard.component';
-import {Track} from 'ngx-audio-player';
-import {SoundboardListObject} from '../../models/SoundboardListObject';
+import {SoundboardListObject} from '../../models/components/soundboard/SoundboardListObject';
 
 @Component({
   selector: 'app-soundboard',

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { IMeme } from '../../models/IMeme';
+import { IMeme } from '../../models/components/meme/IMeme';
 import { HttpService } from '../../services/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddMemeComponent} from './add-meme/add-meme.component';
-import {UploadMemeComment} from '../../models/uploadModels/UploadMemeComment';
-import {Like} from '../../models/Like';
-import { PageRequest } from 'src/app/models/PageRequest';
-import { IMemesWithCounter } from 'src/app/models/IMemesWithCounter';
+import {UploadMemeComment} from '../../models/components/meme/UploadMemeComment';
+import {Like} from '../../models/components/meme/Like';
+import { PageRequest } from 'src/app/models/common/PageRequest';
+import { IMemesWithCounter } from 'src/app/models/components/meme/IMemesWithCounter';
 
 
 @Component({

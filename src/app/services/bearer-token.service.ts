@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
-import { from } from 'rxjs';
-import { IJwtToken } from '../components/user/login/IJwtToken';
 import { HttpService } from './http.service';
 
 @Injectable({

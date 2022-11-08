@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IDeptUser } from 'src/app/models/IDeptUser';
+import { IDeptUser } from 'src/app/models/components/dept/IDeptUser';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { HttpService } from '../../../services/http.service';
 

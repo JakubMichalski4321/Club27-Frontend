@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from 'src/app/models/dialogs/confirm-dialog/confirm-dialog.component';
-import { IDeptAccount } from 'src/app/models/IDeptAccount';
+import { IDeptAccount } from 'src/app/models/components/dept/IDeptAccount';
 import { BearerTokenService } from 'src/app/services/bearer-token.service';
 import { HttpService } from 'src/app/services/http.service';
 import { AddStatementComponent } from './add-statement/add-statement.component';

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpService} from '../../../services/http.service';
-import {IPajacyzm} from '../../../models/IPajacyzm';
+import {IPajacyzm} from '../../../models/components/pajacyzm/IPajacyzm';
 
 @Component({
   selector: 'app-pajacyzm',

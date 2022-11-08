@@ -1,12 +1,11 @@
-import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, OnInit } from '@angular/core';
-import { CheckedHour } from 'src/app/models/calendar/CheckedHour';
-import { IHourCheck } from 'src/app/models/calendar/IUserWithCheckedHours';
+import { CheckedHour } from 'src/app/models/components/calendar/CheckedHour';
+import { IHourCheck } from 'src/app/models/components/calendar/IUserWithCheckedHours';
 import { NavBarService } from 'src/app/services/nav-bar.service';
 import * as moment from 'moment';
-import { CalendarAddRequest } from 'src/app/models/calendar/CalendarAddRequest';
+import { CalendarAddRequest } from 'src/app/models/components/calendar/CalendarAddRequest';
 import { HttpService } from 'src/app/services/http.service';
-import { CalendarWeekRequest } from 'src/app/models/calendar/CalendarWeekRequest';
+import { CalendarWeekRequest } from 'src/app/models/components/calendar/CalendarWeekRequest';
 
 @Component({
   selector: 'app-calendar',
