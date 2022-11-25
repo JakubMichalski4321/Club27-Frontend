@@ -39,7 +39,10 @@ export class AddMemeComponent implements OnInit {
   }
 
   decideAndSubmitMemeImageOrUrl() {
-    const modalRef = this.modal.open(LoadingDialogComponent);
+    const modalRef = this.modal.open(LoadingDialogComponent, {
+      backdrop: 'static',
+      keyboard: false,
+    });
     (<LoadingDialogComponent>modalRef.componentInstance).showFileInput = this.showFileInput;
     (<LoadingDialogComponent>modalRef.componentInstance).file = this.file;
     (<LoadingDialogComponent>modalRef.componentInstance).title = this.title;
