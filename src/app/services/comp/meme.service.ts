@@ -29,16 +29,15 @@ export class MemeService {
     return this.http.get<IMemeComment[]>(this.baseUrl + id + '/comments');
   }
 
-  public submitMeme(data: UploadMem) {
-    this.http.post(this.baseUrl + 'meme-submit', data).toPromise().then((data: UploadMem) => {
-    });
+  public submitMeme(data: UploadMem): Observable<any> {
+    return this.http.post(this.baseUrl + 'meme-submit', data);
   }
 
-  public submitMemeImage(file: File, currentTime: number) {
+  public submitMemeWithImage(meme: UploadMem, file: File, currentTime: number) {
     let formData: FormData = new FormData();
     formData.append('file', file, currentTime + '_' + file.name);
-    this.http.post(this.baseUrl + 'meme-image-submit', formData).toPromise().then((data: FormData) => {
-    });
+    formData.append('meme', JSON.stringify(meme));
+    return this.http.post(this.baseUrl + 'meme-image-submit', formData);
   }
 
   public submitMemeComment(data: UploadMemeComment) {

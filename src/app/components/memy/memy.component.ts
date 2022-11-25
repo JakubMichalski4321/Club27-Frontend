@@ -57,7 +57,13 @@ export class MemyComponent implements OnInit {
   }
 
   onClick() {
-    this.modal.open(AddMemeComponent);
+    const modalRef = this.modal.open(AddMemeComponent);
+    (<AddMemeComponent>modalRef.componentInstance).memeUploaded.subscribe((uploaded) => {
+      if (uploaded) {
+        modalRef.close();
+        this.ngOnInit();
+      }
+    });
   }
 
   makeArrayOfNumbers(iterations: string) {

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import { UploadMem } from 'src/app/models/components/meme/UploadMem';
-import { MemeService } from 'src/app/services/comp/meme.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingDialogComponent } from 'src/app/models/dialogs/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-add-meme',
@@ -17,10 +16,11 @@ export class AddMemeComponent implements OnInit {
   file: File = null;
   warmingMessage = '';
   showFileInput = true;
+  @Output() memeUploaded: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     public activeModal: NgbActiveModal,
-    private memeService: MemeService,
+    private modal: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -39,40 +39,20 @@ export class AddMemeComponent implements OnInit {
   }
 
   decideAndSubmitMemeImageOrUrl() {
-    let currentDate = new Date();
-    let currentTime = currentDate.getTime();
-    if(this.showFileInput == true){
-      this.submitMemeImage(this.file, currentTime);
-      this.submitMeme(this.createMemeObjectOwnImage(currentTime));
-    }else {
-      this.submitMeme(this.createMemeObjectUrl());
-    }
+    const modalRef = this.modal.open(LoadingDialogComponent);
+    (<LoadingDialogComponent>modalRef.componentInstance).showFileInput = this.showFileInput;
+    (<LoadingDialogComponent>modalRef.componentInstance).file = this.file;
+    (<LoadingDialogComponent>modalRef.componentInstance).title = this.title;
+    (<LoadingDialogComponent>modalRef.componentInstance).author = this.author;
+    (<LoadingDialogComponent>modalRef.componentInstance).imagePathUrl = this.imagePathUrl;
+    (<LoadingDialogComponent>modalRef.componentInstance).fileUploadFinish.subscribe(
+      (uploaded) => {
+        if (uploaded) {
+          modalRef.close();
+          this.memeUploaded.emit(true);
+        }
+      }
+    );
   }
 
-  private createMemeObjectUrl(): UploadMem {
-    let memeToUpload = new UploadMem();
-    memeToUpload.title = this.title;
-    memeToUpload.author = this.author;
-    memeToUpload.imagePath = this.imagePathUrl;
-    return memeToUpload;
-  }
-
-  private createMemeObjectOwnImage(currentTime: number): UploadMem {
-    let memeToUpload = new UploadMem();
-    memeToUpload.title = this.title;
-    memeToUpload.author = this.author;
-    memeToUpload.imagePath = currentTime + '_' + this.file.name;
-    return memeToUpload;
-  }
-
-
-  //Services
-
-  private submitMeme(data: UploadMem) {
-    this.memeService.submitMeme(data);
-  }
-
-  private submitMemeImage(file: File, currentTime: number) {
-    this.memeService.submitMemeImage(file, currentTime);
-  }
 }

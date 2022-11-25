@@ -40,6 +40,7 @@ import { JugoService } from './services/comp/jugo.service';
 import { MemeService } from './services/comp/meme.service';
 import { PajacyzmService } from './services/comp/pajacyzm.service';
 import { SoundboardService } from './services/comp/soundboard.service';
+import { LoadingDialogComponent } from './models/dialogs/loading-dialog/loading-dialog.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { SoundboardService } from './services/comp/soundboard.service';
         ConfirmDialogComponent,
         InfoDialogComponent,
         CalendarComponent,
+        LoadingDialogComponent,
     ],
     imports: [
         BrowserModule,

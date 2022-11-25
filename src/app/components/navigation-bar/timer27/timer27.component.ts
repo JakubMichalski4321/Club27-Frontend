@@ -26,6 +26,7 @@ export class Timer27Component implements OnInit {
   ngOnInit(): void {
     this.fillTimeToFinishArray();
     this.progressTime = (Date.now() - this.dateFrom1997.getTime()) / (this.date27Finish.getTime() - this.dateFrom1997.getTime());
+    console.log(this.progressTime);
     this.percentageTimeLeft = Math.floor(100 - this.progressTime*100) + 1;
   }
 

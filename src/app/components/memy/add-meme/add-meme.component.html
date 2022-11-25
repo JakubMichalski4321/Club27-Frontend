@@ -41,5 +41,5 @@
 <div class="modal-footer">
   <button *ngIf="!everythingIsOk()" (click)="warmingMessage = 'Debilu byś wypełnij wszystdkie pola, co?';" type="button" class="btn btn-success" disabled>Dodaj mema</button>
   <div *ngIf="warmingMessage != ''" class="text-danger">{{warmingMessage}}</div>
-  <button *ngIf="everythingIsOk()" type="button" class="btn btn-success" (click)="activeModal.close('Close click'); decideAndSubmitMemeImageOrUrl();">Dodaj mema</button>
+  <button *ngIf="everythingIsOk()" type="button" class="btn btn-success" (click)="decideAndSubmitMemeImageOrUrl()">Dodaj mema</button>
 </div>
