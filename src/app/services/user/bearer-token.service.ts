@@ -19,14 +19,15 @@ export class BearerTokenService {
     if (this.token) {
       return this.token;
     } else if (this.getTokenFromStorage()) {
-      return this.getTokenFromStorage().token;
+      this.token = this.getTokenFromStorage();
+      return this.token;
     };
   }
 
   saveToken(token: string) {
     this.token = token;
     this.saveTokenInStorage(
-      JSON.stringify({ token: token, username: jwt_decode(token)['sub'] })
+      { token: token, username: jwt_decode(token)['sub'] }
     );
   }
 
@@ -69,14 +70,15 @@ export class BearerTokenService {
   }
 
   isLoggedIn(): boolean {
+    console.log(this.token);
     return this.getToken() && !this.isTokenAfterExpired(this.getToken());
   }
 
   private getTokenFromStorage(): any {
-    return JSON.parse(localStorage.getItem(this.STORAGE_TOKEN_NAME));
+    return localStorage.getItem(this.STORAGE_TOKEN_NAME);
   }
 
-  private saveTokenInStorage(tokenString: string): void {
+  private saveTokenInStorage(tokenString: any): void {
     localStorage.setItem(this.STORAGE_TOKEN_NAME, JSON.stringify(tokenString));
   }
 
