@@ -31,6 +31,8 @@ export class CalendarComponent implements OnInit {
   sundayDate: any;
   calendarHourArray: IHourCheck[] = [];
 
+  private FIRST_CALL: boolean = true;
+
   constructor(
     private tokenService: BearerTokenService,
     private calendarService: CalendarService,
@@ -43,6 +45,13 @@ export class CalendarComponent implements OnInit {
       this.setMondayAndSundayDate();
       this.generateHours();
       this.getWeekCalendar();
+    }
+  }
+
+  afterLogin() {
+    if(this.FIRST_CALL) {
+      this.FIRST_CALL = false;
+      this.ngOnInit();
     }
   }
 
