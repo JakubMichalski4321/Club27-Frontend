@@ -41,6 +41,7 @@ import { MemeService } from './services/comp/meme.service';
 import { PajacyzmService } from './services/comp/pajacyzm.service';
 import { SoundboardService } from './services/comp/soundboard.service';
 import { LoadingDialogComponent } from './models/dialogs/loading-dialog/loading-dialog.component';
+import { SnowComponent } from './components/navigation-bar/snow/snow.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import { LoadingDialogComponent } from './models/dialogs/loading-dialog/loading-
         InfoDialogComponent,
         CalendarComponent,
         LoadingDialogComponent,
+        SnowComponent,
     ],
     imports: [
         BrowserModule,
