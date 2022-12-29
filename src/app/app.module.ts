@@ -42,6 +42,7 @@ import { PajacyzmService } from './services/comp/pajacyzm.service';
 import { SoundboardService } from './services/comp/soundboard.service';
 import { LoadingDialogComponent } from './models/dialogs/loading-dialog/loading-dialog.component';
 import { SnowComponent } from './components/navigation-bar/snow/snow.component';
+import { FireworksComponent } from './components/navigation-bar/fireworks/fireworks.component';
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { SnowComponent } from './components/navigation-bar/snow/snow.component';
         CalendarComponent,
         LoadingDialogComponent,
         SnowComponent,
+        FireworksComponent,
     ],
     imports: [
         BrowserModule,

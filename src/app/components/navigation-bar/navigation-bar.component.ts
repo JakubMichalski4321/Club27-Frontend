@@ -13,6 +13,7 @@ export class NavigationBarComponent implements OnInit {
 
   showMobileNevBar = false;
   christmasMode = true;
+  fireworksMode = true;
 
   constructor(
     private tokenService: BearerTokenService,
