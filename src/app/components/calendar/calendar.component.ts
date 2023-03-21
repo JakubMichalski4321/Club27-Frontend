@@ -92,10 +92,10 @@ export class CalendarComponent implements OnInit {
         (ch) => ch.day == day && ch.hour == hour
       ).id;
       this.calendarHourArray
-        .find((user) => user.username === this.tokenService.getUserNameFromToken())
+        .find((user) => user.username === this.tokenService.getUsername())
         .checkedHours.splice(
           this.calendarHourArray
-            .find((user) => user.username === this.tokenService.getUserNameFromToken())
+            .find((user) => user.username === this.tokenService.getUsername())
             .checkedHours.findIndex((ch) => ch.id === id),
           1
         );
@@ -111,7 +111,7 @@ export class CalendarComponent implements OnInit {
     checkedHours.hour = hour;
 
     const request = new CalendarAddRequest();
-    request.username = this.tokenService.getUserNameFromToken();
+    request.username = this.tokenService.getUsername();
     request.day = day;
     request.hour = hour;
     request.weekStartDate = this.mondayDate.format('DD.MM.YYYY');
@@ -119,15 +119,15 @@ export class CalendarComponent implements OnInit {
 
     this.calendarService.addCalendar(request).subscribe((resp) => {
       if (
-        this.calendarHourArray.filter((user) => user.username === this.tokenService.getUserNameFromToken())
+        this.calendarHourArray.filter((user) => user.username === this.tokenService.getUsername())
           .length > 0
       ) {
         this.calendarHourArray
-          .find((user) => user.username === this.tokenService.getUserNameFromToken())
+          .find((user) => user.username === this.tokenService.getUsername())
           .checkedHours.push(this.createCheckedHour(day, hour, resp.value));
       } else {
         this.calendarHourArray.push({
-          username: this.tokenService.getUserNameFromToken(),
+          username: this.tokenService.getUsername(),
           checkedHours: [this.createCheckedHour(day, hour, resp.value)],
         });
       }
@@ -149,7 +149,7 @@ export class CalendarComponent implements OnInit {
   private getHourFromArray(day: number, hour: number): IHourCheck {
     return this.calendarHourArray.find(
       (user) =>
-        user.username === this.tokenService.getUserNameFromToken() &&
+        user.username === this.tokenService.getUsername() &&
         user.checkedHours.find((ch) => ch.day == day && ch.hour == hour) != null
     );
   }

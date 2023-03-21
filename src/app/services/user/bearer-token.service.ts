@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { from } from 'rxjs';
 import { DeptService } from '../comp/dept.service';
 
 @Injectable({
@@ -11,7 +12,9 @@ export class BearerTokenService {
     private deptService: DeptService,
   ) { }
 
-  private STORAGE_TOKEN_NAME: string = 'klub27User';
+  private STORAGE_TOKEN: string = 'klub27User';
+  private STORAGE_USER_ID: string = 'klub27UserId';
+  private STORAGE_USERNAME: string = 'klub27UserUsername';
 
   private token: string = null;
 
@@ -26,13 +29,17 @@ export class BearerTokenService {
 
   saveToken(token: string) {
     this.token = token;
-    this.saveTokenInStorage(
-      { token: token, username: jwt_decode(token)['sub'] }
-    );
+    this.saveTokenInStorage(token);
+    this.saveUsernameInStroage(jwt_decode(token)['sub']);
+    this.deptService.getUserIdByUserName(jwt_decode(token)['sub']).subscribe(resp => {
+      this.saveUserIdInStorage(resp.value);
+    })
   }
 
   logOut(): void {
-    localStorage.removeItem(this.STORAGE_TOKEN_NAME);
+    localStorage.removeItem(this.STORAGE_TOKEN);
+    localStorage.removeItem(this.STORAGE_USER_ID);
+    localStorage.removeItem(this.STORAGE_USERNAME);
   }
 
   isTokenAfterExpired(token: string): boolean {
@@ -45,41 +52,48 @@ export class BearerTokenService {
   }
 
   getUserId(): string {
-    let fromStorage = this.getTokenFromStorage();
-    if (fromStorage && fromStorage.userId) {
-      return fromStorage.userId;
-    } else if (this.getUserNameFromToken()) {
-      this.deptService.getUserIdByUserName(this.getUserNameFromToken()).subscribe(resp => {
-        fromStorage.userId = resp.value;
-        this.saveTokenInStorage(fromStorage);
+    let userIdFromStorage = this.getUserIdFromStorage();
+    if (userIdFromStorage) {
+      return userIdFromStorage;
+    } else if (this.getUsernameFromStorage()) {
+      this.deptService.getUserIdByUserName(this.getUsernameFromStorage()).subscribe(resp => {
+        userIdFromStorage = resp.value;
+        this.saveUserIdInStorage(userIdFromStorage);
         return resp.value;
       });
     }
   }
 
-  getUserNameFromToken(): string {
-    const token = this.getTokenFromStorage();
-    if (token && token.username) {
-      return token.username;
-    }
-    try {
-      return jwt_decode(this.getToken())['sub'];
-    } catch (Error) {
-      return null;
-    }
+  getUsername(): string {
+    return this.getUsernameFromStorage();
   }
 
   isLoggedIn(): boolean {
-    console.log(this.token);
     return this.getToken() && !this.isTokenAfterExpired(this.getToken());
   }
 
-  private getTokenFromStorage(): any {
-    return localStorage.getItem(this.STORAGE_TOKEN_NAME);
+  private getTokenFromStorage(): string {
+    return localStorage.getItem(this.STORAGE_TOKEN);
+  }
+
+  private getUserIdFromStorage(): string {
+    return localStorage.getItem(this.STORAGE_USER_ID);
+  }
+
+  private getUsernameFromStorage(): string {
+    return localStorage.getItem(this.STORAGE_USERNAME);
   }
 
   private saveTokenInStorage(tokenString: any): void {
-    localStorage.setItem(this.STORAGE_TOKEN_NAME, JSON.stringify(tokenString));
+    localStorage.setItem(this.STORAGE_TOKEN, tokenString);
+  }
+
+  private saveUserIdInStorage(userId: any): void {
+    localStorage.setItem(this.STORAGE_USER_ID, userId);
+  }
+
+  private saveUsernameInStroage(username: string): void{
+    localStorage.setItem(this.STORAGE_USERNAME, username);
   }
 
 }
