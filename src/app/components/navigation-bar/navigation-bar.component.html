@@ -29,6 +29,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="calendar">Kalendarz</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="diet">Dieta</a>
+        </li>
       </ul>
     </div>
 
@@ -53,6 +56,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="calendar">Kalendarz</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="diet">Dieta</a>
+        </li>
       </ul>
     </div>
     <div class="mr-3">
@@ -60,7 +66,7 @@
         <a class="nav-link" aria-current="page" routerLink="login">Logowanko</a>
       </div>
       <div *ngIf="isLoggedIn()">
-        <div (click)="logOut()" class="btn btn-outline-light">{{getUserNameFromToken()}}</div>
+        <div (click)="logOut()" class="btn btn-outline-light">{{getUsername()}}</div>
       </div>
     </div>
     <div class="mr-3 btn">

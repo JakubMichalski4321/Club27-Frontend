@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title">Dodawanie diety grubasie</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      Dzisiejsza waga<em class="text-danger">*</em><br>
+      <input [(ngModel)]="weight" class="form-control" type="number" min="50" max="200" name="title" step="0.1" placeholder="100.4">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12">
+      Opis<br>
+      <input [(ngModel)]="description" class="form-control" type="text" name="title" placeholder="+ cwiczenia">
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button *ngIf="!everythingIsOk()" (click)="warmingMessage = 'Debilu byś wypełnij wszystdkie pola, co?'" type="button" class="btn btn-success" disabled>Dodaj dzisiejszy wynik</button>
+  <div *ngIf="warmingMessage != ''" class="text-danger">
+    {{warmingMessage}}
+  </div>
+  <button *ngIf="everythingIsOk()" type="button" class="btn btn-success" (click)="addDietStatement()">Dodaj moja diete</button>
+</div>
+  

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10 text-center">
+        <div class="row">
+            <div class="col-12">
+                {{diet.dietName}}
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-12">
+                <hr>
+            </div>
+        </div>     
+        <div *ngIf="statementsExist" class="row">
+            <div class="col-12">
+                <apx-chart
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [xaxis]="chartOptions.xaxis"
+                [dataLabels]="chartOptions.dataLabels"
+                [grid]="chartOptions.grid"
+                [stroke]="chartOptions.stroke"
+                [title]="chartOptions.title"
+              ></apx-chart>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Waga</th>
+                        <th scope="col">Opis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let statement of dietStatements|slice:firstElement:toElement let index=index">
+                        <th scope="row" class="text-center">{{index+1}}</th>
+                        <td>{{statement.createdDate.substr(0, 10)}}</td>
+                        <td>{{statement.weight + ' kg'}}</td>
+                        <td class="text-center">{{statement.description}}</td>
+                      </tr>
+                      <tr *ngIf="dietStatements && toElement < dietStatements.length">
+                        <td colspan="4" (click)="toElement = toElement + toElement">Wincyj</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col-12">
+          <button *ngIf="!isAddedToday" class="btn m-3" (click)="openAddDietStatement()" placement="bottom" ngbTooltip="Dodaj dzisiejszy stan">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-plus-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    <div class="col-1"></div>
+</div>

@@ -6,6 +6,7 @@ export enum ControllUrl {
   SOUNDBOARD = 'soundboard/',
   DEPT = 'dept/',
   CALENDAR = 'calendar/',
-  USER = 'user/'
+  USER = 'user/',
+  DIET = 'diet/'
 
 }

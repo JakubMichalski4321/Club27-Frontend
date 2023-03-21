@@ -1,8 +1,9 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { BearerTokenService } from '../../../services/user/bearer-token.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class HttpAddressInterceptor implements HttpInterceptor {
@@ -41,8 +42,17 @@ export class HttpAddressInterceptor implements HttpInterceptor {
             .append("Access-Control-Allow-Origin", "*")
             .append('Authorization', 'Bearer ' + this.bearerService.getToken())
       });
-      return next.handle(req);
+      return next.handle(req).pipe(catchError(err => this.handleAuthError(err)));
     }
+
+    private handleAuthError(err: HttpErrorResponse): Observable<any> {
+      if (err.status === 401 || err.status === 403) {
+          this.bearerService.logOut();
+          this.route.navigate(['login']);
+          return of(err.message);
+      }
+      return throwError(err);
+  }
 
     private checkIfStringStartsWith(str: string, substrs: string[]) {
       return substrs.some(substr => str.startsWith(substr));

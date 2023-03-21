@@ -12,8 +12,8 @@ import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 export class NavigationBarComponent implements OnInit {
 
   showMobileNevBar = false;
-  christmasMode = true;
-  fireworksMode = true;
+  christmasMode = false;
+  fireworksMode = false;
 
   constructor(
     private tokenService: BearerTokenService,
@@ -28,8 +28,8 @@ export class NavigationBarComponent implements OnInit {
     return this.tokenService.isLoggedIn();
   }
 
-  getUserNameFromToken(): string{
-    return this.tokenService.getUserNameFromToken();
+  getUsername(): string{
+    return this.tokenService.getUsername();
   }
 
   logOut(): void {

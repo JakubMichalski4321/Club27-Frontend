@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 rounded innerContainer my-3">
+  
+      <div *ngIf="!isLoggedIn()" class="my-3">
+        <div *ngIf="!showLogin" class="row d-flex justify-content-center">
+          <img src="https://c.tenor.com/mZZoOtDcouoAAAAM/stop-it-get-some-help.gif" class="border rounded" alt="Anebo zaloguj się" />
+        </div>
+        <div *ngIf="showLogin">
+          <app-login [routeSite]="'calendar'"></app-login>
+        </div>
+      </div>
+  
+      <div *ngIf="isLoggedIn()" class="my-3">
+        {{afterLogin()}}
+  
+        <div class="row">
+          <div class="col-12 text-center">
+            <button *ngIf="!isExistUserDiet" type="button" class="btn btn-lg btn-primary m-3" (click)="openCreatDiet()" placement="bottom" ngbTooltip="Zacznij moją dietę">
+              Zacznij moją dietę
+            </button>
+          </div>
+        </div>
+
+        <app-diet-details *ngIf="isExistUserDiet" [diet]="myDiet"></app-diet-details>
+        <hr class="col-xs-12">
+
+        <div class="row m-3">
+          <div class="col-12">
+            <p class="text-center">Wyniki innych</p>
+          </div>
+          <div class="col-3" *ngFor="let diet of dietsList">
+            <div class="card text-white mb-3 onHover" style="max-width: 18rem;" (click)="openDetails(diet)">
+              <div class="card-header bg-dark border border-dark text-center">{{diet.userAccount.name + ' - ' + diet.dietName}}</div>
+              <div class="card-body text-center">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="card-title text-primary">{{diet.dietBalance}} kg</h5>
+                    <div *ngIf="isDownWeight(diet)" class="text-success">
+                      <div>{{lastestBalance(diet)}} kg</div>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                      </svg>
+                    </div>
+                    <div *ngIf="!isDownWeight(diet)" class="text-danger">
+                      <div>{{lastestBalance(diet)}} kg</div>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-dark">{{getLastStatement(diet)}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+    </div>
+</div>
+  

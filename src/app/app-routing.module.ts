@@ -11,6 +11,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { DeptAccountComponent } from './components/dept/dept-account/dept-account.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { DietComponent } from './components/diet/diet.component';
 
 const routes: Routes = [
     { path: 'pajacyzmy', component: PajacyzmyComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'calendar', component: CalendarComponent },
+    { path: 'diet', component: DietComponent },
 ];
 
 @NgModule({

@@ -43,6 +43,12 @@ import { SoundboardService } from './services/comp/soundboard.service';
 import { LoadingDialogComponent } from './models/dialogs/loading-dialog/loading-dialog.component';
 import { SnowComponent } from './components/navigation-bar/snow/snow.component';
 import { FireworksComponent } from './components/navigation-bar/fireworks/fireworks.component';
+import { DietComponent } from './components/diet/diet.component';
+import { AddDietComponent } from './components/diet/add-diet/add-diet.component';
+import { AddDietStatementComponent } from './components/diet/add-diet-statement/add-diet-statement.component';
+import { DietDetailsComponent } from './components/diet/diet-details/diet-details.component';
+import { DietService } from './services/comp/diet.service';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
     declarations: [
@@ -70,6 +76,10 @@ import { FireworksComponent } from './components/navigation-bar/fireworks/firewo
         LoadingDialogComponent,
         SnowComponent,
         FireworksComponent,
+        DietComponent,
+        AddDietComponent,
+        AddDietStatementComponent,
+        DietDetailsComponent,
     ],
     imports: [
         BrowserModule,
@@ -82,6 +92,7 @@ import { FireworksComponent } from './components/navigation-bar/fireworks/firewo
         NgxAudioPlayerModule,
         ReactiveFormsModule,
         NgxCaptchaModule,
+        NgApexchartsModule,
     ],
     providers: [
       UserService,
@@ -90,6 +101,7 @@ import { FireworksComponent } from './components/navigation-bar/fireworks/firewo
       JugoService,
       SoundboardService,
       DeptService,
+      DietService,
       CalendarService,
         { provide: HTTP_INTERCEPTORS, useClass: HttpAddressInterceptor, multi: true },
         NavBarService
