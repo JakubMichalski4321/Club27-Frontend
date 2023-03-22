@@ -56,12 +56,12 @@ export class DietDetailsComponent implements OnInit {
     this.dietService.getDietStatements(this.diet.id).subscribe(resp => {
       const currentDate: Date = new Date();
       this.dietStatements = resp.sort((dS1, dS2) =>
-        (dS1.createdDate > dS2.createdDate) ? 1 : ((dS2.createdDate > dS1.createdDate) ? -1 : 0));
+        (dS1.createdDate < dS2.createdDate) ? 1 : ((dS2.createdDate < dS1.createdDate) ? -1 : 0));
       let lastDiet: IDietStatement = this.dietStatements[0];
       this.initChart();
       if (lastDiet) {
         const lastDate = new Date(lastDiet.createdDate);
-        if (lastDate.getDay() === currentDate.getDay() &&
+        if (lastDate.getDate() === currentDate.getDate() &&
         lastDate.getMonth() === currentDate.getMonth() &&
         lastDate.getFullYear() === currentDate.getFullYear()) {
           this.isAddedToday = true;
@@ -71,7 +71,6 @@ export class DietDetailsComponent implements OnInit {
       } else {
         this.isAddedToday = false;
       }
-      this.isAddedToday = !this.allowAdd;
     });
   }
 
@@ -80,7 +79,7 @@ export class DietDetailsComponent implements OnInit {
       series: [
         {
           name: "Kg",
-          data: this.dietStatements.map(dS => dS.weight),
+          data: this.dietStatements.map(dS => dS.weight).reverse(),
         }
       ],
       chart: {
@@ -107,7 +106,7 @@ export class DietDetailsComponent implements OnInit {
         }
       },
       xaxis: {
-        categories: this.dietStatements.map(dS => dS.createdDate.substr(0, 10)),
+        categories: this.dietStatements.map(dS => dS.createdDate.substr(0, 10)).reverse(),
       }
     };
     this.statementsExist = true;
