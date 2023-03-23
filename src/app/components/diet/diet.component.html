@@ -35,7 +35,7 @@
               <div class="card-body text-center">
                 <div class="row">
                   <div class="col-12">
-                    <h5 class="card-title text-primary">{{diet.dietBalance}} kg</h5>
+                    <h5 class="card-title text-primary">{{getRounded(diet.dietBalance)}} kg</h5>
                     <div *ngIf="isDownWeight(diet)" class="text-success">
                       <div>{{lastestBalance(diet)}} kg</div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">

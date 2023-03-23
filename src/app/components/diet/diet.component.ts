@@ -96,13 +96,17 @@ export class DietComponent implements OnInit {
   public lastestBalance(diet: IDiet): string {
     if (diet.statements[0] && diet.statements[1]) {
       if (diet.statements[0].weight <= diet.statements[1].weight) {
-        return '-' + (diet.statements[1].weight - diet.statements[0].weight) 
+        return '-' + (this.getRounded(diet.statements[1].weight - diet.statements[0].weight)) 
       } else {
-        return '+' + (diet.statements[0].weight - diet.statements[1].weight) 
+        return '+' + (this.getRounded(diet.statements[0].weight - diet.statements[1].weight)) 
       }
     } else {
       return '0';
     }
+  }
+
+  public getRounded(balnce: number): number {
+    return Math.round(balnce * 1000) / 1000;
   }
 
   public openDetails(diet: IDiet): void {
