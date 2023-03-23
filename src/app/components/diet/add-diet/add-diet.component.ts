@@ -15,6 +15,7 @@ export class AddDietComponent implements OnInit {
   dietName: string;
   currentWeight: number = 100;
   warmingMessage: string;
+  dietHeight: number = 170;
 
   constructor(
     public activeModal: NgbActiveModal,

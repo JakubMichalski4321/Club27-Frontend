@@ -38,7 +38,7 @@ export class AddDietStatementComponent implements OnInit {
       description: this.description,
       dietId: this.dietId,
     }
-    this.dietService.addDietStatement(newStatement).subscribe(resp => {
+    this.dietService.addDietStatement(newStatement).subscribe(() => {
       this.outData.emit(true);
       this.activeModal.close();
     });

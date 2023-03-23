@@ -15,6 +15,7 @@ import {
   ApexStroke,
   ApexGrid
 } from "ng-apexcharts";
+import { BMI } from 'src/app/models/components/diet/BmiRank.enum';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -41,6 +42,11 @@ export class DietDetailsComponent implements OnInit {
   dietStatements: IDietStatement[];
   isAddedToday: boolean = true;
   weight: number;
+  dietHeight: number;
+  dietBMI: number;
+  bmiRank: string;
+  bmiLowerRank: string;
+  bmiToLowerRankDiffrence: number;
   statementsExist: boolean = false;
   allowAdd: boolean = true;
   options: any;
@@ -53,14 +59,18 @@ export class DietDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initDietStatements();
+  }
+
+  private initDietStatements(): void {
     this.dietService.getDietStatements(this.diet.id).subscribe(resp => {
       const currentDate: Date = new Date();
       this.dietStatements = resp.sort((dS1, dS2) =>
         (dS1.createdDate < dS2.createdDate) ? 1 : ((dS2.createdDate < dS1.createdDate) ? -1 : 0));
-      let lastDiet: IDietStatement = this.dietStatements[0];
+      let lastDietStatement: IDietStatement = this.dietStatements[0];
       this.initChart();
-      if (lastDiet) {
-        const lastDate = new Date(lastDiet.createdDate);
+      if (lastDietStatement) {
+        const lastDate = new Date(lastDietStatement.createdDate);
         if (lastDate.getDate() === currentDate.getDate() &&
         lastDate.getMonth() === currentDate.getMonth() &&
         lastDate.getFullYear() === currentDate.getFullYear()) {
@@ -68,11 +78,22 @@ export class DietDetailsComponent implements OnInit {
         } else {
           this.isAddedToday = false;
         }
+        this.calculateBMI(lastDietStatement);
       } else {
         this.isAddedToday = false;
       }
     });
   }
+
+  private calculateBMI(lastDietStatement: IDietStatement): void {
+    const bmi: number = BMI.calculateBMI(lastDietStatement.weight, this.diet.height);
+    this.dietBMI = Math.round(bmi * 1000) / 1000;
+    this.bmiRank = BMI.getBMILevel(bmi);
+    BMI.getLowerBMILevel(bmi);
+    BMI.getLowerBMILevelDiffrence(lastDietStatement.weight, this.diet.height);
+    this.bmiLowerRank = BMI.getLowerBMILevel(bmi);
+    this.bmiToLowerRankDiffrence = BMI.getLowerBMILevelDiffrence(lastDietStatement.weight, this.diet.height);
+  } 
 
   private initChart(): void {
     this.chartOptions = {

@@ -11,6 +11,12 @@
       <input [(ngModel)]="dietName" class="form-control" type="text" name="title" placeholder="Moja walka">
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      Wzrost(cm)<em class="text-danger">*</em><br>
+      <input [(ngModel)]="dietHeight" class="form-control" type="number" min="140" max="250" name="title" placeholder="180">
+    </div>
+  </div>
   <div class="row mt-2">
     <div class="col-12">
       Obecna waga<em class="text-danger">*</em><br>

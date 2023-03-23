@@ -8,5 +8,6 @@ export interface IDiet{
     createdDate: string;
     statements?: IDietStatement[];
     userAccount?: IUserAccount;
+    height?: number;
   }
   
