@@ -26,7 +26,7 @@ export class LoadingDialogComponent implements OnInit {
 
   uploadFile(): void {
     let currentTime = new Date().getTime();;
-    if (this.showFileInput == true) {
+    if (this.showFileInput) {
       this.memeService.submitMemeWithImage(this.createMemeObjectOwnImage(currentTime), this.file, currentTime).subscribe((resp: any) => {
         if (resp.value) {
           this.fileUploadFinish.emit(true);

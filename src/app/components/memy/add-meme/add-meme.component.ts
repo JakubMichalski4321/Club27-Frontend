@@ -31,10 +31,10 @@ export class AddMemeComponent implements OnInit {
   }
 
   everythingIsOk(): boolean {
-    if(this.title == '' || this.title == null) return false;
-    if(this.author == '' || this.author == null) return false;
-    if((this.imagePathUrl == '' || this.imagePathUrl == null) && (!this.showFileInput)) return false;
-    if((this.file == null) && (this.showFileInput)) return false;
+    if (this.title == '' || this.title == null) return false;
+    if (this.author == '' || this.author == null) return false;
+    if ((this.imagePathUrl == '' || this.imagePathUrl == null) && (!this.showFileInput)) return false;
+    if ((this.file == null) && (this.showFileInput)) return false;
     return true;
   }
 
@@ -51,8 +51,8 @@ export class AddMemeComponent implements OnInit {
     (<LoadingDialogComponent>modalRef.componentInstance).fileUploadFinish.subscribe(
       (uploaded) => {
         if (uploaded) {
-          modalRef.close();
           this.memeUploaded.emit(true);
+          modalRef.close();
         }
       }
     );
