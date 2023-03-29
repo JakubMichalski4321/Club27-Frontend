@@ -13,7 +13,7 @@
             <form class="was-validated">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div [ngClass]="{'col-4': !mobileSize}">
                         <label class="form-label" for="username">Nazwa użytkownika:</label>
                         <input type="text" [(ngModel)]="userModel.username" id="username" class="form-control" name="username" placeholder="nazwa" required>
                         <div class="invalid-feedback">
@@ -23,25 +23,25 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-4">
+                    <div [ngClass]="{'col-4': !mobileSize}">
                         <label class="form-label" for="password">Hasło:</label>
                         <input type="password" [(ngModel)]="userModel.password" id="password" class="form-control" name="password" placeholder="(najlepiej takie samo jak do banku)" required>
                     </div>
                 </div>
                 <div *ngIf="userModel.password != null" class="row justify-content-center">
-                    <div class="col-4">
+                    <div [ngClass]="{'col-4': !mobileSize}">
                         <label class="form-label" for="password2"></label>
                         <input type="password" [(ngModel)]="firstPassRepeat" id="password2" class="form-control" name="password2" placeholder="powtórz hasło" required>
                     </div>
                 </div>
                 <div *ngIf="firstPassRepeat != null" class="row justify-content-center">
-                    <div class="col-4">
+                    <div [ngClass]="{'col-4': !mobileSize}">
                         <label class="form-label" for="password3"></label>
                         <input type="password" [(ngModel)]="secoundPassReapat" id="password3" class="form-control" name="password3" placeholder="a powtórz jeszcze raz xD" required>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3">
-                    <div class="col-3 text-center">
+                    <div class=" text-center" [ngClass]="{'col-4': !mobileSize}">
                         <button *ngIf="!showLoading && !checkEverything()" class="btn btn-primary btn-lg fourth" disabled>Załuż konto</button>
                         <button *ngIf="!showLoading && checkEverything()" (click)="register()" type="submit" class="btn btn-primary btn-lg fourth">Załuż konto</button>
                         <button *ngIf="showLoading" class="btn btn-outline-primary disabled">Dołączanie do przegrywu... <br>

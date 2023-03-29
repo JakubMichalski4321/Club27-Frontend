@@ -22,12 +22,15 @@ export class RegisterComponent implements OnInit {
   showPass2And3NotEqual = false;
   errorMessage: string;
 
+  mobileSize: boolean = false;
+
   constructor(
     private http: HttpClient,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.mobileSize = window.innerWidth <= 500;
   }
 
   checkEverything(): boolean{

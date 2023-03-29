@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   captchaTrue = true;
   badLogin: any;
   badLoginMessage = '';
+  mobileSize: boolean = false;
 
   protected aFormGroup: FormGroup;
 
@@ -28,14 +29,10 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private tokenService: BearerTokenService,
-    private navBarService: NavBarService,
-    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    // this.aFormGroup = this.formBuilder.group({
-    //   recaptcha: ['', Validators.required]
-    // });
+    this.mobileSize = window.innerWidth <= 500;
   }
 
   login(): void {

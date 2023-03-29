@@ -9,30 +9,30 @@
             <!-- Login Form -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-3">
+                    <div [ngClass]="{'col-3': !mobileSize}">
                         <label for="username"></label>
                         <input type="text" [(ngModel)]="userModel.username" id="email" class="form-control" name="username" placeholder="userimię" required>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-3">
+                    <div [ngClass]="{'col-3': !mobileSize}">
                         <label for="password"></label>
                         <input type="password" [(ngModel)]="userModel.password" id="password" class="form-control" name="password" placeholder="password" required>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div class="col-3 text-danger">
+                  <div class="text-danger" [ngClass]="{'col-3': !mobileSize}">
                      {{badLoginMessage}}
                   </div>
               </div>
                 <div class="row justify-content-center">
-                  <div class="col-3">
+                  <div [ngClass]="{'col-3': !mobileSize}">
                     <!-- <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" (success)="captchaTrue = true;">
                     </ngx-recaptcha2> -->
                   </div>
                 </div>
                 <div class="row justify-content-center mt-3">
-                    <div class="col-3 text-center">
+                    <div class="text-center" [ngClass]="{'col-3': !mobileSize}">
                         <button *ngIf="!showLoading" [disabled]="!captchaTrue" (click)="login()" type="submit" class="btn btn-primary btn-lg fourth">LET ME IN!</button>
                         <button *ngIf="showLoading" class="btn btn-outline-primary disabled">Loading... <br>
                             <div class="spinner-border text-primary m-auto" role="status">
