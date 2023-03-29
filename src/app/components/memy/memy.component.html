@@ -1,15 +1,16 @@
 <script src="../../app.component.spec.ts"></script>
 <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8 rounded innerContainer">
-    <div class="addMeme rounded" (click)="onClick()">DAWAJ MEMA</div>
+  <div *ngIf="!mobileSize" class="col-2"></div>
+  <div class="rounded innerContainer" [ngClass]="{'col-8': !mobileSize, 'col-12': mobileSize}">
+    <div class="addMeme rounded" (click)="onClick()">DAWAJ 
+    MEMA</div>
     <div class="row" *ngFor="let mem of memyList | paginate: {
         itemsPerPage: 10,
         currentPage: currentPageDisplay,
         totalItems: allMemesCounter
       };">
-      <div class="col-3"></div>
-      <div class="col-6 oneMemeContainer rounded border border-secondary">
+      <div *ngIf="!mobileSize" class="col-3"></div>
+      <div class="oneMemeContainer rounded border border-secondary" [ngClass]="{'col-6': !mobileSize, 'col-12': mobileSize}">
         <div class="col-12 memeTitleContainer">
           <h4><b class = "memeTitle" [routerLink]="['../mem', mem.id]">{{mem.title}}</b></h4>
         </div>
@@ -25,7 +26,7 @@
             <div *ngIf="mem.memeLikes>0" class="xdClass">x</div>
             <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-2 text-right">
             <div *ngIf="!likeGiven(mem.id)" (click)="giveLikeToMeme(mem.id)" class="xdIcon">
               xD
             </div>

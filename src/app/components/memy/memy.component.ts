@@ -28,6 +28,7 @@ export class MemyComponent implements OnInit {
   memeLikesGiven?: Array<Like> = [];
   pageRequest = new PageRequest();
   allMemesCounter = 0;
+  mobileSize: boolean = false;
 
 
   constructor(
@@ -39,6 +40,7 @@ export class MemyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mobileSize = window.innerWidth <= 500;
     this.getAllMemy(0);
     this.memyList.sort((mem1, mem2) =>
       (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate) ? -1 : 0
