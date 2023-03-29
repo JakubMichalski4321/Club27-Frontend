@@ -1,6 +1,6 @@
 <div class="row">
   <div class="d-flex justify-content-center">
-    <div class="col-5 rounded">
+    <div class="rounded" [ngClass]="{'col-5': !mobileSize}">
       <div class="row">
         <div class="row oneMemeContainer rounded border border-secondary">
           <div class="col-sm-12 memeTitleContainer">
@@ -15,7 +15,7 @@
             <div class="xdClass">x</div>
             <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(mem.memeLikes)">D</div>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-2 text-right">
             <div *ngIf="!likeGiven(mem.id)" (click)="giveLikeToMeme(mem.id)" class="xdIcon">
               xD
             </div>

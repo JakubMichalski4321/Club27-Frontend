@@ -18,6 +18,7 @@ export class MemComponent implements OnInit, OnDestroy {
   displaySend = false;
   memeCommentContent: any;
   memeCommentAuthor: any;
+  mobileSize: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class MemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.mobileSize = window.innerWidth <= 500;
     this.sub = this.route.params.subscribe(params => {
       this.memId = params['memId'];
     });
