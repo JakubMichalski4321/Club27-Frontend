@@ -11,7 +11,7 @@
       <th><input (change)="onFileSelected($event)" type="file" name="file" id="file"></th>
     </tr>
     <tr>
-      <th class="input-add-meme-left-side">Tytuł<br><em class="small">Jeśli nie dasz tytułu, tytułem będzie nazwa pliku</em></th>
+      <th class="input-add-meme-left-side">Tytuł<br></th>
       <td><label>
         <input [(ngModel)]="title" class="input-add-meme-right-side" type="text" name="pathURL" placeholder="złej baletnicy">
       </label>
@@ -23,13 +23,14 @@
       </th>
       <td><label>
         <select [(ngModel)]="whoIs" class="form-select" aria-label="Default select example">
-          <option value="Seba">Seba</option>
-          <option value="Wojtuś">Wojtuś</option>
-          <option value="Jackob">Jackob</option>
-          <option value="Pajac">Pajac</option>
-          <option value="Niemmir">Niemmir</option>
-          <option value="Młody">Młody</option>
-          <option value="Inni">Inni</option>
+          <option value="seba">Seba</option>
+          <option value="wojtek">Wojtuś</option>
+          <option value="jackob">Jackob</option>
+          <option value="pajac">Pajac</option>
+          <option value="niemmir">Niemmir</option>
+          <option value="mlody">Młody</option>
+          <option value="debata">Debata</option>
+          <option value="inni">Inni</option>
         </select>
       </label></td>
     </tr>
