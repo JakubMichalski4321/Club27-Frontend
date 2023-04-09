@@ -17,16 +17,14 @@ export class SoundboardService {
     return this.http.get<ISoundboard[]>(this.baseUrl + 'soundboards');
   }
 
-  public submitSoundboard(data: UploadSoundboard){
-    this.http.post(this.baseUrl + 'soundboard-submit', data).toPromise().then((data: UploadSoundboard) => {
-    });
+  public submitSoundboard(data: UploadSoundboard): Observable<any> {
+    return this.http.post(this.baseUrl + 'soundboard-submit', data);
   }
 
-  public submitSoundboardSound(file: File, pathToFile: any){
+  public submitSoundboardSound(file: File, pathToFile: any): Observable<any> {
     let formData: FormData = new FormData();
     formData.append('file', file, pathToFile);
-    return this.http.post(this.baseUrl + 'soundboard-sound-submit', formData).toPromise().then((data: FormData) => {
-    });
+    return this.http.post(this.baseUrl + 'soundboard-sound-submit', formData);
   }
 
 }
