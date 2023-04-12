@@ -17,15 +17,13 @@
         <div class="row">
           <div class="col-sm-7">
             <label>
-              <input [(ngModel)]="pajacyzmAuthor" type="text" class="pajacyzmInputPajacyzmAuthor" placeholder="Najbardziej obiektywny"/>
+              <input [(ngModel)]="pajacyzmAuthor" type="text" class="pajacyzmInputPajacyzmAuthor"
+                placeholder="Najbardziej obiektywny" />
             </label>
           </div>
           <div class="col-sm-5 buttonContainer">
-            <div (click)="showReason('Wpisz pajacyzm i autora klałnie')">
-              <button *ngIf="!areAllFillIn()" type="button" class="btn btn-sm btn-success" disabled>Dodaj pajacyzm</button>
-            </div>
-            <div *ngIf="!canBeSend" class="text-danger">{{showReasonText}}</div>
-            <button *ngIf="areAllFillIn()" (click)="sendPajacyzm();" type="button" class="btn btn-sm btn-success">Dodaj pajacyzm</button>
+            <button [disabled]="!areAllFillIn() || !canBeSend" (click)="sendPajacyzm();" type="button"
+              class="btn btn-sm btn-success">Dodaj pajacyzm</button>
           </div>
         </div>
 
@@ -44,9 +42,6 @@
     <div  *ngIf="displaySend" class="submitConfirm">
       <div class="row text-success">
         Dodano pajacyzm!
-      </div>
-      <div class="row text-success">
-        <button type="button" class="btn btn-primary" (click)="refreshPage()">Odświerz stronę</button>
       </div>
     </div>
 
@@ -72,6 +67,5 @@
     </div>
   </div>
   <div class="col-sm-2"></div>
-
 
 </div>

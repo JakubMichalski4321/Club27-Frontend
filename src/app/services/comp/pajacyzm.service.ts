@@ -22,9 +22,8 @@ export class PajacyzmService {
     return this.http.post<IPajacyzmyWithCounter>(this.baseUrl + 'pajacyzmy', pageRequest);
   }
 
-  public submitPajacyzm(data: any){
-    this.http.post(this.baseUrl + 'pajacyzm-submit', data).toPromise().then((data: IPajacyzm) => {
-    });
+  public submitPajacyzm(data: IPajacyzm): Observable<IPajacyzm> {
+    return this.http.post<IPajacyzm>(this.baseUrl + 'pajacyzm-submit', data);
   }
 
 }

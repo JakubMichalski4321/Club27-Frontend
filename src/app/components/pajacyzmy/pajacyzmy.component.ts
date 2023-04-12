@@ -12,15 +12,15 @@ import { PajacyzmService } from 'src/app/services/comp/pajacyzm.service';
   styleUrls: ['./pajacyzmy.component.css']
 })
 export class PajacyzmyComponent implements OnInit {
-  pajacyzmyList?: Array<IPajacyzm> = [];
-  pajacyzmContent = '';
-  pajacyzmAuthor = '';
-  showReasonText = '';
-  displaySend = false;
-  currentPageDisplay = 1;
-  itemsPerPage = 10;
+  pajacyzmyList: IPajacyzm[] = [];
+  pajacyzmContent: string = '';
+  pajacyzmAuthor: string = '';
+  displaySend: boolean = false;
+  currentPageDisplay: number = 1;
+  itemsPerPage: number = 10;
   pajacyzmyListWithCounter?: IPajacyzmyWithCounter;
-  allPajacyzmy = 0;
+  allPajacyzmy: number = 0;
+  siteKey: string = '6LcSeL0aAAAAAD6JHiwL-qd89Fmhymt9fXFHdpia';
 
   pageRequest = new PageRequest();
 
@@ -38,47 +38,43 @@ export class PajacyzmyComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPajacyzmy(0);
     this.pajacyzmyList.sort((pajacyzm1, pajacyzm2) =>
-      (pajacyzm1.createdDate > pajacyzm2.createdDate) ? 1 : ((pajacyzm2.createdDate > pajacyzm1.createdDate)? -1 :0
-      ));
+      pajacyzm1.createdDate > pajacyzm2.createdDate ? 1 : pajacyzm2.createdDate > pajacyzm1.createdDate ? -1 : 0
+    );
     this.aFormGroup = this.formBuilder.group({
       recaptcha: ['', Validators.required]
     });
   }
 
-  refreshPage(){
+  refreshPage(): void {
     this._document.defaultView.location.reload();
   }
 
-  getAllPajacyzmy(pageNumber: number){
+  getAllPajacyzmy(pageNumber: number): void {
     this.pageRequest.pageNumber = pageNumber;
-    this.pajacyzmService.getAllPajacyzmyList(this.pageRequest).subscribe(data => {
-      this.pajacyzmyListWithCounter = data;
-      this.allPajacyzmy = this.pajacyzmyListWithCounter.counter;
-      this.pajacyzmyList = this.pajacyzmyListWithCounter.pajacyzmy;
-    }, error => {
-      console.log(error);
+    this.pajacyzmService.getAllPajacyzmyList(this.pageRequest).subscribe(
+      (data: IPajacyzmyWithCounter) => {
+        this.pajacyzmyListWithCounter = data;
+        this.allPajacyzmy = this.pajacyzmyListWithCounter.counter;
+        this.pajacyzmyList = this.pajacyzmyListWithCounter.pajacyzmy;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  areAllFillIn(): boolean {
+    return this.pajacyzmContent !== null && this.pajacyzmContent !== '' && this.pajacyzmAuthor !== null && this.pajacyzmAuthor !== '';
+  }
+
+  sendPajacyzm(): void {
+    this.pajacyzmService.submitPajacyzm({
+      content: this.pajacyzmContent,
+      author: this.pajacyzmAuthor,
+    }).subscribe(() => {
+      this.getAllPajacyzmy(0);
+      this.displaySend = true;
     });
   }
 
-  areAllFillIn() {
-    return (this.pajacyzmContent != '' && this.pajacyzmContent != null) && (this.pajacyzmAuthor != '' && this.pajacyzmAuthor != null);
-  }
-
-  sendPajacyzm() {
-    let jsonText = this.convertDataToJson();
-    this.pajacyzmService.submitPajacyzm(jsonText);
-    this.displaySend = true;
-    this.getAllPajacyzmy(0);
-  }
-
-  showReason(reason: string) {
-    this.showReasonText = reason;
-  }
-
-  private convertDataToJson() {
-    return {
-      content: this.pajacyzmContent,
-      author: this.pajacyzmAuthor
-    };
-  }
 }
