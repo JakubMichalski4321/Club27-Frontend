@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IMeme } from '../../models/components/meme/IMeme';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddMemeComponent } from './add-meme/add-meme.component';
 import { UploadMemeComment } from '../../models/components/meme/UploadMemeComment';
@@ -33,7 +32,6 @@ export class MemyComponent implements OnInit {
 
   constructor(
     private memeService: MemeService,
-    private sanitizer: DomSanitizer,
     private modal: NgbModal) {
     this.pageRequest.pageNumber = 1;
     this.pageRequest.numberPerPage = 10;
@@ -41,7 +39,7 @@ export class MemyComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobileSize = window.innerWidth <= 500;
-    this.getAllMemy(0);
+    this.getAllMemy(1);
     this.memyList.sort((mem1, mem2) =>
       (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate) ? -1 : 0
       ));
@@ -92,7 +90,7 @@ export class MemyComponent implements OnInit {
   //Services
 
   getAllMemy(pageNumber: number) {
-    this.pageRequest.pageNumber = pageNumber;
+    this.pageRequest.pageNumber = pageNumber - 1;
     this.memeService.getAllMemesList(this.pageRequest).subscribe(data => {
       this.memesListWithCounter = data;
       this.memyList = this.memesListWithCounter.memes;
