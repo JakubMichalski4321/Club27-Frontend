@@ -40,10 +40,6 @@ export class MemyComponent implements OnInit {
   ngOnInit(): void {
     this.mobileSize = window.innerWidth <= 500;
     this.getAllMemy(1);
-    this.memyList.sort((mem1, mem2) =>
-      (mem1.createdDate > mem2.createdDate) ? 1 : ((mem2.createdDate > mem1.createdDate) ? -1 : 0
-      ));
-    this.getMemeLikesGivenFromSession();
   }
 
   getMemeLikesGivenFromSession() {
@@ -66,7 +62,7 @@ export class MemyComponent implements OnInit {
     });
   }
 
-  makeArrayOfNumbers(iterations: string) {
+  makeArrayOfNumbers(iterations: number) {
     return Array(iterations.valueOf());
   }
 
@@ -95,6 +91,7 @@ export class MemyComponent implements OnInit {
       this.memesListWithCounter = data;
       this.memyList = this.memesListWithCounter.memes;
       this.allMemesCounter = this.memesListWithCounter.counter;
+      this.getMemeLikesGivenFromSession();
     }, error => {
       console.log(error);
     });

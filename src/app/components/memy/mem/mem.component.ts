@@ -46,7 +46,7 @@ export class MemComponent implements OnInit, OnDestroy {
     });
   }
 
-  makeArrayOfNumbers(iterations: string){
+  makeArrayOfNumbers(iterations: number){
     return Array(iterations.valueOf());
   }
 

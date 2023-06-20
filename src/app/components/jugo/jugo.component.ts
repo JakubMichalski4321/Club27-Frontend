@@ -84,6 +84,7 @@ export class JugoComponent implements OnInit {
     }
     this.jugoService.getAllJugoList(pageRequest).subscribe((data) => {
       this.allJugosCounter = data.counter;
+      this.allJugos = [];
       this.createJugoList(data.jugos);
     }, error => {
       console.log(error);
