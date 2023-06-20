@@ -7,5 +7,5 @@ export interface IMeme{
   imagePath: string;
   memeLikes: string;
   createdDate: string;
-  commentsList: Array<IMemeComment>;
+  memeComments: Array<IMemeComment>;
 }

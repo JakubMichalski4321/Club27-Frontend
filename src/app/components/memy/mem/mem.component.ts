@@ -30,14 +30,14 @@ export class MemComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.memId = params['memId'];
     });
-    this.getMem()
+    this.getMem();
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  getMem(){
+  getMem(): void {
     this.memeService.getMeme(this.memId).subscribe(data => {
       this.mem = data;
       this.getMemeComments();
@@ -62,8 +62,8 @@ export class MemComponent implements OnInit, OnDestroy {
 
   private getMemeComments() {
     this.memeService.getMemeComments(this.mem.id).subscribe(data => {
-      this.mem.commentsList = data;
-      this.mem.commentsList.sort((comment1, comment2) =>
+      this.mem.memeComments = data;
+      this.mem.memeComments.sort((comment1, comment2) =>
         (comment1.createdDate > comment2.createdDate) ? 1 : ((comment2.createdDate > comment1.createdDate) ? -1 : 0)
       );
     }, error => {

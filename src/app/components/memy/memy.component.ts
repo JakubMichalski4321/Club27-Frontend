@@ -94,24 +94,11 @@ export class MemyComponent implements OnInit {
     this.memeService.getAllMemesList(this.pageRequest).subscribe(data => {
       this.memesListWithCounter = data;
       this.memyList = this.memesListWithCounter.memes;
+      console.log(this.memyList);
       this.allMemesCounter = this.memesListWithCounter.counter;
-      this.getMemesComments();
     }, error => {
       console.log(error);
     });
-  }
-
-  private getMemesComments() {
-    for (let mem of this.memyList) {
-      this.memeService.getMemeComments(mem.id).subscribe(data => {
-        mem.commentsList = data;
-        mem.commentsList.sort((comment1, comment2) =>
-          (comment1.createdDate > comment2.createdDate) ? 1 : ((comment2.createdDate > comment1.createdDate) ? -1 : 0)
-        );
-      }, error => {
-        console.log(error);
-      });
-    }
   }
 
   giveLikeToMeme(id: string) {
