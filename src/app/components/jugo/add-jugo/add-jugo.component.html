@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">Dodawanie jugo'a</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="w-100">
+      <tr>
+        <th class="input-add-meme-left-side">Tytuł<em class="text-danger">*</em><br></th>
+        <td><label class="w-100">
+          <input [(ngModel)]="title" class="ml-2 w-100 input-add-meme-right-side" type="text" name="title" placeholder="taki tam filmik">
+        </label>
+        </td>
+      </tr>
+      <tr>
+        <th class="input-add-meme-left-side">Url<em class="text-danger">*</em><br></th>
+        <td><label class="w-100">
+          <input [(ngModel)]="videoUrl" class="ml-2 w-100 input-add-meme-right-side" type="text" name="url" placeholder="https://www.youtube.com/watch?v=IqEhJz1sy-4">
+        </label>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!everythingIsOk()" type="button" class="btn btn-success" disabled>Dodaj filmik</button>
+    <button *ngIf="everythingIsOk()" (click)="submitJugo()" type="button" class="btn btn-success" >Dodaj filmik</button>
+  </div>
+  

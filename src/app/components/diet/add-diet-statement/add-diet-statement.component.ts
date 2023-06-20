@@ -27,7 +27,6 @@ export class AddDietStatementComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.lastStatement) {
-      console.log(this.lastStatement.weight);
       this.weight = this.lastStatement.weight;
     }
   }

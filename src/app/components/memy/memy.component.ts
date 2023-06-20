@@ -94,7 +94,6 @@ export class MemyComponent implements OnInit {
     this.memeService.getAllMemesList(this.pageRequest).subscribe(data => {
       this.memesListWithCounter = data;
       this.memyList = this.memesListWithCounter.memes;
-      console.log(this.memyList);
       this.allMemesCounter = this.memesListWithCounter.counter;
     }, error => {
       console.log(error);

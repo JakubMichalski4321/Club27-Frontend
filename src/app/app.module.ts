@@ -49,6 +49,7 @@ import { AddDietStatementComponent } from './components/diet/add-diet-statement/
 import { DietDetailsComponent } from './components/diet/diet-details/diet-details.component';
 import { DietService } from './services/comp/diet.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { AddJugoComponent } from './components/jugo/add-jugo/add-jugo.component';
 
 @NgModule({
     declarations: [
@@ -80,6 +81,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
         AddDietComponent,
         AddDietStatementComponent,
         DietDetailsComponent,
+        AddJugoComponent,
     ],
     imports: [
         BrowserModule,

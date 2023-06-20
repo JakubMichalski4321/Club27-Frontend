@@ -2,12 +2,12 @@
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-8 rounded innerContainer">
+    <div class="addSoundboard rounded" (click)="openAddJugo()">DAWAJ JUGO'A</div>
     <div class="containerInContainerXD">
-
       <div class="row border border-secondary rounded" style="margin-bottom: 10%" *ngFor="let jugo of allJugos | paginate:{
         itemsPerPage: 6,
         currentPage: currentPageDisplay,
-        totalItems: allJugos.length
+        totalItems: allJugosCounter
       }">
         <div class="col-12 h3 font-weight-bold">{{jugo.title}}</div>
         <div class="col-12">{{jugo.videoComment}}</div>
@@ -21,13 +21,13 @@
           </div>
         </div>
         <div *ngIf="jugo.videoLikes>0" class="col-11 xdClass">
-          <div class="xdClass">x</div>
+          <div class="xdClass" *ngIf="jugo.videoLikes">x</div>
           <div class="xdClass" *ngFor="let d of makeArrayOfNumbers(jugo.videoLikes)">D</div>
         </div>
       </div>
     </div>
     <div class="col-sm-12 paginationContainer">
-      <pagination-controls class="text-center" (pageChange)="currentPageDisplay = $event"></pagination-controls>
+      <pagination-controls class="text-center" (pageChange)="currentPageDisplay = $event; getJugoList(currentPageDisplay)"></pagination-controls>
     </div>
   </div>
   <div class="col-sm-2"></div>

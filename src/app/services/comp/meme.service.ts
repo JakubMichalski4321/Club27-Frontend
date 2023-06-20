@@ -13,15 +13,15 @@ import { ControllUrl } from "../control.enum";
 @Injectable()
 export class MemeService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private baseUrl = ControllUrl.MEME;
 
-  public getMeme(memeId: any): Observable<IMeme>{
+  public getMeme(memeId: any): Observable<IMeme> {
     return this.http.get<IMeme>(this.baseUrl + memeId);
   }
 
-  public getAllMemesList(pageRequest: PageRequest): Observable<IMemesWithCounter>{
+  public getAllMemesList(pageRequest: PageRequest): Observable<IMemesWithCounter> {
     return this.http.post<IMemesWithCounter>(this.baseUrl + 'memes', pageRequest);
   }
 
@@ -45,7 +45,7 @@ export class MemeService {
     });
   }
 
-  public addLikeToMeme(memeId: string): Subscription{
+  public addLikeToMeme(memeId: string): Subscription {
     return this.http.get<any>(this.baseUrl + memeId + "/like-add").subscribe();;
   }
 
