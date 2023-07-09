@@ -34,7 +34,8 @@ export class AddDietComponent implements OnInit {
     const newDiet = {
       dietName: this.dietName,
       currentWeight: this.currentWeight,
-      userAccountId: this.tokenService.getUserId()
+      currentHeight: this.dietHeight,
+      userAccountId: this.tokenService.getUserId(),
     }
     this.dietService.addDiet(newDiet).subscribe(() => {
       this.activeModal.close();
