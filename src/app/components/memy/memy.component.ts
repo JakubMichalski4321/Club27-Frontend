@@ -70,12 +70,15 @@ export class MemyComponent implements OnInit {
     return ((this.memeCommentAuthor != '' && this.memeCommentAuthor != null) && (this.memeCommentContent != '' && this.memeCommentContent != null));
   }
 
-  checkIfUrl(imagePath: string) {
-    if(isNaN(Number(imagePath.substr(0, 4)))) {
-      return imagePath;
-    }else {
-      return this.pathToDir + imagePath;
+  checkIfUrl(imagePath: string): string {
+    if (imagePath) {
+      if (imagePath.slice(0, 4) === 'http') {
+        return imagePath;
+      } else {
+        return this.pathToDir + imagePath;
+      }
     }
+    return '';
   }
 
   likeGiven(id: string):boolean {
