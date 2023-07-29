@@ -36,7 +36,7 @@ export class PajacyzmyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllPajacyzmy(0);
+    this.getAllPajacyzmy(1);
     this.pajacyzmyList.sort((pajacyzm1, pajacyzm2) =>
       pajacyzm1.createdDate > pajacyzm2.createdDate ? 1 : pajacyzm2.createdDate > pajacyzm1.createdDate ? -1 : 0
     );
@@ -50,7 +50,7 @@ export class PajacyzmyComponent implements OnInit {
   }
 
   getAllPajacyzmy(pageNumber: number): void {
-    this.pageRequest.pageNumber = pageNumber;
+    this.pageRequest.pageNumber = pageNumber - 1;
     this.pajacyzmService.getAllPajacyzmyList(this.pageRequest).subscribe(
       (data: IPajacyzmyWithCounter) => {
         this.pajacyzmyListWithCounter = data;
