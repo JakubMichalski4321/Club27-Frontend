@@ -50,3 +50,4 @@ Thumbs.db
 /src/assets/soundboardSounds/*
 src/app/interceptors/http-address-interceptor.ts
 src/app/interceptors/http-address-interceptor.ts
+package-lock.json

@@ -12,8 +12,10 @@ import { BearerTokenService } from 'src/app/services/user/bearer-token.service';
 export class NavigationBarComponent implements OnInit {
 
   showMobileNevBar = false;
-  christmasMode = false;
-  fireworksMode = false;
+  christmasMode: boolean = true;
+  fireworksMode: boolean = true;
+  christams: boolean = false;
+  newYear: boolean = false;
 
   constructor(
     private tokenService: BearerTokenService,

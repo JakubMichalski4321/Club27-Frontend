@@ -1,41 +1,20 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDiet } from 'src/app/models/components/diet/IDiet';
 import { IDietStatement } from 'src/app/models/components/diet/IDietStatement';
 import { DietService } from 'src/app/services/comp/diet.service';
 import { AddDietStatementComponent } from '../add-diet-statement/add-diet-statement.component';
-
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexTitleSubtitle,
-  ApexStroke,
-  ApexGrid
-} from "ng-apexcharts";
 import { BMI } from 'src/app/models/components/diet/BmiRank.enum';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  dataLabels: ApexDataLabels;
-  grid: ApexGrid;
-  stroke: ApexStroke;
-  title: ApexTitleSubtitle;
-};
+
 
 @Component({
   selector: 'app-diet-details',
   templateUrl: './diet-details.component.html',
-  styleUrls: ['./diet-details.component.css']
+  styleUrls: ['./diet-details.component.css'],
 })
 export class DietDetailsComponent implements OnInit {
 
-  @ViewChild("chart") chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
 
   @Input()
   diet: IDiet;
@@ -52,6 +31,7 @@ export class DietDetailsComponent implements OnInit {
   options: any;
   firstElement: number = 0;
   toElement: number = 5;
+  chartOptions: any;
 
   constructor(
     private dietService: DietService,
@@ -67,6 +47,25 @@ export class DietDetailsComponent implements OnInit {
       const currentDate: Date = new Date();
       this.dietStatements = resp.sort((dS1, dS2) =>
         (dS1.createdDate < dS2.createdDate) ? 1 : ((dS2.createdDate < dS1.createdDate) ? -1 : 0));
+      console.log(this.dietStatements);
+      this.chartOptions = {
+        animationEnabled: true,
+        zoomEnabled: true,
+        title: {
+          text: "Wykres potęgi"
+        },
+        data: [{
+          type: "splineArea",
+          markerSize: 9,
+          color: "rgba(54,158,173,.7)",
+          xValueFormatString: "DD-MM-YYYY",
+          yValueFormatString: "#.##kg",
+          dataPoints: this.dietStatements.map((ds: IDietStatement) => { return {
+            x: new Date(ds.createdDate),
+            y: ds.weight,
+          }})
+        }]
+      }
       let lastDietStatement: IDietStatement = this.dietStatements[0];
       this.initChart();
       if (lastDietStatement) {
@@ -93,43 +92,9 @@ export class DietDetailsComponent implements OnInit {
     BMI.getLowerBMILevelDiffrence(lastDietStatement.weight, this.diet.height);
     this.bmiLowerRank = BMI.getLowerBMILevel(bmi);
     this.bmiToLowerRankDiffrence = BMI.getLowerBMILevelDiffrence(lastDietStatement.weight, this.diet.height);
-  } 
+  }
 
   private initChart(): void {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Kg",
-          data: this.dietStatements.map(dS => dS.weight).reverse(),
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "straight"
-      },
-      title: {
-        text: "Wykres tluszczu użytkownika " + this.diet.userAccount.name,
-        align: "center"
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"],
-          opacity: 0.5
-        }
-      },
-      xaxis: {
-        categories: this.dietStatements.map(dS => dS.createdDate.substr(0, 10)).reverse(),
-      }
-    };
     this.statementsExist = true;
   }
 

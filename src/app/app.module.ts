@@ -20,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddMemeComponent } from './components/memy/add-meme/add-meme.component';
 import { AddSoundboardComponent } from './components/soundboard/add-soundboard/add-soundboard.component';
-import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Timer27Component } from './components/navigation-bar/timer27/timer27.component';
 import { DeptComponent } from './components/dept/dept.component';
@@ -48,10 +47,9 @@ import { AddDietComponent } from './components/diet/add-diet/add-diet.component'
 import { AddDietStatementComponent } from './components/diet/add-diet-statement/add-diet-statement.component';
 import { DietDetailsComponent } from './components/diet/diet-details/diet-details.component';
 import { DietService } from './services/comp/diet.service';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { AddJugoComponent } from './components/jugo/add-jugo/add-jugo.component';
 import { ElectionsComponent } from './components/elections/elections.component';
-
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 @NgModule({
     declarations: [
         AppComponent,
@@ -93,10 +91,10 @@ import { ElectionsComponent } from './components/elections/elections.component';
         NgbModule,
         FormsModule,
         NgxPaginationModule,
-        NgxAudioPlayerModule,
         ReactiveFormsModule,
         NgxCaptchaModule,
-        NgApexchartsModule,
+        FormsModule,
+        CanvasJSAngularChartsModule,
     ],
     providers: [
       UserService,

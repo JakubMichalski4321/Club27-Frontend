@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class HttpAddressInterceptor implements HttpInterceptor {
 
-  //private baseUrl = 'http://145.239.92.211:8090/';
-  private baseUrl: string = 'http://localhost:8090/';
+  private baseUrl = 'http://145.239.92.211:8090/';
+  //private baseUrl: string = 'http://localhost:8090/';
   private FREE_BASED_URLS: string[] = [
     'user/login',
     'user/register-user',
